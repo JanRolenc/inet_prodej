@@ -1,0 +1,92 @@
+.inet-prodej-app {
+  height: 100vh;
+  .header {
+    height: 5%;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 10px 0px 10px 20px;
+    overflow: hidden;
+    svg {
+      height: 20px;
+      margin-right: 10px;
+    }
+    span {
+      margin-right: 10px;
+    }
+  }
+  .options-panel {
+    display: flex;
+    height: 5%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-style: solid;
+    border-width: 1px 0px 1px 0px;
+    padding: 10px 0px 10px 20px;
+    &__left {
+      display: flex;
+      justify-content: left;
+      span {
+        padding-right: 10px;
+      }
+    }
+    &__right {
+      display: flex;
+      justify-content: right;
+      padding-right: 20%;
+    }
+  }
+  .items {
+    height: 45%;
+    &__panel {
+      font-weight: bold;
+      display: flex;
+      flex-direction: row;
+      border-style: solid;
+      border-width: 1px 0px 1px 1px;
+      margin: 5px 10px 0px 10px;
+      &__left {
+        width: 25%;
+        text-align: left;
+        padding-left: 5px;
+        border-style: solid;
+        border-width: 0px 1px 0px 0px;
+      }
+      &__right {
+        width: 25%;
+        text-align: right;
+        padding-right: 5px;
+        border-style: solid;
+        border-width: 0px 1px 0px 0px;
+      }
+    }
+    &__list-container {
+      display: flex;
+      flex-direction: row;
+      border-style: solid;
+      border-width: 0px 0px 1px 1px;
+      height: 100%;
+      margin: 0px 10px;
+
+      &__left {
+        width: 25%;
+        height: 100%;
+        background-color: lightblue;
+        border-style: solid;
+        border-width: 0px 1px 0px 0px;
+      }
+      &__right {
+        width: 25%;
+        height: 100%;
+        background-color: lightblue;
+        border-style: solid;
+        border-width: 0px 1px 0px 0px;
+      }
+    }
+  }
+  .below-half {
+    height: 45%;
+    background-color: lightyellow;
+  }
+}
