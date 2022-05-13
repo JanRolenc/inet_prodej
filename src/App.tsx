@@ -25,9 +25,7 @@ function App() {
       </div>
       <div className="items">
         <span>
-          <span style={{ fontWeight: "bold", margin: "5px 0px 0px 5px" }}>
-            Prodejna
-          </span>{" "}
+          <span style={{ fontWeight: "bold", padding: "5px" }}>Prodejna</span>{" "}
           CPS
         </span>
         <div className="items__panel">
@@ -43,21 +41,48 @@ function App() {
           <div className="items__list-container__left"></div>
         </div>
       </div>
-      <div className="below-half">
-        <div className="person">
+      <div className="person">
+        <span style={{ fontWeight: "bold", display: "block" }}>Osoba</span>
+        <div className="person__details">
           <img src={personalImage} alt="icon" />
-          <div className="person__details">
-            <span style={{ fontWeight: "bold" }}>Jméno a příjmení</span>
-            <span>Mgr. Zdeněk Machač</span>
-            <span style={{ fontWeight: "bold" }}>Identifikace</span>
-            <input type="number" />
-            <div className="person__buttons">
-              <button>
-                <MagnifierIcon /> Vyhledat
-              </button>
-              <button>Vyhledat</button>
-            </div>
+          <span style={{ fontWeight: "bold" }}>Jméno a příjmení</span>
+          <span>Mgr. Zdeněk Machač</span>
+          <span style={{ fontWeight: "bold", marginTop: "10px" }}>
+            Identifikace
+          </span>
+          <input type="text" />
+          <div className="person__details__buttons">
+            <button>
+              <MagnifierIcon /> Vyhledat
+            </button>
+            <button>Vynulovat</button>
           </div>
+        </div>
+      </div>
+      <div className="shop">
+        <span style={{ fontWeight: "bold", padding: "10px" }}>Košík</span>
+        <div className="shop__panel">
+          <div className="shop__panel__left">Odebrat vše</div>
+          <div className="shop__panel__left shop__panel__left--bigger">
+            Druh zboží / služby
+          </div>
+          <div className="shop__panel__right">Cena / kus</div>
+          <div className="shop__panel__right">Počet</div>
+          <div className="shop__panel__right">Cena</div>
+          <div className="shop__panel__right">Odebrat 1</div>
+        </div>
+        <div className="shop__list-container">
+          <div className="shop__list-container__left"></div>
+          <div className="shop__list-container__left shop__list-container__left--bigger"></div>
+          <div className="shop__list-container__right"></div>
+          <div className="shop__list-container__right"></div>
+          <div className="shop__list-container__right"></div>
+          <div className="shop__list-container__right"></div>
+        </div>
+        <div className="shop__sale">
+          <span>Celková cena: {}</span>
+          <span>SUPO: Klientův zůstatek po zaplacení nákupního košíku: {}</span>
+          <button>Prodej</button>
         </div>
       </div>
     </div>
