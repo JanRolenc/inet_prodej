@@ -1,0 +1,176 @@
+[{
+        "id": 1,
+        "druh": "Fólie průhledná",
+        "cena": 20,
+        "pocet": 25,
+        "popis": "průhledná"
+    },
+    {
+        "id": 2,
+        "druh": "Fólie modrá",
+        "cena": 1,
+        "pocet": 25,
+        "popis": "modrá"
+    },
+    {
+        "id": 3,
+        "druh": "Fólie bílá",
+        "cena": 111,
+        "pocet": 25,
+        "popis": "bílá"
+    },
+    {
+        "id": 4,
+        "druh": "Fólie hnědá",
+        "cena": 11,
+        "pocet": 25,
+        "popis": "hnědá"
+    },
+    {
+        "id": 5,
+        "druh": "Fólie fialová",
+        "cena": 141,
+        "pocet": 25,
+        "popis": "fialová"
+    },
+    {
+        "id": 6,
+        "druh": "Fólie hladká",
+        "cena": 25,
+        "pocet": 25,
+        "popis": "hladká"
+    },
+    {
+        "id": 7,
+        "druh": "Fólie hrubá",
+        "cena": 588,
+        "pocet": 25,
+        "popis": "hrubá"
+    },
+    {
+        "id": 8,
+        "druh": "Fólie PVC",
+        "cena": 777,
+        "pocet": 25,
+        "popis": "PVC"
+    },
+    {
+        "id": 9,
+        "druh": "Fólie PE",
+        "cena": 3,
+        "pocet": 25,
+        "popis": "PE"
+    },
+    {
+        "id": 10,
+        "druh": "Fólie PP",
+        "cena": 65,
+        "pocet": 25,
+        "popis": "PP"
+    },
+    {
+        "id": 11,
+        "druh": "Fólie oranžová",
+        "cena": 20,
+        "pocet": 25,
+        "popis": "přednoranžováí"
+    },
+    {
+        "id": 12,
+        "druh": "Fólie černá",
+        "cena": 20,
+        "pocet": 205,
+        "popis": "černá"
+    },
+    {
+        "id": 13,
+        "druh": "Fólie hliníková",
+        "cena": 200,
+        "pocet": 25,
+        "popis": "hliníková"
+    },
+    {
+        "id": 14,
+        "druh": "Fólie transparent",
+        "cena": 20,
+        "pocet": 25,
+        "popis": "transparent"
+    },
+    {
+        "id": 15,
+        "druh": "Fólie vzorovaná",
+        "cena": 2000,
+        "pocet": 25,
+        "popis": "vzorovaná"
+    },
+    {
+        "id": 16,
+        "druh": "Fólie embosovaná",
+        "cena": 2012,
+        "pocet": 25,
+        "popis": "embosovaná"
+    },
+    {
+        "id": 17,
+        "druh": "Fólie stahovací",
+        "cena": 20,
+        "pocet": 225,
+        "popis": "stahovací"
+    },
+    {
+        "id": 18,
+        "druh": "Fólie pevná",
+        "cena": 20,
+        "pocet": 225,
+        "popis": "pevná"
+    },
+    {
+        "id": 19,
+        "druh": "Fólie potištěná",
+        "cena": 201,
+        "pocet": 25,
+        "popis": "potištěná"
+    },
+    {
+        "id": 20,
+        "druh": "Fólie neprůhledná",
+        "cena": 20,
+        "pocet": 215,
+        "popis": "neprůhledná"
+    },
+    {
+        "id": 21,
+        "druh": "Fólie nepotištěná",
+        "cena": 20111,
+        "pocet": 25,
+        "popis": "nepotištěná"
+    },
+    {
+        "id": 22,
+        "druh": "Fólie neprodyšná",
+        "cena": 204,
+        "pocet": 2225,
+        "popis": "neprodyšná"
+    },
+    {
+        "id": 23,
+        "druh": "Fólie prodyšná",
+        "cena": 208,
+        "pocet": 25,
+        "popis": "prodyšná"
+    },
+    {
+        "id": 24,
+        "druh": "Fólie laminovaná",
+        "cena": 206,
+        "pocet": 2885,
+        "popis": "laminovaná"
+    },
+    {
+        "id": 25,
+        "druh": "Fólie dezénovaná",
+        "cena": 208,
+        "pocet": 2588,
+        "popis": "dezénovaná"
+    }
+]

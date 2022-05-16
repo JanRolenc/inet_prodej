@@ -1,219 +1,227 @@
 .inet-prodej-app {
-  width: 100%;
-  height: 100vh;
-  display: grid;
-  grid-template-columns: 20% 20% 20% 20% 20%;
-  grid-template-rows: 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5%;
-  grid-template-areas:
-    "header header header header header"
-    "options-panel options-panel options-panel options-panel options-panel"
-    "items items items items items"
-    "items items items items items"
-    "items items items items items"
-    "items items items items items"
-    "items items items items items"
-    "items items items items items"
-    "items items items items items"
-    "items items items items items"
-    "items items items items items"
-    "person shop shop shop shop"
-    "person shop shop shop shop"
-    "person shop shop shop shop"
-    "person shop shop shop shop"
-    "person shop shop shop shop"
-    "person shop shop shop shop"
-    "person shop shop shop shop"
-    "person shop shop shop shop"
-    "person shop shop shop shop";
-  .header {
-    background-color: rgb(173, 173, 182);
-    grid-area: header;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-left: 10px;
-    svg {
-      height: 20px;
-      margin-right: 10px;
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5%;
+    grid-template-areas: 'header header header header header' 'options-panel options-panel options-panel options-panel options-panel' 'items items items items items' 'items items items items items' 'items items items items items' 'items items items items items' 'items items items items items' 'items items items items items' 'items items items items items' 'items items items items items' 'items items items items items' 'person shop shop shop shop' 'person shop shop shop shop' 'person shop shop shop shop' 'person shop shop shop shop' 'person shop shop shop shop' 'person shop shop shop shop' 'person shop shop shop shop' 'person shop shop shop shop' 'person shop shop shop shop';
+    button {
+        border-radius: 3px;
+        width: 85px;
     }
-    span {
-      margin-right: 10px;
-    }
-  }
-  .options-panel {
-    background-color: beige;
-    grid-area: options-panel;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    border-style: solid;
-    border-width: 1px 0px 1px 0px;
-    padding-left: 10px;
-    &__left {
-      display: flex;
-      justify-content: left;
-      span {
-        padding-right: 10px;
-      }
-    }
-    &__right {
-      display: flex;
-      justify-content: right;
-      padding-right: 20%;
-    }
-  }
-  .items {
-    background-color: blanchedalmond;
-    grid-area: items;
-    &__panel {
-      font-weight: bold;
-      display: flex;
-      flex-direction: row;
-      border-style: solid;
-      align-items: center;
-      border-width: 1px 0px 1px 1px;
-
-      &__left {
-        width: 25%;
-        text-align: left;
-        padding-left: 5px;
-        border-style: solid;
-        border-width: 0px 1px 0px 0px;
-      }
-      &__right {
-        width: 25%;
-        text-align: right;
-        padding-right: 5px;
-        border-style: solid;
-        border-width: 0px 1px 0px 0px;
-      }
-    }
-    &__list-container {
-      display: flex;
-      flex-direction: row;
-      border-style: solid;
-      border-width: 0px 0px 1px 1px;
-      height: 100%;
-
-      &__left {
-        width: 25%;
-        height: auto;
-        background-color: lightblue;
-        border-style: solid;
-        border-width: 0px 1px 0px 0px;
-      }
-      &__right {
-        width: 25%;
-        height: auto;
-        background-color: lightblue;
-        border-style: solid;
-        border-width: 0px 1px 0px 0px;
-      }
-    }
-  }
-
-  .person {
-    background-color: rgb(150, 150, 236);
-    grid-area: person;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    padding-left: 10px;
-    &__details {
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-      align-items: left;
-      margin-top: 10px;
-      img {
-        width: 50%;
-        margin-top: 10px;
-      }
-      input {
-        width: 90px;
-        margin-top: 5px;
-      }
-      &__buttons {
-        margin-top: 10px;
+    .header {
+        // background-color: rgb(173, 173, 182);
+        grid-area: header;
         display: flex;
         flex-direction: row;
         align-items: center;
-        flex-wrap: wrap;
-
-        svg {
-          height: 15px;
-          width: 15px;
-          padding-right: 5px;
-        }
-
-        button {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: center;
-          margin-right: 10px;
-          margin-top: 5px;
-        }
-      }
-    }
-  }
-  .shop {
-    background-color: rgb(234, 153, 153);
-    grid-area: shop;
-    &__panel {
-      font-weight: bold;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      &__left {
-        width: 16%;
-        text-align: left;
         padding-left: 10px;
-      }
-      &__left--bigger {
-        width: 20%;
-      }
-      &__right {
-        width: 16%;
-        text-align: right;
-        padding-right: 10px;
-      }
+        border: 1px solid;
+        margin: 2px;
+        svg {
+            height: 20px;
+            margin-right: 10px;
+        }
+        span {
+            margin-right: 10px;
+        }
     }
-    &__list-container {
-      display: flex;
-      flex-direction: row;
-      height: 60%;
-      &__left {
-        width: 16%;
-        height: 100%;
-        background-color: lightblue;
+    .options-panel {
+        // background-color: beige;
+        grid-area: options-panel;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
         border-style: solid;
-        border-width: 0px 1px 0px 0px;
-      }
-      &__left--bigger {
-        width: 20%;
-      }
-      &__right {
-        width: 16%;
-        height: 100%;
-        background-color: lightblue;
-        border-style: solid;
-        border-width: 0px 1px 0px 0px;
-      }
+        border-width: 1px 0px 1px 0px;
+        padding-left: 10px;
+        border: 1px solid;
+        margin: 2px;
+        &__left {
+            display: flex;
+            justify-content: left;
+            span {
+                padding-right: 10px;
+            }
+        }
+        &__right {
+            display: flex;
+            justify-content: right;
+            padding-right: 20%;
+        }
     }
-    &__sale {
-      display: flex;
-      flex-direction: column;
-      button {
-        //NEFUNGUJE
-        padding-right: 10px;
-        margin-top: 10px;
-        width: auto;
-      }
-      span {
-        padding-right: 10px; //NEFUNGUJE
-      }
+    .items {
+        // background-color: blanchedalmond;
+        grid-area: items;
+        border: 1px solid;
+        margin: 2px;
+        &__panel {
+            font-weight: bold;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            border: 1px solid;
+            margin: 2px;
+            &__left {
+                width: 25%;
+                text-align: left;
+                padding-left: 10px;
+            }
+            &__right {
+                width: 25%;
+                text-align: right;
+                padding-right: 15px;
+            }
+            &__hidden {
+                width: 22px;
+                border: 1px solid;
+                height: 20px;
+            }
+        }
+        &__list-container {
+            display: flex;
+            flex-direction: row;
+            border: 1px solid;
+            margin: 2px;
+            height: 80%;
+            overflow: scroll;
+            &__left {
+                width: 25%;
+                text-align: left;
+                height: auto;
+                border-style: solid;
+                border-width: 0px 1px 0px 0px;
+                &__item {
+                    padding-left: 10px;
+                    padding-top: 5px;
+                    &:hover {
+                        background-color: rgb(205, 233, 242);
+                    }
+                }
+            }
+            &__right {
+                width: 25%;
+                text-align: right;
+                height: auto;
+                border-style: solid;
+                border-width: 0px 1px 0px 0px;
+                &__item {
+                    padding-right: 10px;
+                    padding-top: 5px;
+                }
+            }
+        }
     }
-  }
+    .person {
+        // background-color: rgb(150, 150, 236);
+        grid-area: person;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        padding-left: 10px;
+        border: 1px solid;
+        margin: 2px;
+        &__details {
+            display: flex;
+            max-width: 250px;
+            justify-content: center;
+            flex-direction: column;
+            align-items: left;
+            margin-top: 10px;
+            img {
+                width: 50%;
+                margin-top: 10px;
+            }
+            input {
+                width: 90px;
+                margin-top: 5px;
+            }
+            &__buttons {
+                margin-top: 10px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                flex-wrap: wrap;
+                svg {
+                    height: 15px;
+                    width: 15px;
+                    padding-right: 5px;
+                }
+                button {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 5px;
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+    .shop {
+        // background-color: rgb(234, 153, 153);
+        grid-area: shop;
+        border: 1px solid;
+        margin: 2px;
+        &__panel {
+            font-weight: bold;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            border: 1px solid;
+            margin: 2px;
+            &__left {
+                width: 16%;
+                text-align: left;
+                padding-left: 10px;
+            }
+            &__left--bigger {
+                width: 20%;
+            }
+            &__right {
+                width: 16%;
+                text-align: right;
+                padding-right: 10px;
+            }
+        }
+        &__list-container {
+            display: flex;
+            flex-direction: row;
+            height: 60%;
+            border: 1px solid;
+            margin: 2px;
+            &__left {
+                display: flex;
+                flex-direction: row;
+                width: 16%;
+                height: 100%;
+                border-style: solid;
+                border-width: 0px 1px 0px 0px;
+            }
+            &__left--bigger {
+                width: 20%;
+            }
+            &__right {
+                width: 16%;
+                height: 100%;
+                // background-color: lightblue;
+                border-style: solid;
+                border-width: 0px 1px 0px 0px;
+            }
+        }
+        &__sale {
+            display: flex;
+            flex-direction: column;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            span {
+                padding-left: 10px;
+            }
+            button {
+                margin-left: 10px;
+                margin-top: 10px;
+            }
+        }
+    }
 }
