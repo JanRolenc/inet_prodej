@@ -41,34 +41,22 @@ function App() {
           {zbozi.length > 9 && <div className="items__panel__hidden"></div>}
         </div>
         <div className="items__list-container">
-          <div className="items__list-container__left">
-            {zbozi.map((z) => (
-              <div key={z.id} className="items__list-container__left__item">
+          {zbozi.map((z) => (
+            <div key={z.id} className="items__list-container__item">
+              <div className="items__list-container__item__left">
                 <span>{z.druh}</span>
               </div>
-            ))}
-          </div>
-          <div className="items__list-container__right">
-            {zbozi.map((z) => (
-              <div key={z.id} className="items__list-container__right__item">
+              <div className="items__list-container__item__right">
                 <span>{z.cena}</span>
               </div>
-            ))}
-          </div>
-          <div className="items__list-container__right">
-            {zbozi.map((z) => (
-              <div key={z.id} className="items__list-container__right__item">
+              <div className="items__list-container__item__right">
                 <span>{z.pocet}</span>
               </div>
-            ))}
-          </div>
-          <div className="items__list-container__left">
-            {zbozi.map((z) => (
-              <div key={z.id} className="items__list-container__left__item">
+              <div className="items__list-container__item__left">
                 <span>{z.popis}</span>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
       <div className="person">
@@ -102,12 +90,20 @@ function App() {
           <div className="shop__panel__right">Odebrat 1</div>
         </div>
         <div className="shop__list-container">
-          <div className="shop__list-container__left"></div>
-          <div className="shop__list-container__left shop__list-container__left--bigger"></div>
-          <div className="shop__list-container__right"></div>
-          <div className="shop__list-container__right"></div>
-          <div className="shop__list-container__right"></div>
-          <div className="shop__list-container__right"></div>
+          <div className="shop__list-container__item">
+            <div className="shop__list-container__item__button">
+              <button>X</button>
+            </div>
+            <div className="shop__list-container__item__left shop__list-container__item__left--bigger">
+              nazdar
+            </div>
+            <div className="shop__list-container__item__right">AHoj</div>
+            <div className="shop__list-container__item__right">Hola</div>
+            <div className="shop__list-container__item__right">zdar</div>
+            <div className="shop__list-container__item__button">
+              <button>-1</button>
+            </div>
+          </div>
         </div>
         <div className="shop__sale">
           <span>Celková cena: {}</span>
