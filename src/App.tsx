@@ -4,11 +4,23 @@ import './App.scss'
 import { ReactComponent as CartIcon } from './assets/shopping-cart.svg'
 import { ReactComponent as MagnifierIcon } from './assets/magnifier.svg'
 import personalImage from './assets/icon_head.png'
-import { Zboží } from './interfaces'
+import { IItem } from './interfaces'
 import data from './data.json'
 
+import ShopItem from './components/shop-item/shop-item'
+
 function App() {
-  const [zbozi, setZbozi] = useState<Zboží[]>(data)
+  const [items, setItems] = useState<IItem[]>(data)
+  const [itemsSelected, setItemsSelected] = useState<IItem[]>([])
+
+  const itemButtonClick = (e: any) => {
+    console.log(e.target.parentNode.id)
+    // const itemSelected = items.filter((i) => i.id === e.target.parentNode.id)[0]
+    // console.log(itemSelected)
+    // setItemsSelected([...itemsSelected, itemSelected])
+    // console.log(itemsSelected)
+  }
+
   return (
     <div className="inet-prodej-app">
       <div className="header">
@@ -33,28 +45,34 @@ function App() {
           CPS
         </span>
         <div className="items__panel">
-          <div className="items__panel__left">Druh zboží / služby</div>
+          <div className="items__panel__left">Druh Items / služby</div>
           <div className="items__panel__right">Cena / kus</div>
           <div className="items__panel__right">Počet</div>
           <div className="items__panel__left">Popis</div>
-          {/* slepa div jen pro upraveni sirky panelu aby byl shodny s sirkou items__list-container po naskoceni scroll baru */}
-          {zbozi.length > 9 && <div className="items__panel__hidden"></div>}
+          <div className="items__panel__hidden"></div>
         </div>
         <div className="items__list-container">
-          {zbozi.map((z) => (
-            <div key={z.id} className="items__list-container__item">
+          {items.map((z) => (
+            <div
+              key={z.id}
+              id={`${z.id}`}
+              className="items__list-container__item"
+            >
               <div className="items__list-container__item__left">
-                <span>{z.druh}</span>
+                <span>{z.name}</span>
               </div>
               <div className="items__list-container__item__right">
-                <span>{z.cena}</span>
+                <span>{z.price}</span>
               </div>
               <div className="items__list-container__item__right">
-                <span>{z.pocet}</span>
+                <span>{z.quantity}</span>
               </div>
               <div className="items__list-container__item__left">
-                <span>{z.popis}</span>
+                <span>{z.description}</span>
               </div>
+              <button onClick={itemButtonClick}>
+                <CartIcon />
+              </button>
             </div>
           ))}
         </div>
@@ -82,7 +100,7 @@ function App() {
         <div className="shop__panel">
           <div className="shop__panel__left">Odebrat vše</div>
           <div className="shop__panel__left shop__panel__left--bigger">
-            Druh zboží / služby
+            Druh Items / služby
           </div>
           <div className="shop__panel__right">Cena / kus</div>
           <div className="shop__panel__right">Počet</div>
@@ -90,20 +108,11 @@ function App() {
           <div className="shop__panel__right">Odebrat 1</div>
         </div>
         <div className="shop__list-container">
-          <div className="shop__list-container__item">
-            <div className="shop__list-container__item__button">
-              <button>X</button>
-            </div>
-            <div className="shop__list-container__item__left shop__list-container__item__left--bigger">
-              nazdar
-            </div>
-            <div className="shop__list-container__item__right">AHoj</div>
-            <div className="shop__list-container__item__right">Hola</div>
-            <div className="shop__list-container__item__right">zdar</div>
-            <div className="shop__list-container__item__button">
-              <button>-1</button>
-            </div>
-          </div>
+          {itemsSelected.length
+            ? itemsSelected.map((item: IItem, key: number) => (
+                <ShopItem item={item} key={key} />
+              ))
+            : null}
         </div>
         <div className="shop__sale">
           <span>Celková cena: {}</span>

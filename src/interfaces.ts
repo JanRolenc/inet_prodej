@@ -1,7 +1,7 @@
-export interface Zboží {
+export interface IItem {
   id: number
-  druh: string
-  cena: number
-  pocet: number
-  popis: string
+  name: string
+  price: number
+  quantity: number
+  description: string
 }

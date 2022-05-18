@@ -1,176 +1,176 @@
 [{
         "id": 1,
-        "druh": "Fólie průhledná",
-        "cena": 20,
-        "pocet": 25,
-        "popis": "průhledná"
+        "name": "Fólie průhledná",
+        "price": 20,
+        "quantity": 25,
+        "description": "průhledná"
     },
     {
         "id": 2,
-        "druh": "Fólie modrá",
-        "cena": 1,
-        "pocet": 25,
-        "popis": "modrá"
+        "name": "Fólie modrá",
+        "price": 1,
+        "quantity": 25,
+        "description": "modrá"
     },
     {
         "id": 3,
-        "druh": "Fólie bílá",
-        "cena": 111,
-        "pocet": 25,
-        "popis": "bílá"
+        "name": "Fólie bílá",
+        "price": 111,
+        "quantity": 25,
+        "description": "bílá"
     },
     {
         "id": 4,
-        "druh": "Fólie hnědá",
-        "cena": 11,
-        "pocet": 25,
-        "popis": "hnědá"
+        "name": "Fólie hnědá",
+        "price": 11,
+        "quantity": 25,
+        "description": "hnědá"
     },
     {
         "id": 5,
-        "druh": "Fólie fialová",
-        "cena": 141,
-        "pocet": 25,
-        "popis": "fialová"
+        "name": "Fólie fialová",
+        "price": 141,
+        "quantity": 25,
+        "description": "fialová"
     },
     {
         "id": 6,
-        "druh": "Fólie hladká",
-        "cena": 25,
-        "pocet": 25,
-        "popis": "hladká"
+        "name": "Fólie hladká",
+        "price": 25,
+        "quantity": 25,
+        "description": "hladká"
     },
     {
         "id": 7,
-        "druh": "Fólie hrubá",
-        "cena": 588,
-        "pocet": 25,
-        "popis": "hrubá"
+        "name": "Fólie hrubá",
+        "price": 588,
+        "quantity": 25,
+        "description": "hrubá"
     },
     {
         "id": 8,
-        "druh": "Fólie PVC",
-        "cena": 777,
-        "pocet": 25,
-        "popis": "PVC"
+        "name": "Fólie PVC",
+        "price": 777,
+        "quantity": 25,
+        "description": "PVC"
     },
     {
         "id": 9,
-        "druh": "Fólie PE",
-        "cena": 3,
-        "pocet": 25,
-        "popis": "PE"
+        "name": "Fólie PE",
+        "price": 3,
+        "quantity": 25,
+        "description": "PE"
     },
     {
         "id": 10,
-        "druh": "Fólie PP",
-        "cena": 65,
-        "pocet": 25,
-        "popis": "PP"
+        "name": "Fólie PP",
+        "price": 65,
+        "quantity": 25,
+        "description": "PP"
     },
     {
         "id": 11,
-        "druh": "Fólie oranžová",
-        "cena": 20,
-        "pocet": 25,
-        "popis": "přednoranžováí"
+        "name": "Fólie oranžová",
+        "price": 20,
+        "quantity": 25,
+        "description": "přednoranžováí"
     },
     {
         "id": 12,
-        "druh": "Fólie černá",
-        "cena": 20,
-        "pocet": 205,
-        "popis": "černá"
+        "name": "Fólie černá",
+        "price": 20,
+        "quantity": 205,
+        "description": "černá"
     },
     {
         "id": 13,
-        "druh": "Fólie hliníková",
-        "cena": 200,
-        "pocet": 25,
-        "popis": "hliníková"
+        "name": "Fólie hliníková",
+        "price": 200,
+        "quantity": 25,
+        "description": "hliníková"
     },
     {
         "id": 14,
-        "druh": "Fólie transparent",
-        "cena": 20,
-        "pocet": 25,
-        "popis": "transparent"
+        "name": "Fólie transparent",
+        "price": 20,
+        "quantity": 25,
+        "description": "transparent"
     },
     {
         "id": 15,
-        "druh": "Fólie vzorovaná",
-        "cena": 2000,
-        "pocet": 25,
-        "popis": "vzorovaná"
+        "name": "Fólie vzorovaná",
+        "price": 2000,
+        "quantity": 25,
+        "description": "vzorovaná"
     },
     {
         "id": 16,
-        "druh": "Fólie embosovaná",
-        "cena": 2012,
-        "pocet": 25,
-        "popis": "embosovaná"
+        "name": "Fólie embosovaná",
+        "price": 2012,
+        "quantity": 25,
+        "description": "embosovaná"
     },
     {
         "id": 17,
-        "druh": "Fólie stahovací",
-        "cena": 20,
-        "pocet": 225,
-        "popis": "stahovací"
+        "name": "Fólie stahovací",
+        "price": 20,
+        "quantity": 225,
+        "description": "stahovací"
     },
     {
         "id": 18,
-        "druh": "Fólie pevná",
-        "cena": 20,
-        "pocet": 225,
-        "popis": "pevná"
+        "name": "Fólie pevná",
+        "price": 20,
+        "quantity": 225,
+        "description": "pevná"
     },
     {
         "id": 19,
-        "druh": "Fólie potištěná",
-        "cena": 201,
-        "pocet": 25,
-        "popis": "potištěná"
+        "name": "Fólie potištěná",
+        "price": 201,
+        "quantity": 25,
+        "description": "potištěná"
     },
     {
         "id": 20,
-        "druh": "Fólie neprůhledná",
-        "cena": 20,
-        "pocet": 215,
-        "popis": "neprůhledná"
+        "name": "Fólie neprůhledná",
+        "price": 20,
+        "quantity": 215,
+        "description": "neprůhledná"
     },
     {
         "id": 21,
-        "druh": "Fólie nepotištěná",
-        "cena": 20111,
-        "pocet": 25,
-        "popis": "nepotištěná"
+        "name": "Fólie nepotištěná",
+        "price": 20111,
+        "quantity": 25,
+        "description": "nepotištěná"
     },
     {
         "id": 22,
-        "druh": "Fólie neprodyšná",
-        "cena": 204,
-        "pocet": 2225,
-        "popis": "neprodyšná"
+        "name": "Fólie neprodyšná",
+        "price": 204,
+        "quantity": 2225,
+        "description": "neprodyšná"
     },
     {
         "id": 23,
-        "druh": "Fólie prodyšná",
-        "cena": 208,
-        "pocet": 25,
-        "popis": "prodyšná"
+        "name": "Fólie prodyšná",
+        "price": 208,
+        "quantity": 25,
+        "description": "prodyšná"
     },
     {
         "id": 24,
-        "druh": "Fólie laminovaná",
-        "cena": 206,
-        "pocet": 2885,
-        "popis": "laminovaná"
+        "name": "Fólie laminovaná",
+        "price": 206,
+        "quantity": 2885,
+        "description": "laminovaná"
     },
     {
         "id": 25,
-        "druh": "Fólie dezénovaná",
-        "cena": 208,
-        "pocet": 2588,
-        "popis": "dezénovaná"
+        "name": "Fólie dezénovaná",
+        "price": 208,
+        "quantity": 2588,
+        "description": "dezénovaná"
     }
 ]
