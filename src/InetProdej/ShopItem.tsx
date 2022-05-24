@@ -1,12 +1,12 @@
-import { IItem } from "../../interfaces";
+import { IItem } from './interfaces'
 
 interface Props {
-  item: IItem;
-  removeItem(itemToRemove: IItem): void;
-  removeOnePieceOfItem(onePieceOfItemToRemove: IItem): void;
+  item: IItem
+  removeItem(itemToRemove: IItem): void
+  removeOneItem(oneItemToRemove: IItem): void
 }
 
-const ShopItem = ({ item, removeItem, removeOnePieceOfItem }: Props) => {
+const ShopItem = ({ item, removeItem, removeOneItem }: Props) => {
   return (
     <div key={item.id} className="shop__list-container__item">
       <div className="shop__list-container__item__button">
@@ -20,13 +20,13 @@ const ShopItem = ({ item, removeItem, removeOnePieceOfItem }: Props) => {
       <div className="shop__list-container__item__right">{item.price}</div>
       <div className="shop__list-container__item__right">{item.quantity}</div>
       <div className="shop__list-container__item__right">
-        {item.price * item.quantity}
+        {item.price && item.price * item.quantity}
       </div>
       <div className="shop__list-container__item__button">
-        <button onClick={() => removeOnePieceOfItem(item)}>-1</button>
+        <button onClick={() => removeOneItem(item)}>-1</button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ShopItem;
+export default ShopItem

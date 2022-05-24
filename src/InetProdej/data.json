@@ -1,47 +1,55 @@
 [{
         "id": 1,
-        "name": "Fólie průhledná",
+        "type": "standard",
+        "name": "Fólie průhledná - typ standard (množství se mění dynamicky)",
         "price": 20,
         "quantity": 25,
         "description": "průhledná"
     },
     {
         "id": 2,
-        "name": "Fólie modrá",
-        "price": 1,
+        "type": "priceOptional",
+        "name": "Fólie modrá - ručně volitelná cena",
+        "price": 0,
         "quantity": 25,
         "description": "modrá"
     },
     {
         "id": 3,
-        "name": "Fólie bílá",
-        "price": 111,
-        "quantity": 25,
-        "description": "bílá"
+        "type": "quantityOptional",
+        "name": "Tisk černobílý A4 - ručně volitelné množství",
+        "price": 0.5,
+        "quantity": 0,
+        "description": "černobílý"
     },
     {
         "id": 4,
-        "name": "Fólie hnědá",
-        "price": 11,
-        "quantity": 25,
-        "description": "hnědá"
+        "type": "quantityAndPriceOptional",
+        "name": "Tisk na plotr - ručně volitelné množství a cena",
+        "price": 0,
+        "quantity": 0,
+        "description": "tisk na plotr"
     },
     {
         "id": 5,
+        "type": "standard",
+        "name": "Fólie kterou nejde vybrat - skladem nula",
+        "price": 25,
+        "quantity": 0,
+        "description": "hladká"
+    },
+    {
+        "id": 6,
+        "type": "standard",
         "name": "Fólie fialová",
         "price": 141,
         "quantity": 25,
         "description": "fialová"
     },
-    {
-        "id": 6,
-        "name": "Fólie hladká",
-        "price": 25,
-        "quantity": 25,
-        "description": "hladká"
-    },
+
     {
         "id": 7,
+        "type": "standard",
         "name": "Fólie hrubá",
         "price": 588,
         "quantity": 25,
@@ -49,6 +57,7 @@
     },
     {
         "id": 8,
+        "type": "standard",
         "name": "Fólie PVC",
         "price": 777,
         "quantity": 25,
@@ -56,6 +65,7 @@
     },
     {
         "id": 9,
+        "type": "standard",
         "name": "Fólie PE",
         "price": 3,
         "quantity": 25,
@@ -63,6 +73,7 @@
     },
     {
         "id": 10,
+        "type": "standard",
         "name": "Fólie PP",
         "price": 65,
         "quantity": 25,
@@ -70,13 +81,15 @@
     },
     {
         "id": 11,
+        "type": "standard",
         "name": "Fólie oranžová",
         "price": 20,
         "quantity": 25,
-        "description": "přednoranžováí"
+        "description": "oranžová"
     },
     {
         "id": 12,
+        "type": "standard",
         "name": "Fólie černá",
         "price": 20,
         "quantity": 205,
@@ -84,6 +97,7 @@
     },
     {
         "id": 13,
+        "type": "standard",
         "name": "Fólie hliníková",
         "price": 200,
         "quantity": 25,
@@ -91,6 +105,7 @@
     },
     {
         "id": 14,
+        "type": "standard",
         "name": "Fólie transparent",
         "price": 20,
         "quantity": 25,
@@ -98,6 +113,7 @@
     },
     {
         "id": 15,
+        "type": "standard",
         "name": "Fólie vzorovaná",
         "price": 2000,
         "quantity": 25,
@@ -105,6 +121,7 @@
     },
     {
         "id": 16,
+        "type": "standard",
         "name": "Fólie embosovaná",
         "price": 2012,
         "quantity": 25,
@@ -112,6 +129,7 @@
     },
     {
         "id": 17,
+        "type": "standard",
         "name": "Fólie stahovací",
         "price": 20,
         "quantity": 225,
@@ -119,6 +137,7 @@
     },
     {
         "id": 18,
+        "type": "standard",
         "name": "Fólie pevná",
         "price": 20,
         "quantity": 225,
@@ -126,6 +145,7 @@
     },
     {
         "id": 19,
+        "type": "standard",
         "name": "Fólie potištěná",
         "price": 201,
         "quantity": 25,
@@ -133,6 +153,7 @@
     },
     {
         "id": 20,
+        "type": "standard",
         "name": "Fólie neprůhledná",
         "price": 20,
         "quantity": 215,
@@ -140,6 +161,7 @@
     },
     {
         "id": 21,
+        "type": "standard",
         "name": "Fólie nepotištěná",
         "price": 20111,
         "quantity": 25,
@@ -147,6 +169,7 @@
     },
     {
         "id": 22,
+        "type": "standard",
         "name": "Fólie neprodyšná",
         "price": 204,
         "quantity": 2225,
@@ -154,6 +177,7 @@
     },
     {
         "id": 23,
+        "type": "standard",
         "name": "Fólie prodyšná",
         "price": 208,
         "quantity": 25,
@@ -161,6 +185,7 @@
     },
     {
         "id": 24,
+        "type": "standard",
         "name": "Fólie laminovaná",
         "price": 206,
         "quantity": 2885,
@@ -168,6 +193,7 @@
     },
     {
         "id": 25,
+        "type": "standard",
         "name": "Fólie dezénovaná",
         "price": 208,
         "quantity": 2588,
