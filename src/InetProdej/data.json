@@ -1,7 +1,7 @@
 [{
         "id": 1,
         "type": "standard",
-        "name": "Fólie průhledná - typ standard (množství se mění dynamicky)",
+        "name": "Položka jako příklad typu standard (množství se mění dynamicky)",
         "price": 20,
         "quantity": 25,
         "description": "průhledná"
@@ -9,7 +9,7 @@
     {
         "id": 2,
         "type": "priceOptional",
-        "name": "Fólie modrá - ručně volitelná cena",
+        "name": "Položka jako příklad typu priceOptional",
         "price": 0,
         "quantity": 25,
         "description": "modrá"
@@ -17,7 +17,7 @@
     {
         "id": 3,
         "type": "quantityOptional",
-        "name": "Tisk černobílý A4 - ručně volitelné množství",
+        "name": "Tisk černobílý A4 - příklad typu quantityOptional",
         "price": 0.5,
         "quantity": 0,
         "description": "černobílý"
@@ -25,7 +25,7 @@
     {
         "id": 4,
         "type": "quantityAndPriceOptional",
-        "name": "Tisk na plotr - ručně volitelné množství a cena",
+        "name": "Tisk na plotr - položka jako příklad typu quantityAndPriceOptional",
         "price": 0,
         "quantity": 0,
         "description": "tisk na plotr"
@@ -33,7 +33,7 @@
     {
         "id": 5,
         "type": "standard",
-        "name": "Fólie kterou nejde vybrat - skladem nula",
+        "name": "Položka jako příklad skladem nula = nejde vybrat",
         "price": 25,
         "quantity": 0,
         "description": "hladká"
