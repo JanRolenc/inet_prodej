@@ -1,160 +1,169 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
-import './InetProdej.scss'
-import { ReactComponent as CartIcon } from './assets/shopping-cart.svg'
-import { ReactComponent as MagnifierIcon } from './assets/magnifier.svg'
-import personalImage from './assets/icon_head.png'
-import { IItem } from './interfaces'
-import data from './data.json'
+import * as React from "react";
+import { useState, useEffect } from "react";
+import "./InetProdej.scss";
+import { ReactComponent as CartIcon } from "./assets/shopping-cart.svg";
+import { ReactComponent as MagnifierIcon } from "./assets/magnifier.svg";
+import personalImage from "./assets/icon_head.png";
+import { IItem } from "./interfaces";
+import data from "./data.json";
+import ShopItem from "./ShopItem";
 
-import ShopItem from './ShopItem'
+import { store } from "../store";
+
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, Dispatch } from "../store";
 
 function InetProdej() {
-  const [items, setItems] = useState<IItem[]>(data)
-  const [itemsSelected, setItemsSelected] = useState<IItem[]>([])
+  const [items, setItems] = useState<IItem[]>(data);
+  const [itemsSelected, setItemsSelected] = useState<IItem[]>([]);
+
+  const itemsState = useSelector((state: RootState) => state.items);
+  const dispatch = useDispatch<Dispatch>();
 
   const itemClick = (item: IItem) => {
-    if (item.quantity === 0 && item.type === 'standard') {
-      alert('Zboží není skladem')
-      return
+    if (item.quantity === 0 && item.type === "standard") {
+      alert("Zboží není skladem");
+      return;
     }
 
-    const itemsSelectedCopy: IItem[] = [...itemsSelected]
+    const itemsSelectedCopy: IItem[] = [...itemsSelected];
 
-    var newItem = true
+    var newItem = true;
     for (let i = 0; i < itemsSelectedCopy.length; i++) {
-      const itemSelected = itemsSelectedCopy[i]
+      const itemSelected = itemsSelectedCopy[i];
       if (itemSelected.id === item.id) {
         itemsSelectedCopy[i] = {
           ...itemSelected,
           quantity: itemSelected.quantity + 1,
-        }
-        newItem = false
-        break
+        };
+        newItem = false;
+        break;
       }
     }
     if (newItem) {
-      if (item.type === 'quantityAndPriceOptional') {
-        var setPrice = prompt('Zadej cenu:')
-        var setQuantity = prompt('Zadej množství:')
+      if (item.type === "quantityAndPriceOptional") {
+        var setPrice = prompt("Zadej cenu:");
+        var setQuantity = prompt("Zadej množství:");
         if (setPrice && setQuantity) {
           itemsSelectedCopy.push({
             ...item,
             price: parseInt(setPrice),
             quantity: parseInt(setQuantity),
             id: item.id + parseInt(setPrice),
-          })
+          });
         }
-      } else if (item.type === 'quantityOptional') {
-        var setQuantity = prompt('Zadej množství:')
+      } else if (item.type === "quantityOptional") {
+        var setQuantity = prompt("Zadej množství:");
         if (setQuantity) {
-          itemsSelectedCopy.push({ ...item, quantity: parseInt(setQuantity) })
+          itemsSelectedCopy.push({ ...item, quantity: parseInt(setQuantity) });
         }
-      } else if (item.type === 'priceOptional') {
-        var setPrice = prompt('Zadej cenu:')
+      } else if (item.type === "priceOptional") {
+        var setPrice = prompt("Zadej cenu:");
         if (setPrice) {
           itemsSelectedCopy.push({
             ...item,
             price: parseInt(setPrice),
             quantity: 1,
-          })
+          });
         }
       } else {
-        itemsSelectedCopy.push({ ...item, quantity: 1 })
+        itemsSelectedCopy.push({ ...item, quantity: 1 });
       }
     }
-    setItemsSelected(itemsSelectedCopy)
+    setItemsSelected(itemsSelectedCopy);
 
-    const itemsCopy: IItem[] = [...items]
-    for (let i = 0; i < itemsCopy.length; i++) {
-      const itemSelected = itemsCopy[i]
-      if (
-        itemSelected.id === item.id &&
-        (itemSelected.type === 'standard' ||
-          itemSelected.type === 'priceOptional')
-      ) {
-        itemsCopy[i] = {
-          ...itemSelected,
-          quantity: itemSelected.quantity - 1,
-        }
-      } else {
-        itemsCopy[i] = {
-          ...itemSelected,
-          quantity: itemSelected.quantity,
-          price: itemSelected.price,
-        }
-      }
-    }
-    setItems(itemsCopy)
-  }
+    store.dispatch.shop.decrement(item);
+
+    // const itemsCopy: IItem[] = [...itemsState];
+    // for (let i = 0; i < itemsCopy.length; i++) {
+    //   const itemSelected = itemsCopy[i];
+    //   if (
+    //     itemSelected.id === item.id &&
+    //     (itemSelected.type === "standard" ||
+    //       itemSelected.type === "priceOptional")
+    //   ) {
+    //     itemsCopy[i] = {
+    //       ...itemSelected,
+    //       quantity: itemSelected.quantity - 1,
+    //     };
+    //   } else {
+    //     itemsCopy[i] = {
+    //       ...itemSelected,
+    //       quantity: itemSelected.quantity,
+    //       price: itemSelected.price,
+    //     };
+    //   }
+    // }
+    // setItems(itemsCopy);
+  };
 
   const removeItem = (itemToRemove: IItem) => {
-    const itemsSelectedCopy: IItem[] = [...itemsSelected]
-    const itemsCopy: IItem[] = [...items]
+    const itemsSelectedCopy: IItem[] = [...itemsSelected];
+    const itemsCopy: IItem[] = [...items];
 
     for (let i = 0; i < itemsCopy.length; i++) {
-      const item = itemsCopy[i]
+      const item = itemsCopy[i];
       if (
         item.id === itemToRemove.id &&
-        (itemToRemove.type === 'standard' ||
-          itemToRemove.type === 'priceOptional')
+        (itemToRemove.type === "standard" ||
+          itemToRemove.type === "priceOptional")
       ) {
         itemsCopy[i] = {
           ...item,
           quantity: item.quantity + itemToRemove.quantity,
-        }
-        break
+        };
+        break;
       }
     }
     const itemSelectedsSelected = itemsSelectedCopy.filter(
-      (item) => item.id !== itemToRemove.id,
-    )
+      (item) => item.id !== itemToRemove.id
+    );
 
-    setItemsSelected(itemSelectedsSelected)
-    setItems(itemsCopy)
-  }
+    setItemsSelected(itemSelectedsSelected);
+    setItems(itemsCopy);
+  };
 
   const removeOneItem = (oneItemToRemove: IItem) => {
-    var itemsSelectedCopy: IItem[] = [...itemsSelected]
+    var itemsSelectedCopy: IItem[] = [...itemsSelected];
     for (let i = 0; i < itemsSelectedCopy.length; i++) {
-      const itemSelected = itemsSelectedCopy[i]
+      const itemSelected = itemsSelectedCopy[i];
       if (itemSelected.id === oneItemToRemove.id) {
         itemsSelectedCopy[i] = {
           ...itemSelected,
           quantity: itemSelected.quantity - 1,
-        }
+        };
         if (itemsSelectedCopy[i].quantity === 0) {
           itemsSelectedCopy = itemsSelectedCopy.filter(
-            (item) => item.quantity !== 0,
-          )
+            (item) => item.quantity !== 0
+          );
         }
       }
     }
-    setItemsSelected(itemsSelectedCopy)
+    setItemsSelected(itemsSelectedCopy);
 
-    const itemsCopy: IItem[] = [...items]
+    const itemsCopy: IItem[] = [...items];
     for (let i = 0; i < itemsCopy.length; i++) {
-      const itemSelected = itemsCopy[i]
+      const itemSelected = itemsCopy[i];
       if (
         itemSelected.id === oneItemToRemove.id &&
-        (oneItemToRemove.type === 'standard' ||
-          oneItemToRemove.type === 'priceOptional')
+        (oneItemToRemove.type === "standard" ||
+          oneItemToRemove.type === "priceOptional")
       ) {
-        itemsCopy[i] = { ...itemSelected, quantity: itemSelected.quantity + 1 }
+        itemsCopy[i] = { ...itemSelected, quantity: itemSelected.quantity + 1 };
       } else if (
-        oneItemToRemove.type === 'quantityOptional' ||
-        oneItemToRemove.type === 'quantityAndPriceOptional'
+        oneItemToRemove.type === "quantityOptional" ||
+        oneItemToRemove.type === "quantityAndPriceOptional"
       ) {
-        itemsCopy[i] = { ...itemSelected, quantity: itemSelected.quantity }
+        itemsCopy[i] = { ...itemSelected, quantity: itemSelected.quantity };
       }
     }
-    setItems(itemsCopy)
-  }
+    setItems(itemsCopy);
+  };
 
-  var totalPrice = 0
+  var totalPrice = 0;
   for (let j = 0; j < itemsSelected.length; j++) {
     if (itemsSelected[j].price > 0) {
-      totalPrice += itemsSelected[j].price * itemsSelected[j].quantity //tady hlasi error pokud v data.json dam neco jineho nez any u price
+      totalPrice += itemsSelected[j].price * itemsSelected[j].quantity;
     }
   }
 
@@ -172,17 +181,18 @@ function InetProdej() {
   //   )
   //   setTotalPrice(totalPrice)
   // }, [itemsSelected])
+  const shopState = useSelector((state: RootState) => state.shop);
 
   return (
     <div className="inet-prodej-app">
       <div className="header">
         <CartIcon />
-        <span style={{ fontWeight: 'bold' }}>Inet Prodej</span>
+        <span style={{ fontWeight: "bold" }}>Inet Prodej</span>
         <span>(Mgr. Zdeněk Machač (3890))</span>
       </div>
       <div className="items">
         <span>
-          <span style={{ fontWeight: 'bold', padding: '5px' }}>Prodejna</span>{' '}
+          <span style={{ fontWeight: "bold", padding: "5px" }}>Prodejna</span>{" "}
           CPS
         </span>
         <div className="items__panel">
@@ -193,7 +203,7 @@ function InetProdej() {
           <div className="items__panel__hidden"></div>
         </div>
         <div className="items__list-container">
-          {items.map((item) => (
+          {shopState.map((item) => (
             <div
               key={item.id}
               className="items__list-container__item"
@@ -217,12 +227,12 @@ function InetProdej() {
         </div>
       </div>
       <div className="person">
-        <span style={{ fontWeight: 'bold', display: 'block' }}>Osoba</span>
+        <span style={{ fontWeight: "bold", display: "block" }}>Osoba</span>
         <div className="person__details">
           <img src={personalImage} alt="icon" />
-          <span style={{ fontWeight: 'bold' }}>Jméno a příjmení</span>
+          <span style={{ fontWeight: "bold" }}>Jméno a příjmení</span>
           <span>Mgr. Zdeněk Machač</span>
-          <span style={{ fontWeight: 'bold', marginTop: '10px' }}>
+          <span style={{ fontWeight: "bold", marginTop: "10px" }}>
             Identifikace
           </span>
           <input type="text" />
@@ -235,7 +245,7 @@ function InetProdej() {
         </div>
       </div>
       <div className="shop">
-        <span style={{ fontWeight: 'bold', padding: '10px' }}>Košík</span>
+        <span style={{ fontWeight: "bold", padding: "10px" }}>Košík</span>
         <div className="shop__panel">
           <div className="shop__panel__left">Odebrat vše</div>
           <div className="shop__panel__left shop__panel__left--bigger">
@@ -268,7 +278,7 @@ function InetProdej() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default InetProdej
+export default InetProdej;
