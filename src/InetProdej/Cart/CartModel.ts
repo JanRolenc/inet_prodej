@@ -44,6 +44,7 @@ export const CartModel = createModel<RootModel>()({
               ...item,
               price: parseInt(setPrice),
               quantity: 1,
+              id: item.id + parseInt(setPrice),
             })
           }
         } else {
