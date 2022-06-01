@@ -9,10 +9,10 @@
   },
   {
     "id": 2,
-    "type": "priceOptional",
-    "name": "Položka jako příklad typu priceOptional",
-    "price": 0,
-    "quantity": 25,
+    "type": "service",
+    "name": "Položka jako příklad typu service",
+    "price": "",
+    "quantity": 1,
     "description": "cena se nastavuje ručně"
   },
   {
@@ -20,15 +20,15 @@
     "type": "quantityOptional",
     "name": "Tisk černobílý A4 - příklad typu quantityOptional",
     "price": 0.5,
-    "quantity": 0,
+    "quantity": "",
     "description": "množství se nastavuje ručně"
   },
   {
     "id": 4,
     "type": "quantityAndPriceOptional",
     "name": "Tisk na plotr - příklad typu quantityAndPriceOptional",
-    "price": 0,
-    "quantity": 0,
+    "price": "",
+    "quantity": "",
     "description": "cena i množství se nastavuje ručně"
   },
   {

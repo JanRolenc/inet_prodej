@@ -37,7 +37,7 @@ export const CartModel = createModel<RootModel>()({
           if (setQuantity) {
             itemsSelectedCopy.push({ ...item, quantity: parseInt(setQuantity) })
           }
-        } else if (item.type === 'priceOptional') {
+        } else if (item.type === 'service') {
           var setPrice = prompt('Zadej cenu:')
           if (setPrice) {
             itemsSelectedCopy.push({
@@ -52,7 +52,24 @@ export const CartModel = createModel<RootModel>()({
       }
       return itemsSelectedCopy
     },
-    decrement(state, item: IItem) {},
+    decrement(state, itemToDecrease: IItem) {
+      var itemsSelectedCopy: IItem[] = [...state]
+      for (let i = 0; i < itemsSelectedCopy.length; i++) {
+        const itemSelected = itemsSelectedCopy[i]
+        if (itemSelected.id === itemToDecrease.id) {
+          itemsSelectedCopy[i] = {
+            ...itemSelected,
+            quantity: itemSelected.quantity - 1,
+          }
+          if (itemsSelectedCopy[i].quantity === 0) {
+            itemsSelectedCopy = itemsSelectedCopy.filter(
+              (item) => item.quantity !== 0,
+            )
+          }
+        }
+      }
+      return itemsSelectedCopy
+    },
     remove(state, itemToRemove: IItem) {
       const itemsSelectedCopy: IItem[] = [...state]
       const itemsSelected = itemsSelectedCopy.filter(

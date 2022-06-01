@@ -1,6 +1,6 @@
 import { createModel, Models } from '@rematch/core'
 import type { RootModel } from '../RootModel'
-import data from '../data.json'
+import data from '../data/data.json'
 import { IItem } from '../interfaces'
 
 export const ShopModel = createModel<RootModel>()({
@@ -12,7 +12,8 @@ export const ShopModel = createModel<RootModel>()({
         const item = itemsCopy[i]
         if (
           item.id === itemToDecrease.id &&
-          (item.type === 'standard' || item.type === 'priceOptional')
+          // (item.type === 'standard' || item.type === 'priceOptional')
+          item.type === 'standard'
         ) {
           itemsCopy[i] = {
             ...item,
@@ -28,8 +29,8 @@ export const ShopModel = createModel<RootModel>()({
         const item = itemsCopy[i]
         if (
           item.id === itemToIncrease.id &&
-          (itemToIncrease.type === 'standard' ||
-            itemToIncrease.type === 'priceOptional')
+          // (itemToIncrease.type === 'standard' || itemToIncrease.type === 'priceOptional')
+          itemToIncrease.type === 'standard'
         ) {
           itemsCopy[i] = {
             ...item,
@@ -37,7 +38,8 @@ export const ShopModel = createModel<RootModel>()({
           }
         } else if (
           itemToIncrease.type === 'quantityOptional' ||
-          itemToIncrease.type === 'quantityAndPriceOptional'
+          itemToIncrease.type === 'quantityAndPriceOptional' ||
+          itemToIncrease.type === 'service'
         ) {
           itemsCopy[i] = { ...item, quantity: item.quantity }
         }
@@ -48,11 +50,7 @@ export const ShopModel = createModel<RootModel>()({
       const itemsCopy: IItem[] = [...state]
       for (let i = 0; i < itemsCopy.length; i++) {
         const item = itemsCopy[i]
-        if (
-          item.id === itemRemoved.id &&
-          (itemRemoved.type === 'standard' ||
-            itemRemoved.type === 'priceOptional')
-        ) {
+        if (item.id === itemRemoved.id && itemRemoved.type === 'standard') {
           itemsCopy[i] = {
             ...item,
             quantity: item.quantity + itemRemoved.quantity,

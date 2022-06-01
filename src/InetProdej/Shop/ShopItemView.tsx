@@ -1,14 +1,7 @@
 import { ReactComponent as CartIcon } from '../assets/shopping-cart.svg'
-import { IItem } from '../interfaces'
+import { IShopItemView } from '../interfaces'
 
-interface Props {
-  item: IItem
-  // removeItem(itemToRemove: IItem): void
-  // removeOneItem(oneItemToRemove: IItem): void
-  shopItemClick(oneItemToRemove: IItem): void
-}
-
-const ShopItemView = ({ item, shopItemClick }: Props) => {
+const ShopItemView = ({ item, shopItemClick }: IShopItemView) => {
   return (
     <div
       key={item.id}
