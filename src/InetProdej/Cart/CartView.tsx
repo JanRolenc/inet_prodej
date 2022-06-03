@@ -1,5 +1,5 @@
-import CartItemView from './CartItemView'
-import { ICartView } from '../interfaces'
+import CartItemView from "./CartItemView";
+import { ICartView } from "../interfaces";
 
 const CartView = ({
   cartState,
@@ -10,8 +10,38 @@ const CartView = ({
 }: ICartView) => {
   return (
     <div className="cart">
-      <span style={{ fontWeight: 'bold', padding: '10px' }}>Košík</span>
-      <div className="cart__panel">
+      <span style={{ fontWeight: "bold", padding: "10px" }}>Košík</span>
+      <div className="cart__list-container">
+        <table>
+          <thead>
+            <tr>
+              <th className="cart__panel__left">Odebrat vše</th>
+              <th className="cart__panel__left cart__panel__left--bigger">
+                Druh Items / služby
+              </th>
+              <th className="cart__panel__right">Cena / kus</th>
+              <th className="cart__panel__right">Počet</th>
+              <th className="cart__panel__right">Cena</th>
+              <th className="cart__panel__right cart__panel__right--bigger"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {cartState.length
+              ? cartState.map((item) => (
+                  <CartItemView
+                    key={item.id}
+                    item={item}
+                    removeItem={() => removeItem(item)}
+                    decreaseItem={() => decreaseItem(item)}
+                    increaseItem={() => increaseItem(item)}
+                  />
+                ))
+              : null}
+          </tbody>
+        </table>
+      </div>
+      {/* <div className="cart__panel">
         <div className="cart__panel__left">Odebrat vše</div>
         <div className="cart__panel__left cart__panel__left--bigger">
           Druh Items / služby
@@ -33,7 +63,7 @@ const CartView = ({
               />
             ))
           : null}
-      </div>
+      </div> */}
       <div className="cart__sale">
         <div>
           <span>Celková cena:</span>
@@ -43,7 +73,7 @@ const CartView = ({
         <button>Prodej</button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CartView
+export default CartView;
