@@ -6,6 +6,7 @@ export const CartModel = createModel<RootModel>()({
   state: [] as IItem[],
   reducers: {
     increment(state, item: IItem) {
+      // console.log(event.target.innerHTML)
       const itemsSelectedCopy: IItem[] = [...state]
 
       var newItem = true
@@ -15,6 +16,8 @@ export const CartModel = createModel<RootModel>()({
           itemsSelectedCopy[i] = {
             ...itemSelected,
             quantity: itemSelected.quantity + 1,
+            // event.target.innerHTML === '&#43;'
+            //   : itemSelected.quantity + 5,
           }
           newItem = false
           break
@@ -32,12 +35,14 @@ export const CartModel = createModel<RootModel>()({
               id: item.id + parseInt(setPrice),
             })
           }
-        } else if (item.type === 'quantityOptional') {
-          var setQuantity = prompt('Zadej množství:')
-          if (setQuantity) {
-            itemsSelectedCopy.push({ ...item, quantity: parseInt(setQuantity) })
-          }
-        } else if (item.type === 'service') {
+        }
+        // else if (item.type === 'quantityOptional') {
+        //   var setQuantity = prompt('Zadej množství:')
+        //   if (setQuantity) {
+        //     itemsSelectedCopy.push({ ...item, quantity: parseInt(setQuantity) })
+        //   }
+        // }
+        else if (item.type === 'service') {
           var setPrice = prompt('Zadej cenu:')
           if (setPrice) {
             itemsSelectedCopy.push({

@@ -3,25 +3,25 @@ import { IShopItemView } from '../interfaces'
 
 const ShopItemView = ({ item, shopItemClick }: IShopItemView) => {
   return (
-    <div
-      key={item.id}
+    <tr
       className="shop__list-container__item"
+      key={item.id}
       onClick={() => shopItemClick(item)}
     >
-      <div className="shop__list-container__item__left">
+      <td>
         <span>{item.name}</span>
-      </div>
-      <div className="shop__list-container__item__right">
+      </td>
+      <td>
         <span>{item.price}</span>
-      </div>
-      <div className="shop__list-container__item__right">
+      </td>
+      <td>
         <span>{item.quantity}</span>
-      </div>
-      <div className="shop__list-container__item__left">
+      </td>
+      <td>
         <span>{item.description}</span>
-      </div>
+      </td>
       <CartIcon />
-    </div>
+    </tr>
   )
 }
 

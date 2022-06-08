@@ -10,14 +10,12 @@ export const ShopModel = createModel<RootModel>()({
       const itemsCopy: IItem[] = [...state]
       for (let i = 0; i < itemsCopy.length; i++) {
         const item = itemsCopy[i]
-        if (
-          item.id === itemToDecrease.id &&
-          // (item.type === 'standard' || item.type === 'priceOptional')
-          item.type === 'standard'
-        ) {
-          itemsCopy[i] = {
-            ...item,
-            quantity: item.quantity - 1,
+        if (item.id === itemToDecrease.id && item.type === 'standard') {
+          if (item.quantity > 0) {
+            itemsCopy[i] = {
+              ...item,
+              quantity: item.quantity - 1,
+            }
           }
         }
       }
@@ -29,7 +27,6 @@ export const ShopModel = createModel<RootModel>()({
         const item = itemsCopy[i]
         if (
           item.id === itemToIncrease.id &&
-          // (itemToIncrease.type === 'standard' || itemToIncrease.type === 'priceOptional')
           itemToIncrease.type === 'standard'
         ) {
           itemsCopy[i] = {

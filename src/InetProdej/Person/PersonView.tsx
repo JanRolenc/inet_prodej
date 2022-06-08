@@ -4,14 +4,12 @@ import { ReactComponent as MagnifierIcon } from '../assets/magnifier.svg'
 const PersonView = () => {
   return (
     <div className="person">
-      <span style={{ fontWeight: 'bold', display: 'block' }}>Osoba</span>
+      <span>Osoba</span>
       <div className="person__details">
         <img src={personalImage} alt="icon" />
-        <span style={{ fontWeight: 'bold' }}>Jméno a příjmení</span>
+        <span>Jméno a příjmení</span>
         <span>Mgr. Zdeněk Machač</span>
-        <span style={{ fontWeight: 'bold', marginTop: '10px' }}>
-          Identifikace
-        </span>
+        <span style={{ marginTop: '10px' }}>Identifikace</span>
         <input type="text" />
         <div className="person__details__buttons">
           <button>

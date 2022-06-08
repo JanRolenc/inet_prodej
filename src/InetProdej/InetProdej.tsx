@@ -1,9 +1,9 @@
 import './InetProdej.scss'
-import { ReactComponent as CartIcon } from './assets/shopping-cart.svg'
 import { IItem } from './interfaces'
 import PersonView from './Person/PersonView'
 import CartView from './Cart/CartView'
 import ShopView from './Shop/ShopView'
+import HeaderView from './Header/HeaderView'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState, Dispatch } from './store'
@@ -12,6 +12,7 @@ function InetProdej() {
   const dispatch = useDispatch<Dispatch>()
   const shopState = useSelector((state: RootState) => state.ShopModel)
   const cartState = useSelector((state: RootState) => state.CartModel)
+  const toggleTouchState = useSelector((state: RootState) => state.HeaderModel)
 
   const shopItemClick = (item: IItem) => {
     if (item.quantity === 0 && item.type === 'standard') {
@@ -26,12 +27,26 @@ function InetProdej() {
     dispatch.CartModel.remove(itemToRemove)
   }
   const increaseItem = (itemToIncrease: IItem) => {
-    dispatch.CartModel.increment(itemToIncrease)
-    dispatch.ShopModel.decrement(itemToIncrease)
+    const itemVolume: number = parseInt(
+      shopState.find((i) => i.id === itemToIncrease.id)?.quantity,
+    )
+    if (
+      (itemVolume > 0 && itemToIncrease.type === 'standard') ||
+      itemToIncrease.type === 'noQuantity'
+    ) {
+      dispatch.CartModel.increment(itemToIncrease)
+      dispatch.ShopModel.decrement(itemToIncrease)
+    } else if (itemVolume === 0) {
+      alert('Nedostatečná zásoba')
+      return
+    }
   }
   const decreaseItem = (itemToDecrease: IItem) => {
     dispatch.CartModel.decrement(itemToDecrease)
     dispatch.ShopModel.increment(itemToDecrease)
+  }
+  const touchScreenToggler = () => {
+    dispatch.HeaderModel.toggle()
   }
   var totalPrice = 0
   for (let j = 0; j < cartState.length; j++) {
@@ -40,22 +55,29 @@ function InetProdej() {
     }
   }
   return (
-    <div className="inet-prodej-app">
-      <div className="header">
-        <CartIcon />
-        <span style={{ fontWeight: 'bold' }}>Inet Prodej</span>
-        <span>(Mgr. Zdeněk Machač (3890))</span>
-      </div>
-
-      <ShopView shopState={shopState} shopItemClick={shopItemClick} />
-      <PersonView />
-      <CartView
-        cartState={cartState}
-        removeItem={removeItem}
-        decreaseItem={decreaseItem}
-        increaseItem={increaseItem}
-        totalPrice={totalPrice}
+    <div
+      className={`${
+        toggleTouchState
+          ? 'inet-prodej-app inet-prodej-app--touch'
+          : 'inet-prodej-app'
+      }`}
+    >
+      <HeaderView
+        toggleTouchState={toggleTouchState}
+        touchScreenToggler={touchScreenToggler}
       />
+      <ShopView shopState={shopState} shopItemClick={shopItemClick} />
+      <div className="person-cart-container">
+        <PersonView />
+        <CartView
+          cartState={cartState}
+          toggleTouchState={toggleTouchState}
+          removeItem={removeItem}
+          decreaseItem={decreaseItem}
+          increaseItem={increaseItem}
+          totalPrice={totalPrice}
+        />
+      </div>
     </div>
   )
 }
