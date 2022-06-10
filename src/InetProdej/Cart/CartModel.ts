@@ -1,87 +1,77 @@
-import { createModel } from '@rematch/core'
-import type { RootModel } from '../RootModel'
-import { IItem } from '../interfaces'
+import { createModel } from "@rematch/core";
+import type { RootModel } from "../RootModel";
+import { IItem } from "../interfaces";
 
 export const CartModel = createModel<RootModel>()({
   state: [] as IItem[],
   reducers: {
-    increment(state, item: IItem) {
-      // console.log(event.target.innerHTML)
-      const itemsSelectedCopy: IItem[] = [...state]
+    increment(state, item: IItem, count: number) {
+      const itemsSelectedCopy: IItem[] = [...state];
 
-      var newItem = true
+      var newItem = true;
       for (let i = 0; i < itemsSelectedCopy.length; i++) {
-        const itemSelected = itemsSelectedCopy[i]
+        const itemSelected = itemsSelectedCopy[i];
         if (itemSelected.id === item.id) {
           itemsSelectedCopy[i] = {
             ...itemSelected,
-            quantity: itemSelected.quantity + 1,
-            // event.target.innerHTML === '&#43;'
-            //   : itemSelected.quantity + 5,
-          }
-          newItem = false
-          break
+            quantity: itemSelected.quantity + count,
+          };
+          newItem = false;
+          break;
         }
       }
       if (newItem) {
-        if (item.type === 'quantityAndPriceOptional') {
-          var setPrice = prompt('Zadej cenu:')
-          var setQuantity = prompt('Zadej množství:')
+        if (item.type === "quantityAndPriceOptional") {
+          var setPrice = prompt("Zadej cenu:");
+          var setQuantity = prompt("Zadej množství:");
           if (setPrice && setQuantity) {
             itemsSelectedCopy.push({
               ...item,
               price: parseInt(setPrice),
               quantity: parseInt(setQuantity),
               id: item.id + parseInt(setPrice),
-            })
+            });
           }
-        }
-        // else if (item.type === 'quantityOptional') {
-        //   var setQuantity = prompt('Zadej množství:')
-        //   if (setQuantity) {
-        //     itemsSelectedCopy.push({ ...item, quantity: parseInt(setQuantity) })
-        //   }
-        // }
-        else if (item.type === 'service') {
-          var setPrice = prompt('Zadej cenu:')
+        } else if (item.type === "service") {
+          var setPrice = prompt("Zadej cenu:");
           if (setPrice) {
             itemsSelectedCopy.push({
               ...item,
               price: parseInt(setPrice),
               quantity: 1,
               id: item.id + parseInt(setPrice),
-            })
+            });
           }
         } else {
-          itemsSelectedCopy.push({ ...item, quantity: 1 })
+          itemsSelectedCopy.push({ ...item, quantity: 1 });
         }
       }
-      return itemsSelectedCopy
+      return itemsSelectedCopy;
     },
     decrement(state, itemToDecrease: IItem) {
-      var itemsSelectedCopy: IItem[] = [...state]
+      var itemsSelectedCopy: IItem[] = [...state];
       for (let i = 0; i < itemsSelectedCopy.length; i++) {
-        const itemSelected = itemsSelectedCopy[i]
+        const itemSelected = itemsSelectedCopy[i];
         if (itemSelected.id === itemToDecrease.id) {
           itemsSelectedCopy[i] = {
             ...itemSelected,
             quantity: itemSelected.quantity - 1,
-          }
+          };
           if (itemsSelectedCopy[i].quantity === 0) {
             itemsSelectedCopy = itemsSelectedCopy.filter(
-              (item) => item.quantity !== 0,
-            )
+              (item) => item.quantity !== 0
+            );
           }
         }
       }
-      return itemsSelectedCopy
+      return itemsSelectedCopy;
     },
     remove(state, itemToRemove: IItem) {
-      const itemsSelectedCopy: IItem[] = [...state]
+      const itemsSelectedCopy: IItem[] = [...state];
       const itemsSelected = itemsSelectedCopy.filter(
-        (item) => item.id !== itemToRemove.id,
-      )
-      return itemsSelected
+        (item) => item.id !== itemToRemove.id
+      );
+      return itemsSelected;
     },
   },
   // effects: (dispatch) => ({
@@ -91,4 +81,4 @@ export const CartModel = createModel<RootModel>()({
   //       dispatch.count.increment(payload)
   //     },
   //   }),
-})
+});

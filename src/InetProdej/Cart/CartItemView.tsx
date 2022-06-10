@@ -1,4 +1,4 @@
-import { ICartItemView } from '../interfaces'
+import { ICartItemView } from "../interfaces";
 
 const CartItemView = ({
   item,
@@ -6,13 +6,14 @@ const CartItemView = ({
   decreaseItem,
   increaseItem,
   toggleTouchState,
+  volumeNull,
 }: ICartItemView) => {
   return (
-    <tr key={item.id}>
+    <tr className="cart__list-container__item" key={item.id}>
       <td>
         <button
           className={`${
-            toggleTouchState ? 'cart-btn cart-btn--touch' : 'cart-btn'
+            toggleTouchState ? "cart-btn cart-btn--touch" : "cart-btn"
           }`}
           onClick={() => removeItem(item)}
         >
@@ -20,13 +21,15 @@ const CartItemView = ({
         </button>
       </td>
       <td>{item.name}</td>
-      <td>{item.price}</td>
-      <td>{item.quantity}</td>
-      <td>{item.price && item.price * item.quantity}</td>
-      <td>
+      <td className="item-alignment-right">{item.price}</td>
+      <td className="item-alignment-right">{item.quantity}</td>
+      <td className="item-alignment-right">
+        {item.price && item.price * item.quantity}
+      </td>
+      <td className="item-alignment-right">
         <button
           className={`${
-            toggleTouchState ? 'cart-btn cart-btn--touch' : 'cart-btn'
+            toggleTouchState ? "cart-btn cart-btn--touch" : "cart-btn"
           }`}
           onClick={() => decreaseItem(item)}
         >
@@ -34,23 +37,25 @@ const CartItemView = ({
         </button>
         <button
           className={`${
-            toggleTouchState ? 'cart-btn cart-btn--touch' : 'cart-btn'
+            toggleTouchState ? "cart-btn cart-btn--touch" : "cart-btn"
           }`}
-          onClick={() => increaseItem(item)}
+          onClick={() => increaseItem(item, 1)}
+          disabled={volumeNull ? true : false}
         >
           &#43;
         </button>
         <button
           className={`${
-            toggleTouchState ? 'cart-btn cart-btn--touch' : 'cart-btn'
+            toggleTouchState ? "cart-btn cart-btn--touch" : "cart-btn"
           }`}
-          onClick={() => increaseItem(item)}
+          onClick={() => increaseItem(item, 5)}
+          disabled={volumeNull ? true : false}
         >
           &#43;5
         </button>
       </td>
     </tr>
-  )
-}
+  );
+};
 
-export default CartItemView
+export default CartItemView;

@@ -1,65 +1,76 @@
-import './InetProdej.scss'
-import { IItem } from './interfaces'
-import PersonView from './Person/PersonView'
-import CartView from './Cart/CartView'
-import ShopView from './Shop/ShopView'
-import HeaderView from './Header/HeaderView'
+import "./InetProdej.scss";
+import { IItem } from "./interfaces";
+import PersonView from "./Person/PersonView";
+import CartView from "./Cart/CartView";
+import ShopView from "./Shop/ShopView";
+import HeaderView from "./Header/HeaderView";
+import { useState, useEffect } from "react";
 
-import { useSelector, useDispatch } from 'react-redux'
-import { RootState, Dispatch } from './store'
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, Dispatch } from "./store";
 
 function InetProdej() {
-  const dispatch = useDispatch<Dispatch>()
-  const shopState = useSelector((state: RootState) => state.ShopModel)
-  const cartState = useSelector((state: RootState) => state.CartModel)
-  const toggleTouchState = useSelector((state: RootState) => state.HeaderModel)
+  const dispatch = useDispatch<Dispatch>();
+  const shopState = useSelector((state: RootState) => state.ShopModel);
+  const cartState = useSelector((state: RootState) => state.CartModel);
+  const toggleTouchState = useSelector((state: RootState) => state.HeaderModel);
+  const [volumeNull, setVolumeNull] = useState(false);
+
+  useEffect(() => {
+    dispatch.ShopModel.loadItems();
+  });
 
   const shopItemClick = (item: IItem) => {
-    if (item.quantity === 0 && item.type === 'standard') {
-      alert('Zboží není skladem')
-      return
+    if (item.quantity === 0 && item.type === "standard") {
+      alert("Zboží není skladem");
+      return;
     }
-    dispatch.CartModel.increment(item)
-    dispatch.ShopModel.decrement(item)
-  }
+    dispatch.CartModel.increment(item, 1);
+    dispatch.ShopModel.decrement(item, 1);
+  };
   const removeItem = (itemToRemove: IItem) => {
-    dispatch.ShopModel.addRemoved(itemToRemove)
-    dispatch.CartModel.remove(itemToRemove)
-  }
-  const increaseItem = (itemToIncrease: IItem) => {
-    const itemVolume: number = parseInt(
-      shopState.find((i) => i.id === itemToIncrease.id)?.quantity,
-    )
+    setVolumeNull(false);
+    dispatch.ShopModel.addRemoved(itemToRemove);
+    dispatch.CartModel.remove(itemToRemove);
+  };
+  const increaseItem = (itemToIncrease: IItem, count: number) => {
+    const itemsCount: number = parseInt(
+      shopState.find((i) => i.id === itemToIncrease.id)?.quantity
+    );
+
+    const resultCount: number = Math.min(itemsCount, count);
     if (
-      (itemVolume > 0 && itemToIncrease.type === 'standard') ||
-      itemToIncrease.type === 'noQuantity'
+      (resultCount > 0 && itemToIncrease.type === "standard") ||
+      itemToIncrease.type === "noQuantity"
     ) {
-      dispatch.CartModel.increment(itemToIncrease)
-      dispatch.ShopModel.decrement(itemToIncrease)
-    } else if (itemVolume === 0) {
-      alert('Nedostatečná zásoba')
-      return
+      dispatch.CartModel.increment(itemToIncrease, resultCount);
+      dispatch.ShopModel.decrement(itemToIncrease, resultCount);
+    } else if (resultCount <= 0) {
+      setVolumeNull(true);
+      alert("Nedostatečná zásoba");
+      return;
     }
-  }
+  };
   const decreaseItem = (itemToDecrease: IItem) => {
-    dispatch.CartModel.decrement(itemToDecrease)
-    dispatch.ShopModel.increment(itemToDecrease)
-  }
+    setVolumeNull(false);
+    dispatch.CartModel.decrement(itemToDecrease);
+    dispatch.ShopModel.increment(itemToDecrease);
+  };
   const touchScreenToggler = () => {
-    dispatch.HeaderModel.toggle()
-  }
-  var totalPrice = 0
+    dispatch.HeaderModel.toggle();
+  };
+  var totalPrice = 0;
   for (let j = 0; j < cartState.length; j++) {
     if (cartState[j].price > 0) {
-      totalPrice += cartState[j].price * cartState[j].quantity
+      totalPrice += cartState[j].price * cartState[j].quantity;
     }
   }
   return (
     <div
       className={`${
         toggleTouchState
-          ? 'inet-prodej-app inet-prodej-app--touch'
-          : 'inet-prodej-app'
+          ? "inet-prodej-app inet-prodej-app--touch"
+          : "inet-prodej-app"
       }`}
     >
       <HeaderView
@@ -76,9 +87,10 @@ function InetProdej() {
           decreaseItem={decreaseItem}
           increaseItem={increaseItem}
           totalPrice={totalPrice}
+          volumeNull={volumeNull}
         />
       </div>
     </div>
-  )
+  );
 }
-export default InetProdej
+export default InetProdej;

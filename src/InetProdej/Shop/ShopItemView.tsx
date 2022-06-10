@@ -1,5 +1,5 @@
-import { ReactComponent as CartIcon } from '../assets/shopping-cart.svg'
-import { IShopItemView } from '../interfaces'
+import { ReactComponent as CartIcon } from "../assets/shopping-cart.svg";
+import { IShopItemView } from "../interfaces";
 
 const ShopItemView = ({ item, shopItemClick }: IShopItemView) => {
   return (
@@ -11,18 +11,20 @@ const ShopItemView = ({ item, shopItemClick }: IShopItemView) => {
       <td>
         <span>{item.name}</span>
       </td>
-      <td>
+      <td className="item-alignment-right">
         <span>{item.price}</span>
       </td>
-      <td>
+      <td className="item-alignment-right">
         <span>{item.quantity}</span>
       </td>
       <td>
         <span>{item.description}</span>
       </td>
-      <CartIcon />
+      <td>
+        <CartIcon />
+      </td>
     </tr>
-  )
-}
+  );
+};
 
-export default ShopItemView
+export default ShopItemView;

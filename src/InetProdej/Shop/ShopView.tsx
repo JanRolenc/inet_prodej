@@ -1,17 +1,17 @@
-import ShopItemView from './ShopItemView'
-import { IShopView } from '../interfaces'
+import ShopItemView from "./ShopItemView";
+import { IShopView } from "../interfaces";
 
 const ShopView = ({ shopState, shopItemClick }: IShopView) => {
   return (
     <div className="shop">
+      <div className="shop__name">Prodejna CPS</div>
       <div className="shop__list-container">
-        <caption>Prodejna CPS</caption>
         <table>
           <thead>
             <tr>
-              <th>Zboží / služba</th>
               <th>Cena / kus</th>
-              <th>Počet</th>
+              <th className="item-alignment-right">Druh zboží / služby</th>
+              <th className="item-alignment-right">Počet</th>
               <th>Popis</th>
               <th></th>
             </tr>
@@ -28,7 +28,7 @@ const ShopView = ({ shopState, shopItemClick }: IShopView) => {
         </table>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ShopView
+export default ShopView;
