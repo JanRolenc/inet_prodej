@@ -1,5 +1,5 @@
-import ShopItemView from "./ShopItemView";
-import { IShopView } from "../interfaces";
+import ShopItemView from './ShopItemView'
+import { IShopView } from '../interfaces'
 
 const ShopView = ({ shopState, shopItemClick }: IShopView) => {
   return (
@@ -9,8 +9,8 @@ const ShopView = ({ shopState, shopItemClick }: IShopView) => {
         <table>
           <thead>
             <tr>
-              <th>Cena / kus</th>
-              <th className="item-alignment-right">Druh zboží / služby</th>
+              <th>Druh zboží / služby</th>
+              <th className="item-alignment-right">Cena / kus</th>
               <th className="item-alignment-right">Počet</th>
               <th>Popis</th>
               <th></th>
@@ -28,7 +28,7 @@ const ShopView = ({ shopState, shopItemClick }: IShopView) => {
         </table>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ShopView;
+export default ShopView

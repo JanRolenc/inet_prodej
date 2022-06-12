@@ -1,5 +1,5 @@
-import CartItemView from "./CartItemView";
-import { ICartView } from "../interfaces";
+import CartItemView from './CartItemView'
+import { ICartView } from '../interfaces'
 
 const CartView = ({
   cartState,
@@ -8,8 +8,18 @@ const CartView = ({
   increaseItem,
   totalPrice,
   toggleTouchState,
-  volumeNull,
 }: ICartView) => {
+  function priceCzechFormat(price: number | any) {
+    var array = Array.from(price.toString())
+    if (array.length > 3) {
+      for (let i = array.length - 3; i > 0; i -= 3) {
+        array.splice(i, 0, ' ')
+      }
+    }
+
+    return array.join('')
+  }
+
   return (
     <div className="cart">
       <div className="cart__name">Košík</div>
@@ -36,7 +46,6 @@ const CartView = ({
                     decreaseItem={decreaseItem}
                     increaseItem={increaseItem}
                     toggleTouchState={toggleTouchState}
-                    volumeNull={volumeNull}
                   />
                 ))
               : null}
@@ -45,17 +54,17 @@ const CartView = ({
       </div>
       <div className="cart__sale">
         <div>
-          <span style={{ display: "block" }}>
-            Celková cena: {totalPrice} Kč
+          <span style={{ display: 'block' }}>
+            Celková cena: {priceCzechFormat(totalPrice)} Kč
           </span>
-          <span style={{ display: "block" }}>
+          <span style={{ display: 'block' }}>
             SUPO: Klientův zůstatek po zaplacení nákupního košíku: {}
           </span>
         </div>
         <button>Prodej</button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CartView;
+export default CartView
