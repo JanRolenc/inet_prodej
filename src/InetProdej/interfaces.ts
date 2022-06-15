@@ -14,10 +14,12 @@ export interface ICartView {
   increaseItem: (item: IItem, count: number) => void
   totalPrice: number
   toggleTouchState: boolean
+  priceCzechFormat(price: number): string
 }
 export interface IShopItemView {
   item: IItem
   shopItemClick: (oneItemToRemove: IItem) => void
+  priceCzechFormat(price: number): string
 }
 
 export interface ICartItemView {
@@ -26,11 +28,13 @@ export interface ICartItemView {
   removeItem(itemToRemove: IItem): void
   decreaseItem(item: IItem): void
   increaseItem(item: IItem, count: number): void
+  priceCzechFormat(price: number): string
 }
 
 export interface IShopView {
   shopState: IItem[]
   shopItemClick: (oneItemToRemove: IItem) => void
+  priceCzechFormat(price: number): string
 }
 export interface IHeaderView {
   toggleTouchState: boolean

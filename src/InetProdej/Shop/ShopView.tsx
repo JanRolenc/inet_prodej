@@ -1,7 +1,11 @@
 import ShopItemView from './ShopItemView'
 import { IShopView } from '../interfaces'
 
-const ShopView = ({ shopState, shopItemClick }: IShopView) => {
+const ShopView = ({
+  shopState,
+  shopItemClick,
+  priceCzechFormat,
+}: IShopView) => {
   return (
     <div className="shop">
       <div className="shop__name">Prodejna CPS</div>
@@ -22,6 +26,7 @@ const ShopView = ({ shopState, shopItemClick }: IShopView) => {
                 key={item.id}
                 item={item}
                 shopItemClick={() => shopItemClick(item)}
+                priceCzechFormat={priceCzechFormat}
               />
             ))}
           </tbody>

@@ -2,7 +2,7 @@
         "id": 1,
         "type": "standard",
         "name": "Položka jako příklad typu standard",
-        "price": 205555,
+        "price": 205555.369,
         "quantity": 25,
         "description": "množství se mění dynamicky"
     },

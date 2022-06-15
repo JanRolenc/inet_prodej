@@ -9,21 +9,12 @@ const CartItemView = ({
   decreaseItem,
   increaseItem,
   toggleTouchState,
+  priceCzechFormat,
 }: ICartItemView) => {
   const shopState = useSelector((state: RootState) => state.ShopModel)
   const shopStateCount = parseInt(
     shopState.find((i) => i.id === item.id)?.quantity,
   )
-  function priceCzechFormat(price: number | any) {
-    var array = Array.from(price.toString())
-    if (array.length > 3) {
-      for (let i = array.length - 3; i > 0; i -= 3) {
-        array.splice(i, 0, ' ')
-      }
-    }
-
-    return array.join('')
-  }
 
   return (
     <tr className="cart__list-container__item" key={item.id}>

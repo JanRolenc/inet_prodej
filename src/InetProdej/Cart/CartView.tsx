@@ -8,18 +8,8 @@ const CartView = ({
   increaseItem,
   totalPrice,
   toggleTouchState,
+  priceCzechFormat,
 }: ICartView) => {
-  function priceCzechFormat(price: number | any) {
-    var array = Array.from(price.toString())
-    if (array.length > 3) {
-      for (let i = array.length - 3; i > 0; i -= 3) {
-        array.splice(i, 0, ' ')
-      }
-    }
-
-    return array.join('')
-  }
-
   return (
     <div className="cart">
       <div className="cart__name">Košík</div>
@@ -46,6 +36,7 @@ const CartView = ({
                     decreaseItem={decreaseItem}
                     increaseItem={increaseItem}
                     toggleTouchState={toggleTouchState}
+                    priceCzechFormat={priceCzechFormat}
                   />
                 ))
               : null}

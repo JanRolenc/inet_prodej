@@ -1,17 +1,11 @@
 import { ReactComponent as CartIcon } from '../assets/shopping-cart.svg'
 import { IShopItemView } from '../interfaces'
 
-const ShopItemView = ({ item, shopItemClick }: IShopItemView) => {
-  function priceCzechFormat(price: number | any) {
-    var array = Array.from(price.toString())
-    if (array.length > 3) {
-      for (let i = array.length - 3; i > 0; i -= 3) {
-        array.splice(i, 0, ' ')
-      }
-    }
-
-    return array.join('')
-  }
+const ShopItemView = ({
+  item,
+  shopItemClick,
+  priceCzechFormat,
+}: IShopItemView) => {
   return (
     <tr
       className="shop__list-container__item"

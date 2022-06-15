@@ -1,16 +1,22 @@
 import { createModel } from '@rematch/core'
 import type { RootModel } from '../RootModel'
+import Server from '../data/Server'
 
 export const PersonModel = createModel<RootModel>()({
-  state: 0,
+  state: '',
   reducers: {
-    increment(state, payload: number) {
-      return state + payload
+    setPerson(state) {
+      return state
     },
   },
   // effects: (dispatch) => ({
-  // 	incrementAsync(payload: number, state) {
-  // 		dispatch.count.increment(payload)
-  // 	},
-  // }),
+  // // 	incrementAsync(payload: number, state) {
+  // // 		dispatch.count.increment(payload)
+  // // 	},
+  // // }),
+  // findPerson() {
+  //   const result = Server.findPerson("3890")
+  //   // dispatch.PersonModel.setPerson(result.getPerson() || ({} as string))
+  //   dispatch.PersonModel.setPerson(result.getPerson())
+  // },
 })

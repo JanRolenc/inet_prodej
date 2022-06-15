@@ -19,6 +19,25 @@ function InetProdej() {
     dispatch.ShopModel.loadItems()
   }, [])
 
+  function priceCzechFormat(price: number) {
+    var array = Array.from(price.toString())
+    const index = array.findIndex((element) => element === '.')
+    if (index > 0) {
+      array.splice(index, 1, ',')
+      if (index > 3) {
+        for (let i = index - 3; i > 0; i -= 3) {
+          array.splice(i, 0, ' ')
+        }
+      }
+    } else if (array.length > 3) {
+      for (let i = array.length - 3; i > 0; i -= 3) {
+        array.splice(i, 0, ' ')
+      }
+    }
+
+    return array.join('')
+  }
+
   const shopItemClick = (item: IItem) => {
     if (item.quantity === 0 && item.type === 'standard') {
       alert('Zboží není skladem')
@@ -43,10 +62,11 @@ function InetProdej() {
     ) {
       dispatch.CartModel.increment(itemToIncrease, resultCount)
       dispatch.ShopModel.decrement(itemToIncrease, resultCount)
-    } else if (resultCount <= 0) {
-      alert('Nedostatečná zásoba')
-      return
     }
+    // else if (resultCount <= 0 || itemsCount < count) {
+    //   alert('Nedostatečná zásoba')
+    //   return
+    // }//tlacitka jsou disabled driv, nez se muze zobrazit alert
   }
   const decreaseItem = (itemToDecrease: IItem) => {
     dispatch.CartModel.decrement(itemToDecrease)
@@ -73,7 +93,11 @@ function InetProdej() {
         toggleTouchState={toggleTouchState}
         touchScreenToggler={touchScreenToggler}
       />
-      <ShopView shopState={shopState} shopItemClick={shopItemClick} />
+      <ShopView
+        shopState={shopState}
+        shopItemClick={shopItemClick}
+        priceCzechFormat={priceCzechFormat}
+      />
       <div className="person-cart-container">
         <PersonView />
         <CartView
@@ -83,6 +107,7 @@ function InetProdej() {
           decreaseItem={decreaseItem}
           increaseItem={increaseItem}
           totalPrice={totalPrice}
+          priceCzechFormat={priceCzechFormat}
         />
       </div>
     </div>
