@@ -1,5 +1,7 @@
-import CartItemView from './CartItemView'
-import { ICartView } from '../interfaces'
+import CartItemView from "./CartItemView";
+import { ICartView } from "../interfaces";
+
+import { ReactComponent as CartIcon } from "../assets/shopping-cart.svg";
 
 const CartView = ({
   cartState,
@@ -45,17 +47,19 @@ const CartView = ({
       </div>
       <div className="cart__sale">
         <div>
-          <span style={{ display: 'block' }}>
+          <span style={{ display: "block" }}>
             Celková cena: {priceCzechFormat(totalPrice)} Kč
           </span>
-          <span style={{ display: 'block' }}>
+          <span style={{ display: "block" }}>
             SUPO: Klientův zůstatek po zaplacení nákupního košíku: {}
           </span>
         </div>
-        <button>Prodej</button>
+        <button>
+          <CartIcon /> Prodej
+        </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CartView
+export default CartView;
