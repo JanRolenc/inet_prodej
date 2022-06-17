@@ -5,6 +5,9 @@ import { IItem } from '../interfaces'
 export const CartModel = createModel<RootModel>()({
   state: [] as IItem[],
   reducers: {
+    setCart(state, cart: IItem[]) {
+      return cart
+    },
     increment(state, item: IItem, count: number) {
       const itemsSelectedCopy: IItem[] = [...state]
 

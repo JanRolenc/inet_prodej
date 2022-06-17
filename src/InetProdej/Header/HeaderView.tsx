@@ -1,15 +1,23 @@
-import { ReactComponent as CartIcon } from "../assets/shopping-cart.svg";
-import { IHeaderView } from "../interfaces";
+import { ReactComponent as CartIcon } from '../assets/shopping-cart.svg'
+import { IHeaderView } from '../interfaces'
 
-const HeaderView = ({ toggleTouchState, touchScreenToggler }: IHeaderView) => {
+const HeaderView = ({
+  toggleTouchState,
+  touchScreenToggler,
+  personState,
+}: IHeaderView) => {
   return (
     <div className="header">
       <div className="header__details">
         <CartIcon />
-        <span style={{ fontWeight: "bold", fontSize: "larger" }}>
+        <span style={{ fontWeight: 'bold', fontSize: 'larger' }}>
           Inet Prodej
         </span>
-        <span>(Mgr. Zdeněk Machač (3890))</span>
+        <span>
+          {personState
+            ? `(${personState?.fullname} (${personState?.id}))}`
+            : null}
+        </span>
       </div>
       <div
         className="header__touch"
@@ -18,8 +26,8 @@ const HeaderView = ({ toggleTouchState, touchScreenToggler }: IHeaderView) => {
         <div
           className={`${
             toggleTouchState
-              ? "header__touch__check-container"
-              : "header__touch__check-container--off"
+              ? 'header__touch__check-container'
+              : 'header__touch__check-container--off'
           }`}
         >
           <div></div>
@@ -27,7 +35,7 @@ const HeaderView = ({ toggleTouchState, touchScreenToggler }: IHeaderView) => {
         <span>Dotyková obrazovka</span>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default HeaderView;
+export default HeaderView

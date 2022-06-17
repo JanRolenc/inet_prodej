@@ -1,51 +1,53 @@
 export interface IItem {
-  id: number;
-  type: string;
-  name: string;
-  price: number | any;
-  quantity: number | any;
-  description: string;
+  id: number
+  type: string
+  name: string
+  price: number | any
+  quantity: number | any
+  description: string
 }
 
 export interface ICartView {
-  cartState: IItem[];
-  removeItem: (item: IItem) => void;
-  decreaseItem: (item: IItem) => void;
-  increaseItem: (item: IItem, count: number) => void;
-  totalPrice: number;
-  toggleTouchState: boolean;
-  priceCzechFormat(price: number): string;
+  cartState: IItem[]
+  removeItem: (item: IItem) => void
+  decreaseItem: (item: IItem) => void
+  increaseItem: (item: IItem, count: number) => void
+  totalPrice: number
+  toggleTouchState: boolean
+  priceCzechFormat(price: number): string
+  personState: IPerson | null
 }
 export interface IShopItemView {
-  item: IItem;
-  shopItemClick: (oneItemToRemove: IItem) => void;
-  priceCzechFormat(price: number): string;
+  item: IItem
+  shopItemClick: (oneItemToRemove: IItem) => void
+  priceCzechFormat(price: number): string
 }
 
 export interface ICartItemView {
-  item: IItem;
-  toggleTouchState: boolean;
-  removeItem(itemToRemove: IItem): void;
-  decreaseItem(item: IItem): void;
-  increaseItem(item: IItem, count: number): void;
-  priceCzechFormat(price: number): string;
+  item: IItem
+  toggleTouchState: boolean
+  removeItem(itemToRemove: IItem): void
+  decreaseItem(item: IItem): void
+  increaseItem(item: IItem, count: number): void
+  priceCzechFormat(price: number): string
 }
 
 export interface IShopView {
-  shopState: IItem[];
-  shopItemClick: (oneItemToRemove: IItem) => void;
-  priceCzechFormat(price: number): string;
+  shopState: IItem[]
+  shopItemClick: (oneItemToRemove: IItem) => void
+  priceCzechFormat(price: number): string
 }
 export interface IHeaderView {
-  toggleTouchState: boolean;
-  touchScreenToggler: (touch: boolean) => void;
+  toggleTouchState: boolean
+  touchScreenToggler: (touch: boolean) => void
+  personState: IPerson | null
 }
 
 export interface IPerson {
-  id: number;
-  fullname: string;
-  money: number;
+  id: number
+  fullname: string
+  money: number | null
 }
 export interface IPersonView {
-  personState: IPerson | null;
+  personState: IPerson | null
 }

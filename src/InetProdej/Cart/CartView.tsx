@@ -1,7 +1,7 @@
-import CartItemView from "./CartItemView";
-import { ICartView } from "../interfaces";
+import CartItemView from './CartItemView'
+import { ICartView } from '../interfaces'
 
-import { ReactComponent as CartIcon } from "../assets/shopping-cart.svg";
+import { ReactComponent as CartIcon } from '../assets/shopping-cart.svg'
 
 const CartView = ({
   cartState,
@@ -11,7 +11,12 @@ const CartView = ({
   totalPrice,
   toggleTouchState,
   priceCzechFormat,
+  personState,
 }: ICartView) => {
+  const sellButtonClick = () => {
+    alert(`Opravdu chcete nakoupit za ${priceCzechFormat(totalPrice)} Kč?`)
+  }
+
   return (
     <div className="cart">
       <div className="cart__name">Košík</div>
@@ -29,7 +34,7 @@ const CartView = ({
           </thead>
 
           <tbody>
-            {cartState.length
+            {cartState?.length
               ? cartState.map((item) => (
                   <CartItemView
                     key={item.id}
@@ -47,19 +52,28 @@ const CartView = ({
       </div>
       <div className="cart__sale">
         <div>
-          <span style={{ display: "block" }}>
+          <span style={{ display: 'block' }}>
             Celková cena: {priceCzechFormat(totalPrice)} Kč
           </span>
-          <span style={{ display: "block" }}>
-            SUPO: Klientův zůstatek po zaplacení nákupního košíku: {}
+          <span style={{ display: 'block' }}>
+            SUPO: Klientův zůstatek po zaplacení nákupního košíku:
+            {personState ? (
+              personState?.money && personState.money > 200 ? (
+                `  ${priceCzechFormat(personState.money - totalPrice)} Kč`
+              ) : (
+                <span style={{ fontStyle: 'italic' }}>
+                  na účtě máte dostatek prostředků
+                </span>
+              )
+            ) : null}
           </span>
         </div>
-        <button>
+        <button disabled={personState ? false : true} onClick={sellButtonClick}>
           <CartIcon /> Prodej
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CartView;
+export default CartView

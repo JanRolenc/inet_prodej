@@ -12,9 +12,7 @@ const CartItemView = ({
   priceCzechFormat,
 }: ICartItemView) => {
   const shopState = useSelector((state: RootState) => state.ShopModel)
-  const shopStateCount = parseInt(
-    shopState.find((i) => i.id === item.id)?.quantity,
-  )
+  const shopStateCount = shopState.find((i) => i.id === item.id)?.quantity
 
   return (
     <tr className="cart__list-container__item" key={item.id}>
