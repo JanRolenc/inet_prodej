@@ -20,7 +20,7 @@ export default class DummyServer implements ServerAPI {
         if (input === '3890') {
           resolve(
             new ServerResult(
-              { id: 3890, fullname: 'Mgr. Zdeněk Machač', money: 1000 },
+              { id: 3890, fullname: 'Mgr. Zdeněk Machač', money: 150 },
               null,
             ),
           )

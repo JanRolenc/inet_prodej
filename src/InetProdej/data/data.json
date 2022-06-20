@@ -24,11 +24,11 @@
     },
     {
         "id": 4,
-        "type": "quantityAndPriceOptional",
-        "name": "Tisk na plotr - příklad typu quantityAndPriceOptional",
-        "price": "",
-        "quantity": "",
-        "description": "cena i množství se nastavuje ručně"
+        "type": "standard",
+        "name": "Reproduktory pro PC",
+        "price": "100",
+        "quantity": "12",
+        "description": "reproduktory pro PC"
     },
     {
         "id": 5,

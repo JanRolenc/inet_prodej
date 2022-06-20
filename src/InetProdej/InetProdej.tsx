@@ -62,11 +62,10 @@ function InetProdej() {
     ) {
       dispatch.CartModel.increment(itemToIncrease, resultCount)
       dispatch.ShopModel.decrement(itemToIncrease, resultCount)
+    } else if (resultCount <= 0 || itemsCount < count) {
+      dispatch.CartModel.increment(itemToIncrease, itemsCount)
+      dispatch.ShopModel.decrement(itemToIncrease, itemsCount)
     }
-    // else if (resultCount <= 0 || itemsCount < count) {
-    //   alert('Nedostatečná zásoba')
-    //   return
-    // }//tlacitka jsou disabled driv, nez se muze zobrazit alert
   }
   const decreaseItem = (itemToDecrease: IItem) => {
     dispatch.CartModel.decrement(itemToDecrease)

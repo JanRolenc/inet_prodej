@@ -28,7 +28,9 @@ const CartItemView = ({
       </td>
       <td>{item.name}</td>
       <td className="item-alignment-right">{priceCzechFormat(item.price)}</td>
-      <td className="item-alignment-right">{item.quantity}</td>
+      <td className="item-alignment-right" style={{ fontWeight: 'bold' }}>
+        {item.quantity}
+      </td>
       <td className="item-alignment-right">
         {item.price && priceCzechFormat(item.price * item.quantity)}
       </td>
@@ -55,7 +57,7 @@ const CartItemView = ({
             toggleTouchState ? 'cart-btn cart-btn--touch' : 'cart-btn'
           }`}
           onClick={() => increaseItem(item, 5)}
-          disabled={shopStateCount < 5 ? true : false}
+          disabled={shopStateCount === 0 ? true : false}
         >
           &#43;5
         </button>

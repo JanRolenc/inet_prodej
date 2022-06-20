@@ -53,12 +53,15 @@ const CartView = ({
       <div className="cart__sale">
         <div>
           <span style={{ display: 'block' }}>
-            Celková cena: {priceCzechFormat(totalPrice)} Kč
+            Celková cena:{' '}
+            <span style={{ fontWeight: 'bold' }}>
+              {priceCzechFormat(totalPrice)} Kč
+            </span>
           </span>
           <span style={{ display: 'block' }}>
             SUPO: Klientův zůstatek po zaplacení nákupního košíku:
             {personState ? (
-              personState?.money && personState.money > 200 ? (
+              personState?.money && personState.money < 200 ? (
                 `  ${priceCzechFormat(personState.money - totalPrice)} Kč`
               ) : (
                 <span style={{ fontStyle: 'italic' }}>
