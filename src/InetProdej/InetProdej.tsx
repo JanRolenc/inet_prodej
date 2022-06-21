@@ -55,16 +55,18 @@ function InetProdej() {
     const itemsCount: number = shopState.find((i) => i.id === itemToIncrease.id)
       ?.quantity
 
-    const resultCount: number = Math.min(itemsCount, count)
-    if (
-      (resultCount > 0 && itemToIncrease.type === 'standard') ||
-      itemToIncrease.type === 'noQuantity'
-    ) {
-      dispatch.CartModel.increment(itemToIncrease, resultCount)
-      dispatch.ShopModel.decrement(itemToIncrease, resultCount)
-    } else if (resultCount <= 0 || itemsCount < count) {
-      dispatch.CartModel.increment(itemToIncrease, itemsCount)
-      dispatch.ShopModel.decrement(itemToIncrease, itemsCount)
+    if (itemsCount) {
+      const resultCount: number = Math.min(itemsCount, count)
+      if (resultCount > 0 && itemToIncrease.type === 'standard') {
+        dispatch.CartModel.increment(itemToIncrease, resultCount)
+        dispatch.ShopModel.decrement(itemToIncrease, resultCount)
+      } else if (resultCount <= 0 || itemsCount < count) {
+        dispatch.CartModel.increment(itemToIncrease, itemsCount)
+        dispatch.ShopModel.decrement(itemToIncrease, itemsCount)
+      }
+    } else {
+      dispatch.CartModel.increment(itemToIncrease, count)
+      dispatch.ShopModel.decrement(itemToIncrease, count)
     }
   }
   const decreaseItem = (itemToDecrease: IItem) => {
