@@ -52,10 +52,11 @@ function InetProdej() {
     dispatch.CartModel.remove(itemToRemove)
   }
   const increaseItem = (itemToIncrease: IItem, count: number) => {
-    const itemsCount: number = shopState.find((i) => i.id === itemToIncrease.id)
-      ?.quantity
-
-    if (itemsCount) {
+    const itemsCount: number = parseInt(
+      shopState.find((i) => i.id === itemToIncrease.id)?.quantity,
+    )
+    console.log(typeof itemsCount)
+    if (itemsCount > 0) {
       const resultCount: number = Math.min(itemsCount, count)
       if (resultCount > 0 && itemToIncrease.type === 'standard') {
         dispatch.CartModel.increment(itemToIncrease, resultCount)
