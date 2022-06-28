@@ -13,7 +13,7 @@ export interface ICartView {
   decreaseItem: (item: IItem) => void
   increaseItem: (item: IItem, count: number) => void
   totalPrice: number
-  toggleTouchState: boolean
+  toggleTouchState: string
   priceCzechFormat(price: number): string
   personState: IPerson | null
 }
@@ -25,7 +25,7 @@ export interface IShopItemView {
 
 export interface ICartItemView {
   item: IItem
-  toggleTouchState: boolean
+  toggleTouchState: string
   removeItem(itemToRemove: IItem): void
   decreaseItem(item: IItem): void
   increaseItem(item: IItem, count: number): void
@@ -38,15 +38,15 @@ export interface IShopView {
   priceCzechFormat(price: number): string
 }
 export interface IHeaderView {
-  toggleTouchState: boolean
-  touchScreenToggler: (touch: boolean) => void
+  toggleTouchState: string
+  touchScreenToggler: (touch: string) => void
   personState: IPerson | null
 }
 
 export interface IPerson {
   id: number
   fullname: string
-  money: number | null
+  money: number
 }
 export interface IPersonView {
   personState: IPerson | null

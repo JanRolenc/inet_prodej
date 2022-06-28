@@ -2,11 +2,16 @@ import { createModel } from '@rematch/core'
 import type { RootModel } from '../RootModel'
 
 export const HeaderModel = createModel<RootModel>()({
-  state: false,
+  state: localStorage.touched,
   reducers: {
     toggle(state) {
-      const toggleTouch = !state
-      return toggleTouch
+      if (state === 'false') {
+        localStorage.touched = 'true'
+      } else {
+        localStorage.touched = 'false'
+      }
+
+      return localStorage.touched
     },
   },
   // effects: (dispatch) => ({

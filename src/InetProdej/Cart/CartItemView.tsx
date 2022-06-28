@@ -19,7 +19,9 @@ const CartItemView = ({
       <td>
         <button
           className={`${
-            toggleTouchState ? 'cart-btn cart-btn--touch' : 'cart-btn'
+            toggleTouchState === 'true'
+              ? 'cart-btn cart-btn--touch'
+              : 'cart-btn'
           }`}
           onClick={() => removeItem(item)}
         >
@@ -37,7 +39,9 @@ const CartItemView = ({
       <td className="item-alignment-right">
         <button
           className={`${
-            toggleTouchState ? 'cart-btn cart-btn--touch' : 'cart-btn'
+            toggleTouchState === 'true'
+              ? 'cart-btn cart-btn--touch'
+              : 'cart-btn'
           }`}
           onClick={() => decreaseItem(item)}
         >
@@ -45,7 +49,9 @@ const CartItemView = ({
         </button>
         <button
           className={`${
-            toggleTouchState ? 'cart-btn cart-btn--touch' : 'cart-btn'
+            toggleTouchState === 'true'
+              ? 'cart-btn cart-btn--touch'
+              : 'cart-btn'
           }`}
           onClick={() => increaseItem(item, 1)}
           disabled={shopStateCount === 0 ? true : false}
@@ -54,7 +60,9 @@ const CartItemView = ({
         </button>
         <button
           className={`${
-            toggleTouchState ? 'cart-btn cart-btn--touch' : 'cart-btn'
+            toggleTouchState === 'true'
+              ? 'cart-btn cart-btn--touch'
+              : 'cart-btn'
           }`}
           onClick={() => increaseItem(item, 5)}
           disabled={shopStateCount === 0 ? true : false}

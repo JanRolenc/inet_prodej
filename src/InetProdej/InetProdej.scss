@@ -25,16 +25,18 @@
             top: 0;
             background-color: rgb(79, 79, 79);
             color: white;
-            z-index: 1;
+            opacity: 1;
             padding-left: 10px;
             padding-right: 10px;
         }
     }
     button {
         border-radius: 3px;
+        border: 1px solid black;
         &:hover:not([disabled]) {
             cursor: pointer;
-            background-color: rgb(248, 188, 188);
+            background-color: rgb(188, 231, 248);
+            border: 2px solid rgb(100, 150, 232);
         }
         &:hover[disabled] {
             cursor: not-allowed;
@@ -62,6 +64,14 @@
             }
             span {
                 margin-right: 10px;
+            }
+        }
+        &__reader-touch-container {
+            display: flex;
+            flex-direction: row;
+            &__reader-container {
+                width: 200px;
+                margin-right: 25px;
             }
         }
         &__touch {
@@ -226,6 +236,7 @@
                 }
                 .cart-btn {
                     padding: 0px 20px;
+                    border: 1px solid black;
                     color: rgb(250, 63, 63);
                     font-weight: bold;
                     font-size: 15px;

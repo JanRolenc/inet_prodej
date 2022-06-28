@@ -37,6 +37,8 @@ const PersonView = ({ personState }: IPersonView) => {
     } else {
       dispatch.PersonModel.findPerson(input)
     }
+    console.log(personState)
+    // console.log(cartState)
   }
 
   return (
@@ -45,7 +47,15 @@ const PersonView = ({ personState }: IPersonView) => {
       <div className="person__details">
         <img src={personalImage} alt="icon" />
         <span>Jméno a příjmení</span>
-        <span>{personState?.fullname}</span>
+        <span>
+          {personState ? (
+            personState.fullname
+          ) : (
+            <span style={{ fontStyle: 'italic', fontWeight: 'normal' }}>
+              osoba nevybrána
+            </span>
+          )}
+        </span>
         <span style={{ marginTop: '10px' }}>Identifikace</span>
         <form onSubmit={handleSubmit}>
           <input type="text" value={inputPerson} onChange={handleChange} />

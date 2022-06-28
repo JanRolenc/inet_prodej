@@ -83,10 +83,11 @@ function InetProdej() {
       totalPrice += cartState[j].price * cartState[j].quantity
     }
   }
+  console.log('localStorage.touched po render', localStorage.touched)
   return (
     <div
       className={`${
-        toggleTouchState
+        toggleTouchState === 'true'
           ? 'inet-prodej-app inet-prodej-app--touch'
           : 'inet-prodej-app'
       }`}
