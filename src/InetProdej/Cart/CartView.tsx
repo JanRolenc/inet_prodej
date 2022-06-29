@@ -1,4 +1,5 @@
 import CartItemView from './CartItemView'
+
 import { ICartView } from '../interfaces'
 
 import { ReactComponent as CartIcon } from '../assets/shopping-cart.svg'
@@ -12,12 +13,9 @@ const CartView = ({
   toggleTouchState,
   priceCzechFormat,
   personState,
+  clickOpenModal,
+  openModal,
 }: ICartView) => {
-  const sellButtonClick = () => {
-    alert(`Chcete nakoupit za ${priceCzechFormat(totalPrice)} Kč?`)
-    console.log(cartState)
-  }
-
   // if (personState && totalPrice > 0) {
   //   const availableMoney: number | null = personState.money
   //   const moneyAfterPayment: number | null = availableMoney - totalPrice
@@ -112,7 +110,7 @@ const CartView = ({
 
         <button
           disabled={personState && cartState.length > 0 ? false : true}
-          onClick={sellButtonClick}
+          onClick={() => clickOpenModal(openModal)}
         >
           <CartIcon /> Prodej
         </button>

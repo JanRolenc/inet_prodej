@@ -70,7 +70,10 @@
             display: flex;
             flex-direction: row;
             &__reader-container {
-                width: 200px;
+                // width: 200px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
                 margin-right: 25px;
             }
         }
@@ -262,6 +265,76 @@
                     svg {
                         width: 10px;
                         margin-right: 5px;
+                    }
+                }
+            }
+        }
+    }
+    .modal {
+        width: 100%;
+        height: 100%;
+        opacity: 0.9;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: rgb(200, 200, 200);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+        * {
+            opacity: 1;
+        }
+        &__content {
+            width: 400px;
+            height: 300px;
+            border-radius: 3px;
+            background-color: white;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            display: flex;
+            flex-direction: column;
+            padding: 3px;
+            &__header {
+                display: flex;
+                height: 10%;
+                justify-content: space-between;
+                svg {
+                    width: 15px;
+                    margin-right: 10px;
+                }
+                &__close {
+                    margin-right: 5px;
+                }
+            }
+            &__body {
+                height: 90%;
+                background-color: rgb(218, 209, 209);
+                &__cart {
+                    background-color: white;
+                    height: 70%;
+                    margin: 5px 5px auto 5px;
+                    border: 2px solid rgb(100, 150, 232);
+                    &__list {
+                        height: 65%;
+                        padding-top: 10px;
+                        padding-bottom: 10px;
+                        overflow: scroll;
+                    }
+                }
+                &__sale {
+                    height: 30%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    button {
+                        margin-right: 20px;
+                        margin-top: 10px;
+                    }
+                    img {
+                        width: 12px;
+                        margin: 0px 5px 2px 1px;
+                        vertical-align: middle;
                     }
                 }
             }

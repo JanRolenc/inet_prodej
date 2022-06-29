@@ -4,7 +4,9 @@ import PersonView from './Person/PersonView'
 import CartView from './Cart/CartView'
 import ShopView from './Shop/ShopView'
 import HeaderView from './Header/HeaderView'
+import ModalView from './Modal/ModalView'
 import { useEffect } from 'react'
+import { useState } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState, Dispatch } from './store'
@@ -15,6 +17,15 @@ function InetProdej() {
   const cartState = useSelector((state: RootState) => state.CartModel)
   const personState = useSelector((state: RootState) => state.PersonModel)
   const toggleTouchState = useSelector((state: RootState) => state.HeaderModel)
+
+  const [openModal, setOpenModal] = useState<boolean>(false)
+
+  const clickOpenModal = () => {
+    // alert(`Chcete nakoupit za ${priceCzechFormat(totalPrice)} Kč?`)
+    // console.log(cartState)
+    setOpenModal(!openModal)
+    console.log('openModal', openModal)
+  }
 
   useEffect(() => {
     dispatch.ShopModel.loadItems()
@@ -113,8 +124,17 @@ function InetProdej() {
           totalPrice={totalPrice}
           priceCzechFormat={priceCzechFormat}
           personState={personState}
+          clickOpenModal={clickOpenModal}
+          openModal={openModal}
         />
       </div>
+      {openModal && (
+        <ModalView
+          cartState={cartState}
+          totalPrice={totalPrice}
+          priceCzechFormat={priceCzechFormat}
+        />
+      )}
     </div>
   )
 }

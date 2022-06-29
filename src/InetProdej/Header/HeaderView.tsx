@@ -1,11 +1,9 @@
 import { ReactComponent as CartIcon } from '../assets/shopping-cart.svg'
 import { IHeaderView } from '../interfaces'
 
-import React, { Component } from 'react'
 import Select from 'react-select'
 
 const options = [
-  { value: 'reader', label: 'Čtečka' },
   { value: 'normal', label: 'Normální' },
   { value: '4bits', label: '4bits-mirror' },
   { value: 'pcprox', label: 'PCProx' },
@@ -27,7 +25,8 @@ const customStyles = {
   valueContainer: (provided: any) => ({
     ...provided,
     height: '30px',
-    marginBottom: '8px',
+    minWidth: '110px',
+    // marginBottom: '8px',
     padding: '0px 8px',
   }),
   indicatorSeparator: (provided: any) => ({
@@ -42,6 +41,10 @@ const customStyles = {
   menuList: (provided: any) => ({
     ...provided,
     zIndex: '10',
+  }),
+  singleValue: (provided: any) => ({
+    ...provided,
+    paddingBottom: '4px',
   }),
 }
 
@@ -65,7 +68,13 @@ const HeaderView = ({
       </div>
       <div className="header__reader-touch-container">
         <div className="header__reader-touch-container__reader-container">
-          <Select options={options} styles={customStyles} menuIsOpen={true} />
+          <span style={{ marginRight: '10px' }}>Vyber čtečku:</span>
+          <Select
+            options={options}
+            styles={customStyles}
+            menuIsOpen={true}
+            placeholder=""
+          />
         </div>
         <div
           className="header__touch"

@@ -7,6 +7,16 @@ export interface IItem {
   description: string
 }
 
+export interface IShopView {
+  shopState: IItem[]
+  shopItemClick: (oneItemToRemove: IItem) => void
+  priceCzechFormat(price: number): string
+}
+export interface IShopItemView {
+  item: IItem
+  shopItemClick: (oneItemToRemove: IItem) => void
+  priceCzechFormat(price: number): string
+}
 export interface ICartView {
   cartState: IItem[]
   removeItem: (item: IItem) => void
@@ -16,13 +26,9 @@ export interface ICartView {
   toggleTouchState: string
   priceCzechFormat(price: number): string
   personState: IPerson | null
+  clickOpenModal: (modal: boolean) => void
+  openModal: boolean
 }
-export interface IShopItemView {
-  item: IItem
-  shopItemClick: (oneItemToRemove: IItem) => void
-  priceCzechFormat(price: number): string
-}
-
 export interface ICartItemView {
   item: IItem
   toggleTouchState: string
@@ -31,12 +37,16 @@ export interface ICartItemView {
   increaseItem(item: IItem, count: number): void
   priceCzechFormat(price: number): string
 }
-
-export interface IShopView {
-  shopState: IItem[]
-  shopItemClick: (oneItemToRemove: IItem) => void
+export interface IModalView {
+  cartState: IItem[]
+  totalPrice: number
   priceCzechFormat(price: number): string
 }
+export interface IModalItemView {
+  item: IItem
+  priceCzechFormat(price: number): string
+}
+
 export interface IHeaderView {
   toggleTouchState: string
   touchScreenToggler: (touch: string) => void
