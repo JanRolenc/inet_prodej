@@ -26,8 +26,8 @@ export interface ICartView {
   toggleTouchState: string
   priceCzechFormat(price: number): string
   personState: IPerson | null
-  clickOpenModal: (modal: boolean) => void
-  openModal: boolean
+  modalViewToggler: (modal: boolean) => void
+  toggleModalState: boolean
 }
 export interface ICartItemView {
   item: IItem
@@ -41,6 +41,8 @@ export interface IModalView {
   cartState: IItem[]
   totalPrice: number
   priceCzechFormat(price: number): string
+  modalViewToggler: (modal: boolean) => void
+  toggleModalState: boolean
 }
 export interface IModalItemView {
   item: IItem

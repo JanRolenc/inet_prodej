@@ -13,8 +13,8 @@ const CartView = ({
   toggleTouchState,
   priceCzechFormat,
   personState,
-  clickOpenModal,
-  openModal,
+  toggleModalState,
+  modalViewToggler,
 }: ICartView) => {
   // if (personState && totalPrice > 0) {
   //   const availableMoney: number | null = personState.money
@@ -110,7 +110,7 @@ const CartView = ({
 
         <button
           disabled={personState && cartState.length > 0 ? false : true}
-          onClick={() => clickOpenModal(openModal)}
+          onClick={() => modalViewToggler(toggleModalState)}
         >
           <CartIcon /> Prodej
         </button>

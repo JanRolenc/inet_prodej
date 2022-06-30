@@ -17,15 +17,16 @@ function InetProdej() {
   const cartState = useSelector((state: RootState) => state.CartModel)
   const personState = useSelector((state: RootState) => state.PersonModel)
   const toggleTouchState = useSelector((state: RootState) => state.HeaderModel)
+  const toggleModalState = useSelector((state: RootState) => state.ModalModel)
 
-  const [openModal, setOpenModal] = useState<boolean>(false)
+  // const [toggleModalState, settoggleModalState] = useState<boolean>(false)
 
-  const clickOpenModal = () => {
-    // alert(`Chcete nakoupit za ${priceCzechFormat(totalPrice)} Kč?`)
-    // console.log(cartState)
-    setOpenModal(!openModal)
-    console.log('openModal', openModal)
-  }
+  // const clicktoggleModalState = () => {
+  //   // alert(`Chcete nakoupit za ${priceCzechFormat(totalPrice)} Kč?`)
+  //   // console.log(cartState)
+  //   settoggleModalState(!toggleModalState)
+  //   console.log('toggleModalState', toggleModalState)
+  // }
 
   useEffect(() => {
     dispatch.ShopModel.loadItems()
@@ -88,6 +89,9 @@ function InetProdej() {
   const touchScreenToggler = () => {
     dispatch.HeaderModel.toggle()
   }
+  const modalViewToggler = () => {
+    dispatch.ModalModel.toggle()
+  }
   var totalPrice = 0
   for (let j = 0; j < cartState.length; j++) {
     if (cartState[j].price > 0) {
@@ -124,15 +128,17 @@ function InetProdej() {
           totalPrice={totalPrice}
           priceCzechFormat={priceCzechFormat}
           personState={personState}
-          clickOpenModal={clickOpenModal}
-          openModal={openModal}
+          modalViewToggler={modalViewToggler}
+          toggleModalState={toggleModalState}
         />
       </div>
-      {openModal && (
+      {toggleModalState && (
         <ModalView
           cartState={cartState}
           totalPrice={totalPrice}
           priceCzechFormat={priceCzechFormat}
+          modalViewToggler={modalViewToggler}
+          toggleModalState={toggleModalState}
         />
       )}
     </div>
