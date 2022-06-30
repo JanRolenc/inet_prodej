@@ -9,12 +9,6 @@ const options = [
   { value: 'pcprox', label: 'PCProx' },
 ]
 const customStyles = {
-  // option: (provided:any, state:any) => ({
-  //   ...provided,
-  //   borderBottom: '2px dotted green',
-  //   color: state.isSelected ? 'yellow' : 'black',
-  //   backgroundColor: state.isSelected ? 'green' : 'white'
-  // }),
   control: (provided: any) => ({
     ...provided,
     minHeight: '30px',
@@ -72,7 +66,7 @@ const HeaderView = ({
           <Select
             options={options}
             styles={customStyles}
-            menuIsOpen={true}
+            // menuIsOpen={true}
             placeholder=""
           />
         </div>
