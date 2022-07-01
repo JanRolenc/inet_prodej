@@ -1,11 +1,11 @@
-import { createModel } from '@rematch/core'
-import type { RootModel } from '../RootModel'
+import { createModel } from "@rematch/core";
+import type { RootModel } from "../RootModel";
 
 export const ModalModel = createModel<RootModel>()({
   state: false,
   reducers: {
     toggle(state) {
-      return !state
+      return !state;
     },
   },
   // effects: (dispatch) => ({
@@ -15,4 +15,4 @@ export const ModalModel = createModel<RootModel>()({
   //       dispatch.count.increment(payload)
   //     },
   //   }),
-})
+});

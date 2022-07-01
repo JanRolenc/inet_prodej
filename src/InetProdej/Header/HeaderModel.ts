@@ -1,17 +1,17 @@
-import { createModel } from '@rematch/core'
-import type { RootModel } from '../RootModel'
+import { createModel } from "@rematch/core";
+import type { RootModel } from "../RootModel";
 
 export const HeaderModel = createModel<RootModel>()({
-  state: localStorage.touched,
+  state: localStorage.touched || null,
   reducers: {
     toggle(state) {
-      if (state === 'false') {
-        localStorage.touched = 'true'
+      if (state === "false") {
+        localStorage.touched = "true";
       } else {
-        localStorage.touched = 'false'
+        localStorage.touched = "false";
       }
 
-      return localStorage.touched
+      return localStorage.touched;
     },
   },
   // effects: (dispatch) => ({
@@ -21,4 +21,4 @@ export const HeaderModel = createModel<RootModel>()({
   //       dispatch.count.increment(payload)
   //     },
   //   }),
-})
+});
