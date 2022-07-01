@@ -4,6 +4,7 @@ import { IModalView } from "../interfaces";
 import { ReactComponent as CartIcon } from "../assets/shopping-cart.svg";
 import stopIcon from "../assets/red_stop.png";
 import greenCircle from "../assets/green-circle.png";
+import yellowCircle from "../assets/yellow-circle.png";
 import { useState } from "react";
 
 const ModalView = ({
@@ -13,23 +14,14 @@ const ModalView = ({
   toggleModalState,
   modalViewToggler,
 }: IModalView) => {
-  const [barValue, setBarValue] = useState<number>(0);
   const [sellClicked, setSellClicked] = useState<boolean>(false);
+  const [saleFinished, setSaleFinished] = useState<boolean>(false);
   const clickSellModal = () => {
-    setSellClicked(true);
-    var newValue = 0;
-    const interval = setInterval(() => {
-      setBarValue((previousValue) => {
-        newValue = previousValue + 10;
-        if (newValue === 100) {
-          clearInterval(interval);
-        }
-        return newValue;
-      });
-    }, 500);
-    if (newValue === 100) {
-      modalViewToggler(toggleModalState); //toto nefunguje
-    }
+    // setSellClicked(true);
+    // setTimeout(() => {
+    //   setSaleFinished(true);
+    // }, 5000);
+    console.log(cartState);
   };
   return (
     <div className="modal">
@@ -81,12 +73,12 @@ const ModalView = ({
                 </button>
               </div>
             </div>
-          ) : (
+          ) : !saleFinished ? (
             <div className="modal__content__body__sale">
               <div className="modal__content__body__sale__left--sell">
-                <progress id="bar" value={barValue} max={100}></progress>
+                <progress id="bar" max={100}></progress>
                 <label htmlFor="bar">
-                  <img src={greenCircle} alt="circle" />
+                  <img src={yellowCircle} alt="circle" />
                   Prodejní trasakce...
                 </label>
               </div>
@@ -98,6 +90,22 @@ const ModalView = ({
                   disabled
                   onClick={() => modalViewToggler(toggleModalState)}
                 >
+                  <img src={stopIcon} alt="stop" />
+                  Zavřít
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="modal__content__body__sale">
+              <div className="modal__content__body__sale__left">
+                <img src={greenCircle} alt="circle" />
+                Prodej proběhl úspěšně
+              </div>
+              <div className="modal__content__body__sale__right">
+                <button disabled onClick={clickSellModal}>
+                  Prodat
+                </button>
+                <button onClick={() => modalViewToggler(toggleModalState)}>
                   <img src={stopIcon} alt="stop" />
                   Zavřít
                 </button>

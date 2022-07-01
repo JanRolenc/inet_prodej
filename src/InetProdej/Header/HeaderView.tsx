@@ -1,46 +1,5 @@
-import { ReactComponent as CartIcon } from '../assets/shopping-cart.svg'
-import { IHeaderView } from '../interfaces'
-
-import Select from 'react-select'
-
-const options = [
-  { value: 'normal', label: 'Normální' },
-  { value: '4bits', label: '4bits-mirror' },
-  { value: 'pcprox', label: 'PCProx' },
-]
-const customStyles = {
-  control: (provided: any) => ({
-    ...provided,
-    minHeight: '30px',
-    maxHeight: '30px',
-    borderRadius: '2px',
-    borderColor: 'black',
-  }),
-  valueContainer: (provided: any) => ({
-    ...provided,
-    height: '30px',
-    minWidth: '110px',
-    // marginBottom: '8px',
-    padding: '0px 8px',
-  }),
-  indicatorSeparator: (provided: any) => ({
-    ...provided,
-    height: '20px',
-    marginTop: '4px',
-  }),
-  indicatorsContainer: (provided: any) => ({
-    ...provided,
-    height: '30px',
-  }),
-  menuList: (provided: any) => ({
-    ...provided,
-    zIndex: '10',
-  }),
-  singleValue: (provided: any) => ({
-    ...provided,
-    paddingBottom: '4px',
-  }),
-}
+import { ReactComponent as CartIcon } from "../assets/shopping-cart.svg";
+import { IHeaderView } from "../interfaces";
 
 const HeaderView = ({
   toggleTouchState,
@@ -51,24 +10,22 @@ const HeaderView = ({
     <div className="header">
       <div className="header__details">
         <CartIcon />
-        <span style={{ fontWeight: 'bold', fontSize: 'larger' }}>
+        <span style={{ fontWeight: "bold", fontSize: "larger" }}>
           Inet Prodej
         </span>
         <span>
-          {personState
-            ? `(${personState?.fullname} (${personState?.id}))`
-            : null}
+          <i>jmeno prodejce</i>
         </span>
       </div>
       <div className="header__reader-touch-container">
         <div className="header__reader-touch-container__reader-container">
-          <span style={{ marginRight: '10px' }}>Vyber čtečku:</span>
-          <Select
-            options={options}
-            styles={customStyles}
-            // menuIsOpen={true}
-            placeholder=""
-          />
+          <span style={{ marginRight: "10px" }}>Čtečka</span>
+          <select>
+            <option selected value="ctecka"></option>
+            <option value="normal">Normální</option>
+            <option value="4bits">4bits-mirror</option>
+            <option value="pcprox">PCProx</option>
+          </select>
         </div>
         <div
           className="header__touch"
@@ -76,9 +33,9 @@ const HeaderView = ({
         >
           <div
             className={`${
-              toggleTouchState === 'true'
-                ? 'header__touch__check-container'
-                : 'header__touch__check-container--off'
+              toggleTouchState === "true"
+                ? "header__touch__check-container"
+                : "header__touch__check-container--off"
             }`}
           >
             <div></div>
@@ -87,7 +44,7 @@ const HeaderView = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default HeaderView
+export default HeaderView;
