@@ -10,10 +10,10 @@ const CartView = ({
   decreaseItem,
   increaseItem,
   totalPrice,
-  toggleTouchState,
+  touchTogglerState,
   priceCzechFormat,
   personState,
-  toggleModalState,
+  modalTogglerState,
   modalViewToggler,
 }: ICartView) => {
   // if (personState && totalPrice > 0) {
@@ -46,7 +46,7 @@ const CartView = ({
                     removeItem={removeItem}
                     decreaseItem={decreaseItem}
                     increaseItem={increaseItem}
-                    toggleTouchState={toggleTouchState}
+                    touchTogglerState={touchTogglerState}
                     priceCzechFormat={priceCzechFormat}
                   />
                 ))
@@ -110,7 +110,7 @@ const CartView = ({
 
         <button
           disabled={personState && cartState.length > 0 ? false : true}
-          onClick={() => modalViewToggler(toggleModalState)}
+          onClick={() => modalViewToggler(modalTogglerState)}
         >
           <CartIcon /> Prodej
         </button>

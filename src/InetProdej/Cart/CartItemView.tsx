@@ -8,7 +8,7 @@ const CartItemView = ({
   removeItem,
   decreaseItem,
   increaseItem,
-  toggleTouchState,
+  touchTogglerState,
   priceCzechFormat,
 }: ICartItemView) => {
   const shopState = useSelector((state: RootState) => state.ShopModel)
@@ -19,7 +19,7 @@ const CartItemView = ({
       <td>
         <button
           className={`${
-            toggleTouchState === 'true'
+            touchTogglerState === 'true'
               ? 'cart-btn cart-btn--touch'
               : 'cart-btn'
           }`}
@@ -39,7 +39,7 @@ const CartItemView = ({
       <td className="item-alignment-right">
         <button
           className={`${
-            toggleTouchState === 'true'
+            touchTogglerState === 'true'
               ? 'cart-btn cart-btn--touch'
               : 'cart-btn'
           }`}
@@ -49,7 +49,7 @@ const CartItemView = ({
         </button>
         <button
           className={`${
-            toggleTouchState === 'true'
+            touchTogglerState === 'true'
               ? 'cart-btn cart-btn--touch'
               : 'cart-btn'
           }`}
@@ -60,7 +60,7 @@ const CartItemView = ({
         </button>
         <button
           className={`${
-            toggleTouchState === 'true'
+            touchTogglerState === 'true'
               ? 'cart-btn cart-btn--touch'
               : 'cart-btn'
           }`}

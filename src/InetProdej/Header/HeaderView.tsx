@@ -1,8 +1,8 @@
-import { ReactComponent as CartIcon } from "../assets/shopping-cart.svg";
-import { IHeaderView } from "../interfaces";
+import { ReactComponent as CartIcon } from '../assets/shopping-cart.svg'
+import { IHeaderView } from '../interfaces'
 
 const HeaderView = ({
-  toggleTouchState,
+  touchTogglerState,
   touchScreenToggler,
   personState,
 }: IHeaderView) => {
@@ -10,7 +10,7 @@ const HeaderView = ({
     <div className="header">
       <div className="header__details">
         <CartIcon />
-        <span style={{ fontWeight: "bold", fontSize: "larger" }}>
+        <span style={{ fontWeight: 'bold', fontSize: 'larger' }}>
           Inet Prodej
         </span>
         <span>
@@ -19,7 +19,7 @@ const HeaderView = ({
       </div>
       <div className="header__reader-touch-container">
         <div className="header__reader-touch-container__reader-container">
-          <span style={{ marginRight: "10px" }}>Čtečka</span>
+          <span style={{ marginRight: '10px' }}>Čtečka</span>
           <select>
             <option selected value="ctecka"></option>
             <option value="normal">Normální</option>
@@ -29,13 +29,13 @@ const HeaderView = ({
         </div>
         <div
           className="header__touch"
-          onClick={() => touchScreenToggler(toggleTouchState)}
+          onClick={() => touchScreenToggler(touchTogglerState)}
         >
           <div
             className={`${
-              toggleTouchState === "true"
-                ? "header__touch__check-container"
-                : "header__touch__check-container--off"
+              touchTogglerState === 'true'
+                ? 'header__touch__check-container'
+                : 'header__touch__check-container--off'
             }`}
           >
             <div></div>
@@ -44,7 +44,7 @@ const HeaderView = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default HeaderView;
+export default HeaderView
