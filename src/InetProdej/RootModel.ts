@@ -5,6 +5,7 @@ import { CartModel } from './Cart/CartModel'
 import { HeaderModel } from './Header/HeaderModel'
 import { PersonModel } from './Person/PersonModel'
 import { ModalModel } from './Modal/ModalModel'
+import { SalesListModel } from './SalesList/SalesListModel'
 
 export interface RootModel extends Models<RootModel> {
   ShopModel: typeof ShopModel
@@ -12,6 +13,7 @@ export interface RootModel extends Models<RootModel> {
   HeaderModel: typeof HeaderModel
   PersonModel: typeof PersonModel
   ModalModel: typeof ModalModel
+  SalesListModel: typeof SalesListModel
 }
 
 export const models: RootModel = {
@@ -20,4 +22,5 @@ export const models: RootModel = {
   HeaderModel,
   PersonModel,
   ModalModel,
+  SalesListModel,
 }

@@ -9,7 +9,7 @@ const CartItemView = ({
   decreaseItem,
   increaseItem,
   touchTogglerState,
-  priceCzechFormat,
+  numberCzechFormat,
 }: ICartItemView) => {
   const shopState = useSelector((state: RootState) => state.ShopModel)
   const shopStateCount = shopState.find((i) => i.id === item.id)?.quantity
@@ -29,12 +29,12 @@ const CartItemView = ({
         </button>
       </td>
       <td>{item.name}</td>
-      <td className="item-alignment-right">{priceCzechFormat(item.price)}</td>
+      <td className="item-alignment-right">{numberCzechFormat(item.price)}</td>
       <td className="item-alignment-right" style={{ fontWeight: 'bold' }}>
         {item.quantity}
       </td>
       <td className="item-alignment-right">
-        {item.price && priceCzechFormat(item.price * item.quantity)}
+        {item.price && numberCzechFormat(item.price * item.quantity)}
       </td>
       <td className="item-alignment-right">
         <button

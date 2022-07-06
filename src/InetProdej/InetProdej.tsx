@@ -5,6 +5,7 @@ import CartView from './Cart/CartView'
 import ShopView from './Shop/ShopView'
 import HeaderView from './Header/HeaderView'
 import ModalView from './Modal/ModalView'
+import SalesListView from './SalesList/SalesListView'
 import { useEffect } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
@@ -17,12 +18,15 @@ function InetProdej() {
   const personState = useSelector((state: RootState) => state.PersonModel)
   const touchTogglerState = useSelector((state: RootState) => state.HeaderModel)
   const modalTogglerState = useSelector((state: RootState) => state.ModalModel)
+  const salesListViewTogglerState = useSelector(
+    (state: RootState) => state.SalesListModel,
+  )
 
   useEffect(() => {
     dispatch.ShopModel.loadItems()
   }, [])
 
-  function priceCzechFormat(price: number) {
+  function numberCzechFormat(price: number) {
     var array = Array.from(price.toString())
     const index = array.findIndex((element) => element === '.')
     if (index > 0) {
@@ -57,7 +61,6 @@ function InetProdej() {
     const itemsCount: number = parseInt(
       shopState.find((i) => i.id === itemToIncrease.id)?.quantity,
     )
-    console.log(typeof itemsCount)
     if (itemsCount > 0) {
       const resultCount: number = Math.min(itemsCount, count)
       if (resultCount > 0 && itemToIncrease.type === 'standard') {
@@ -82,13 +85,20 @@ function InetProdej() {
   const modalViewToggler = () => {
     dispatch.ModalModel.toggle()
   }
+  const salesListViewToggler = () => {
+    dispatch.SalesListModel.toggle()
+  }
   var totalPrice = 0
   for (let j = 0; j < cartState.length; j++) {
     if (cartState[j].price > 0) {
       totalPrice += cartState[j].price * cartState[j].quantity
     }
   }
-  console.log('localStorage.touched po render', localStorage.touched)
+
+  const clearCart = () => {
+    dispatch.CartModel.clearAll()
+  }
+
   return (
     <div
       className={`${
@@ -105,7 +115,7 @@ function InetProdej() {
       <ShopView
         shopState={shopState}
         shopItemClick={shopItemClick}
-        priceCzechFormat={priceCzechFormat}
+        numberCzechFormat={numberCzechFormat}
       />
       <div className="person-cart-container">
         <PersonView personState={personState} />
@@ -116,19 +126,30 @@ function InetProdej() {
           decreaseItem={decreaseItem}
           increaseItem={increaseItem}
           totalPrice={totalPrice}
-          priceCzechFormat={priceCzechFormat}
+          numberCzechFormat={numberCzechFormat}
           personState={personState}
           modalViewToggler={modalViewToggler}
           modalTogglerState={modalTogglerState}
+          salesListViewToggler={salesListViewToggler}
+          salesListViewTogglerState={salesListViewTogglerState}
         />
       </div>
       {modalTogglerState && (
         <ModalView
           cartState={cartState}
+          personState={personState}
           totalPrice={totalPrice}
-          priceCzechFormat={priceCzechFormat}
+          numberCzechFormat={numberCzechFormat}
           modalViewToggler={modalViewToggler}
           modalTogglerState={modalTogglerState}
+          clearCart={clearCart}
+        />
+      )}
+      {salesListViewTogglerState && (
+        <SalesListView
+          salesListViewTogglerState={salesListViewTogglerState}
+          salesListViewToggler={salesListViewToggler}
+          numberCzechFormat={numberCzechFormat}
         />
       )}
     </div>

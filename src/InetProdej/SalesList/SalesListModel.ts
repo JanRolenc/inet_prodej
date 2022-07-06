@@ -1,7 +1,7 @@
 import { createModel } from '@rematch/core'
 import type { RootModel } from '../RootModel'
 
-export const ModalModel = createModel<RootModel>()({
+export const SalesListModel = createModel<RootModel>()({
   state: false,
   reducers: {
     toggle(state) {

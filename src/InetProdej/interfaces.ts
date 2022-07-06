@@ -10,12 +10,12 @@ export interface IItem {
 export interface IShopView {
   shopState: IItem[]
   shopItemClick: (oneItemToRemove: IItem) => void
-  priceCzechFormat(price: number): string
+  numberCzechFormat(price: number): string
 }
 export interface IShopItemView {
   item: IItem
   shopItemClick: (oneItemToRemove: IItem) => void
-  priceCzechFormat(price: number): string
+  numberCzechFormat(price: number): string
 }
 export interface ICartView {
   cartState: IItem[]
@@ -24,10 +24,12 @@ export interface ICartView {
   increaseItem: (item: IItem, count: number) => void
   totalPrice: number
   touchTogglerState: string
-  priceCzechFormat(price: number): string
+  numberCzechFormat(price: number): string
   personState: IPerson | null
   modalViewToggler: (modal: boolean) => void
   modalTogglerState: boolean
+  salesListViewToggler: (modal: boolean) => void
+  salesListViewTogglerState: boolean
 }
 export interface ICartItemView {
   item: IItem
@@ -35,18 +37,20 @@ export interface ICartItemView {
   removeItem(itemToRemove: IItem): void
   decreaseItem(item: IItem): void
   increaseItem(item: IItem, count: number): void
-  priceCzechFormat(price: number): string
+  numberCzechFormat(price: number): string
 }
 export interface IModalView {
   cartState: IItem[]
+  personState: IPerson | null
   totalPrice: number
-  priceCzechFormat(price: number): string
+  numberCzechFormat(price: number): string
   modalViewToggler: (modal: boolean) => void
   modalTogglerState: boolean
+  clearCart(): void
 }
 export interface IModalItemView {
   item: IItem
-  priceCzechFormat(price: number): string
+  numberCzechFormat(price: number): string
 }
 
 export interface IHeaderView {
@@ -59,7 +63,20 @@ export interface IPerson {
   id: number
   fullname: string
   money: number
+  ctecka: string | null
 }
 export interface IPersonView {
   personState: IPerson | null
+}
+
+export interface IItemsList {
+  cartState: IItem[]
+  numberCzechFormat(price: number): string
+  totalPrice: number
+}
+
+export interface ISalesListView {
+  numberCzechFormat(price: number): string
+  salesListViewToggler: (modal: boolean) => void
+  salesListViewTogglerState: boolean
 }

@@ -4,7 +4,7 @@ import { IShopView } from '../interfaces'
 const ShopView = ({
   shopState,
   shopItemClick,
-  priceCzechFormat,
+  numberCzechFormat,
 }: IShopView) => {
   return (
     <div className="shop">
@@ -26,7 +26,7 @@ const ShopView = ({
                 key={item.id}
                 item={item}
                 shopItemClick={() => shopItemClick(item)}
-                priceCzechFormat={priceCzechFormat}
+                numberCzechFormat={numberCzechFormat}
               />
             ))}
           </tbody>

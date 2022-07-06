@@ -4,7 +4,7 @@ import { IShopItemView } from '../interfaces'
 const ShopItemView = ({
   item,
   shopItemClick,
-  priceCzechFormat,
+  numberCzechFormat,
 }: IShopItemView) => {
   return (
     <tr
@@ -16,7 +16,7 @@ const ShopItemView = ({
         <span>{item.name}</span>
       </td>
       <td className="item-alignment-right">
-        <span>{priceCzechFormat(item.price)}</span>
+        <span>{numberCzechFormat(item.price)}</span>
       </td>
       <td className="item-alignment-right">
         <span>{item.quantity}</span>

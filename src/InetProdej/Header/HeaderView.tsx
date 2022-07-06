@@ -21,10 +21,28 @@ const HeaderView = ({
         <div className="header__reader-touch-container__reader-container">
           <span style={{ marginRight: '10px' }}>Čtečka</span>
           <select>
-            <option selected value="ctecka"></option>
-            <option value="normal">Normální</option>
-            <option value="4bits">4bits-mirror</option>
-            <option value="pcprox">PCProx</option>
+            <option
+              selected={!personState?.ctecka ? true : false}
+              value="ctecka"
+            ></option>
+            <option
+              selected={personState?.ctecka === 'normalni' ? true : false}
+              value="normal"
+            >
+              Normální
+            </option>
+            <option
+              selected={personState?.ctecka === '4bits' ? true : false}
+              value="4bits"
+            >
+              4bits-mirror
+            </option>
+            <option
+              selected={personState?.ctecka === 'pcprox' ? true : false}
+              value="pcprox"
+            >
+              PCProx
+            </option>
           </select>
         </div>
         <div

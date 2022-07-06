@@ -1,5 +1,5 @@
-import ModalItemView from './ModalItemView'
 import { IModalView } from '../interfaces'
+import ItemsList from '../ItemsList/ItemsList'
 
 import { ReactComponent as CartIcon } from '../assets/shopping-cart.svg'
 import stopIcon from '../assets/red_stop.png'
@@ -10,17 +10,19 @@ import { useState } from 'react'
 const ModalView = ({
   cartState,
   totalPrice,
-  priceCzechFormat,
+  numberCzechFormat,
   modalTogglerState,
   modalViewToggler,
+  clearCart,
 }: IModalView) => {
   const [sellClicked, setSellClicked] = useState<boolean>(false)
   const [saleFinished, setSaleFinished] = useState<boolean>(false)
   const clickSellModal = () => {
-    // setSellClicked(true);
-    // setTimeout(() => {
-    //   setSaleFinished(true);
-    // }, 5000);
+    setSellClicked(true)
+    setTimeout(() => {
+      setSaleFinished(true)
+      clearCart()
+    }, 5000)
     console.log(cartState)
   }
   return (
@@ -39,76 +41,98 @@ const ModalView = ({
           </div>
         </div>
         <div className="modal__content__body">
-          <div className="modal__content__body__cart">
-            <div style={{ margin: '5px 0px 5px 8px', height: '10%' }}>
-              Nákupní košík obsahuje:
-            </div>
-            <div className="modal__content__body__cart__list">
-              <table>
-                {cartState?.length
-                  ? cartState.map((item) => (
-                      <ModalItemView
-                        key={item.id}
-                        item={item}
-                        priceCzechFormat={priceCzechFormat}
-                      />
-                    ))
-                  : null}
-              </table>
-            </div>
-            <div style={{ margin: '8px 0px 5px 8px', height: '10%' }}>
-              Celková cena: {totalPrice} Kč
-            </div>
+          <div
+            style={{
+              padding: '3px 0px 1px 8px',
+              height: '10%',
+              fontWeight: 'bold',
+            }}
+          >
+            Nákupní košík obsahuje:
           </div>
           {!sellClicked ? (
-            <div className="modal__content__body__sale">
-              <div className="modal__content__body__sale__left">
-                Stisknutím tlačítka "Prodat" zahájíte prodejní transakci
+            <div>
+              <div className="modal__content__body__cart">
+                <div className="modal__content__body__cart__list">
+                  <ItemsList
+                    totalPrice={totalPrice}
+                    cartState={cartState}
+                    numberCzechFormat={numberCzechFormat}
+                  />
+                </div>
               </div>
-              <div className="modal__content__body__sale__right">
-                <button onClick={clickSellModal}>Prodat</button>
-                <button onClick={() => modalViewToggler(modalTogglerState)}>
-                  <img src={stopIcon} alt="stop" />
-                  Zavřít
-                </button>
+
+              <div className="modal__content__body__sale">
+                <div className="modal__content__body__sale__left">
+                  Stisknutím tlačítka "Prodat" zahájíte prodejní transakci
+                </div>
+                <div className="modal__content__body__sale__right">
+                  <button onClick={clickSellModal}>Prodat</button>
+                  <button onClick={() => modalViewToggler(modalTogglerState)}>
+                    <img src={stopIcon} alt="stop" />
+                    Zavřít
+                  </button>
+                </div>
               </div>
             </div>
           ) : !saleFinished ? (
-            <div className="modal__content__body__sale">
-              <div className="modal__content__body__sale__left--sell">
-                <progress id="bar" max={100}></progress>
-                <label htmlFor="bar">
-                  <img src={yellowCircle} alt="circle" />
-                  Prodejní trasakce...
-                </label>
+            <div>
+              <div className="modal__content__body__cart">
+                <div className="modal__content__body__cart__list">
+                  <ItemsList
+                    totalPrice={totalPrice}
+                    cartState={cartState}
+                    numberCzechFormat={numberCzechFormat}
+                  />
+                </div>
               </div>
-              <div className="modal__content__body__sale__right">
-                <button disabled onClick={clickSellModal}>
-                  Prodat
-                </button>
-                <button
-                  disabled
-                  onClick={() => modalViewToggler(modalTogglerState)}
-                >
-                  <img src={stopIcon} alt="stop" />
-                  Zavřít
-                </button>
+              <div className="modal__content__body__sale">
+                <div className="modal__content__body__sale__left--sell">
+                  <progress id="bar" max={100}></progress>
+                  <label htmlFor="bar">
+                    <img src={yellowCircle} alt="circle" />
+                    Prodejní trasakce...
+                  </label>
+                </div>
+                <div className="modal__content__body__sale__right">
+                  <button disabled onClick={clickSellModal}>
+                    Prodat
+                  </button>
+                  <button
+                    disabled
+                    onClick={() => modalViewToggler(modalTogglerState)}
+                  >
+                    <img src={stopIcon} alt="stop" />
+                    Zavřít
+                  </button>
+                </div>
               </div>
             </div>
           ) : (
-            <div className="modal__content__body__sale">
-              <div className="modal__content__body__sale__left">
-                <img src={greenCircle} alt="circle" />
-                Prodej proběhl úspěšně
+            <div>
+              <div className="modal__content__body__cart">
+                <div className="modal__content__body__cart__list">
+                  {/* <ItemsList
+                totalPrice={totalPrice}
+                cartState={cartState}
+                numberCzechFormat={numberCzechFormat}
+                /> */}
+                </div>
               </div>
-              <div className="modal__content__body__sale__right">
-                <button disabled onClick={clickSellModal}>
-                  Prodat
-                </button>
-                <button onClick={() => modalViewToggler(modalTogglerState)}>
-                  <img src={stopIcon} alt="stop" />
-                  Zavřít
-                </button>
+              <div className="modal__content__body__sale">
+                <div className="modal__content__body__sale__left">
+                  <img src={greenCircle} alt="circle" />
+                  Prodej proběhl úspěšně
+                </div>
+                <div className="modal__content__body__sale__right">
+                  <button disabled onClick={clickSellModal}>
+                    Prodat
+                  </button>
+                  <button onClick={() => modalViewToggler(modalTogglerState)}>
+                    <img src={stopIcon} alt="stop" />
+                    Zavřít
+                  </button>
+                </div>
               </div>
             </div>
           )}

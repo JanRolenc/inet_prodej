@@ -77,6 +77,10 @@ export const CartModel = createModel<RootModel>()({
       )
       return itemsSelected
     },
+    clearAll(state) {
+      const cart: IItem[] = []
+      return cart
+    },
   },
   // effects: (dispatch) => ({
   //     async incrementAsync(payload: number, state) {

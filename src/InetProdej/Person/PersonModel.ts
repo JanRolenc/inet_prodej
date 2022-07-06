@@ -9,6 +9,9 @@ export const PersonModel = createModel<RootModel>()({
     setPerson(state, person: IPerson | null) {
       return person
     },
+    // setPersonMoney(state, person: IPerson | null) {
+    //   return person?.money
+    // },
   },
   effects: (dispatch) => ({
     async findPerson(input: string) {

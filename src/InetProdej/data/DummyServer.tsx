@@ -17,10 +17,15 @@ export default class DummyServer implements ServerAPI {
   async findPerson(input: string): Promise<ServerResult<IPerson>> {
     return new Promise((resolve) => {
       setTimeout(() => {
-        if (input === '3890') {
+        if (input === '3890' || input === 'normalni') {
           resolve(
             new ServerResult(
-              { id: 3890, fullname: 'Mgr. Zdeněk Machač', money: 150 },
+              {
+                id: 3890,
+                fullname: 'Mgr. Zdeněk Machač',
+                money: 150,
+                ctecka: 'normalni',
+              },
               null,
             ),
           )
