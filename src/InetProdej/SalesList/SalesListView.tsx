@@ -1,6 +1,7 @@
 import { ISalesListView } from '../interfaces'
 
 import sales from './sales.json'
+// import {sales} from './sales'
 
 import { ReactComponent as CartIcon } from '../assets/shopping-cart.svg'
 
