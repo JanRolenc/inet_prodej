@@ -24,7 +24,7 @@ const PersonView = ({ personState }: IPersonView) => {
   useEffect(() => {
     dispatch.ShopModel.loadItems();
     dispatch.PersonModel.setPerson(null);
-    dispatch.CartModel.setCart([]);
+    // dispatch.CartModel.setCart([]);
   }, [inputPerson]);
 
   function clearInput() {
@@ -41,7 +41,9 @@ const PersonView = ({ personState }: IPersonView) => {
 
   return (
     <div className="person">
-      <div className="person__name">Osoba</div>
+      <div id="touch" className="person__name">
+        Osoba
+      </div>
       <div className="person__details">
         <img src={personalImage} alt="icon" />
         <span>Jméno a příjmení</span>

@@ -1,11 +1,11 @@
-import { IModalView } from '../interfaces'
-import ItemsList from '../ItemsList/ItemsList'
+import { IModalView } from "../interfaces";
+import ItemsList from "../ItemsList/ItemsList";
 
-import { ReactComponent as CartIcon } from '../assets/shopping-cart.svg'
-import stopIcon from '../assets/red_stop.png'
-import greenCircle from '../assets/green-circle.png'
-import yellowCircle from '../assets/yellow-circle.png'
-import { useState } from 'react'
+import { ReactComponent as CartIcon } from "../assets/shopping-cart.svg";
+import stopIcon from "../assets/red_stop.png";
+import greenCircle from "../assets/green-circle.png";
+import yellowCircle from "../assets/yellow-circle.png";
+import { useState } from "react";
 
 const ModalView = ({
   cartState,
@@ -15,16 +15,16 @@ const ModalView = ({
   modalViewToggler,
   clearCart,
 }: IModalView) => {
-  const [sellClicked, setSellClicked] = useState<boolean>(false)
-  const [saleFinished, setSaleFinished] = useState<boolean>(false)
+  const [sellClicked, setSellClicked] = useState<boolean>(false);
+  const [saleFinished, setSaleFinished] = useState<boolean>(false);
   const clickSellModal = () => {
-    setSellClicked(true)
+    setSellClicked(true);
     setTimeout(() => {
-      setSaleFinished(true)
-      clearCart()
-    }, 5000)
-    console.log(cartState)
-  }
+      setSaleFinished(true);
+      clearCart();
+    }, 5000);
+    console.log(cartState);
+  };
   return (
     <div className="modal">
       <div className="modal__content">
@@ -43,9 +43,9 @@ const ModalView = ({
         <div className="modal__content__body">
           <div
             style={{
-              padding: '3px 0px 1px 8px',
-              height: '10%',
-              fontWeight: 'bold',
+              padding: "3px 0px 1px 8px",
+              height: "10%",
+              fontWeight: "bold",
             }}
           >
             Nákupní košík obsahuje:
@@ -110,15 +110,15 @@ const ModalView = ({
             </div>
           ) : (
             <div>
-              <div className="modal__content__body__cart">
+              {/* <div className="modal__content__body__cart">
                 <div className="modal__content__body__cart__list">
-                  {/* <ItemsList
+                  <ItemsList
                 totalPrice={totalPrice}
                 cartState={cartState}
                 numberCzechFormat={numberCzechFormat}
-                /> */}
+                />
                 </div>
-              </div>
+              </div> */}
               <div className="modal__content__body__sale">
                 <div className="modal__content__body__sale__left">
                   <img src={greenCircle} alt="circle" />
@@ -139,7 +139,7 @@ const ModalView = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ModalView
+export default ModalView;

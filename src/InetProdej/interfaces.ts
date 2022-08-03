@@ -1,82 +1,86 @@
 export interface IItem {
-  id: number
-  type: string
-  name: string
-  price: number | any
-  quantity: number | any
-  description: string
+  id: number;
+  type: string;
+  name: string;
+  price: number | any;
+  quantity: number | any;
+  description: string;
 }
 
 export interface IShopView {
-  shopState: IItem[]
-  shopItemClick: (oneItemToRemove: IItem) => void
-  numberCzechFormat(price: number): string
+  shopState: IItem[];
+  shopItemClick: (oneItemToRemove: IItem) => void;
+  numberCzechFormat(price: number): string;
 }
 export interface IShopItemView {
-  item: IItem
-  shopItemClick: (oneItemToRemove: IItem) => void
-  numberCzechFormat(price: number): string
+  item: IItem;
+  shopItemClick: (oneItemToRemove: IItem) => void;
+  numberCzechFormat(price: number): string;
 }
 export interface ICartView {
-  cartState: IItem[]
-  removeItem: (item: IItem) => void
-  decreaseItem: (item: IItem) => void
-  increaseItem: (item: IItem, count: number) => void
-  totalPrice: number
-  touchTogglerState: string
-  numberCzechFormat(price: number): string
-  personState: IPerson | null
-  modalViewToggler: (modal: boolean) => void
-  modalTogglerState: boolean
-  salesListViewToggler: (modal: boolean) => void
-  salesListViewTogglerState: boolean
+  cartState: IItem[];
+  removeItem: (item: IItem) => void;
+  decreaseItem: (item: IItem) => void;
+  increaseItem: (item: IItem, count: number) => void;
+  totalPrice: number;
+  touchTogglerState: string;
+  numberCzechFormat(price: number): string;
+  personState: IPerson | null;
+  modalViewToggler: (modal: boolean) => void;
+  modalTogglerState: boolean;
+  salesListViewToggler: (modal: boolean) => void;
+  salesListViewTogglerState: boolean;
 }
 export interface ICartItemView {
-  item: IItem
-  touchTogglerState: string
-  removeItem(itemToRemove: IItem): void
-  decreaseItem(item: IItem): void
-  increaseItem(item: IItem, count: number): void
-  numberCzechFormat(price: number): string
+  item: IItem;
+  touchTogglerState: string;
+  removeItem(itemToRemove: IItem): void;
+  decreaseItem(item: IItem): void;
+  increaseItem(item: IItem, count: number): void;
+  numberCzechFormat(price: number): string;
 }
 export interface IModalView {
-  cartState: IItem[]
-  personState: IPerson | null
-  totalPrice: number
-  numberCzechFormat(price: number): string
-  modalViewToggler: (modal: boolean) => void
-  modalTogglerState: boolean
-  clearCart(): void
+  cartState: IItem[];
+  personState: IPerson | null;
+  totalPrice: number;
+  numberCzechFormat(price: number): string;
+  modalViewToggler: (modal: boolean) => void;
+  modalTogglerState: boolean;
+  clearCart(): void;
 }
 export interface IModalItemView {
-  item: IItem
-  numberCzechFormat(price: number): string
+  item: IItem;
+  numberCzechFormat(price: number): string;
 }
 
+export interface IScanner {
+  id: string;
+  name: string;
+}
 export interface IHeaderView {
-  touchTogglerState: string
-  touchScreenToggler: (touch: string) => void
-  personState: IPerson | null
+  touchTogglerState: string;
+  touchScreenToggler: (touch: string) => void;
+  personState: IPerson | null;
 }
 
 export interface IPerson {
-  id: number
-  fullname: string
-  money: number
-  ctecka: string | null
+  id: number;
+  fullname: string;
+  money: number;
+  ctecka: string | null;
 }
 export interface IPersonView {
-  personState: IPerson | null
+  personState: IPerson | null;
 }
 
 export interface IItemsList {
-  cartState: IItem[]
-  numberCzechFormat(price: number): string
-  totalPrice: number
+  cartState: IItem[];
+  numberCzechFormat(price: number): string;
+  totalPrice: number;
 }
 
 export interface ISalesListView {
-  numberCzechFormat(price: number): string
-  salesListViewToggler: (modal: boolean) => void
-  salesListViewTogglerState: boolean
+  numberCzechFormat(price: number): string;
+  salesListViewToggler: (modal: boolean) => void;
+  salesListViewTogglerState: boolean;
 }

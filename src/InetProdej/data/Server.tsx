@@ -1,5 +1,5 @@
 import DummyServer from "./DummyServer";
-import { IItem, IPerson } from "../interfaces";
+import { IItem, IPerson, IScanner } from "../interfaces";
 
 export class ServerResult<T> {
   private data: T | null;
@@ -23,6 +23,7 @@ export class ServerResult<T> {
 }
 
 export interface ServerAPI {
+  loadScanners(): Promise<ServerResult<IScanner[]>>;
   loadItems(): Promise<ServerResult<IItem[]>>;
   sell(): ServerResult<string>;
   findPerson(input: string): Promise<ServerResult<IPerson>>;

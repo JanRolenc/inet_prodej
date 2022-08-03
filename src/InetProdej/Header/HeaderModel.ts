@@ -2,16 +2,24 @@ import { createModel } from "@rematch/core";
 import type { RootModel } from "../RootModel";
 
 export const HeaderModel = createModel<RootModel>()({
-  state: localStorage.touched || null,
+  state: {
+    scanner: localStorage.scanner || null,
+    touched: localStorage.touched || null,
+  },
   reducers: {
-    toggle(state) {
-      if (state === "false") {
+    changeScanner(state, scanner) {
+      localStorage.scanner = scanner;
+
+      return { ...state, scanner }; //return { ...state, scanner: scanner} - stejne;
+    },
+    toggleTouched(state) {
+      if (state.touched === "false") {
         localStorage.touched = "true";
       } else {
         localStorage.touched = "false";
       }
 
-      return localStorage.touched;
+      return { ...state, touched: localStorage.touched };
     },
   },
   // effects: (dispatch) => ({
