@@ -1,32 +1,42 @@
-import { createModel } from "@rematch/core";
-import type { RootModel } from "../RootModel";
+import { createModel } from '@rematch/core'
+import type { RootModel } from '../RootModel'
+// import { IScanner } from '../interfaces'
+import { IScanner, IHeaderSettings } from '../interfaces'
+import Server from '../data/Server'
 
 export const HeaderModel = createModel<RootModel>()({
   state: {
-    scanner: localStorage.scanner || null,
     touched: localStorage.touched || null,
-  },
+    scanner: localStorage.scanner || null,
+    scanners: [],
+  } as IHeaderSettings,
   reducers: {
-    changeScanner(state, scanner) {
-      localStorage.scanner = scanner;
+    setScanners(state, scanners: IScanner[]) {
+      console.log('state v setScanners', state)
+      return { ...state, scanners: scanners }
+    },
+    changeScanner(state, scanner: string) {
+      localStorage.scanner = scanner
 
-      return { ...state, scanner }; //return { ...state, scanner: scanner} - stejne;
+      return { ...state, scanner } //shodne s: return { ...state, scanner: scanner}
     },
     toggleTouched(state) {
-      if (state.touched === "false") {
-        localStorage.touched = "true";
+      if (state.touched === 'false') {
+        localStorage.touched = 'true'
       } else {
-        localStorage.touched = "false";
+        localStorage.touched = 'false'
       }
-
-      return { ...state, touched: localStorage.touched };
+      console.log('state.touched', state.touched)
+      console.log('localStorage.touched', localStorage.touched)
+      return { ...state, touched: localStorage.touched }
     },
   },
-  // effects: (dispatch) => ({
-  //     async incrementAsync(payload: number, state) {
-  //       console.log('This is current root state', state)
-  //       await new Promise((resolve) => setTimeout(resolve, 1000))
-  //       dispatch.count.increment(payload)
-  //     },
-  //   }),
-});
+  effects: (dispatch) => ({
+    async loadHeaderSettings() {
+      const result = await Server.loadScanners()
+      dispatch.HeaderModel.setScanners(
+        result.getScanners() || ({} as IScanner[]),
+      )
+    },
+  }),
+})

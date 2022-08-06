@@ -1,11 +1,19 @@
+import { SyntheticEvent } from 'react'
 import { ReactComponent as CartIcon } from '../assets/shopping-cart.svg'
 import { IHeaderView } from '../interfaces'
 
 const HeaderView = ({
   touchTogglerState,
   touchScreenToggler,
-  personState,
+  headerSettingsState,
+  scannerToggler,
+  scannerState,
 }: IHeaderView) => {
+  function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
+    scannerToggler(event.target.value)
+    console.log('even po kliku na select', event.target.value)
+    console.log('even po kliku na select', event.target)
+  }
   return (
     <div className="header">
       <div className="header__details">
@@ -20,29 +28,20 @@ const HeaderView = ({
       <div className="header__reader-touch-container">
         <div className="header__reader-touch-container__reader-container">
           <span style={{ marginRight: '10px' }}>Čtečka</span>
-          <select>
-            <option
-              selected={!personState?.ctecka ? true : false}
-              value="ctecka"
-            ></option>
-            <option
-              selected={personState?.ctecka === 'normalni' ? true : false}
-              value="normal"
-            >
-              Normální
-            </option>
-            <option
-              selected={personState?.ctecka === '4bits' ? true : false}
-              value="4bits"
-            >
-              4bits-mirror
-            </option>
-            <option
-              selected={personState?.ctecka === 'pcprox' ? true : false}
-              value="pcprox"
-            >
-              PCProx
-            </option>
+          <select
+            value={
+              headerSettingsState.scanner !== null
+                ? headerSettingsState.scanner
+                : ''
+            }
+            onChange={handleChange}
+          >
+            {headerSettingsState.scanners.length > 0 &&
+              headerSettingsState.scanners.map((scanner) => (
+                <option key={scanner.id} value={scanner.name}>
+                  {scanner.name}
+                </option>
+              ))}
           </select>
         </div>
         <div
@@ -51,7 +50,8 @@ const HeaderView = ({
         >
           <div
             className={`${
-              touchTogglerState === 'true'
+              // touchTogglerState === 'true'
+              headerSettingsState.touched === 'true'
                 ? 'header__touch__check-container'
                 : 'header__touch__check-container--off'
             }`}
