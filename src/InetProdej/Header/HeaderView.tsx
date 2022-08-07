@@ -1,4 +1,3 @@
-import { SyntheticEvent } from 'react'
 import { ReactComponent as CartIcon } from '../assets/shopping-cart.svg'
 import { IHeaderView } from '../interfaces'
 
@@ -7,7 +6,6 @@ const HeaderView = ({
   touchScreenToggler,
   headerSettingsState,
   scannerToggler,
-  scannerState,
 }: IHeaderView) => {
   function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
     scannerToggler(event.target.value)
@@ -29,6 +27,7 @@ const HeaderView = ({
         <div className="header__reader-touch-container__reader-container">
           <span style={{ marginRight: '10px' }}>Čtečka</span>
           <select
+            style={{ minWidth: '110px' }}
             value={
               headerSettingsState.scanner !== null
                 ? headerSettingsState.scanner
@@ -50,7 +49,6 @@ const HeaderView = ({
         >
           <div
             className={`${
-              // touchTogglerState === 'true'
               headerSettingsState.touched === 'true'
                 ? 'header__touch__check-container'
                 : 'header__touch__check-container--off'

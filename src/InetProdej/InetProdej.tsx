@@ -19,12 +19,6 @@ function InetProdej() {
   const headerSettingsState = useSelector(
     (state: RootState) => state.HeaderModel,
   )
-  // const touchTogglerState = useSelector(
-  //   (state: RootState) => state.HeaderModel.touched,
-  // )
-  // const scannerTogglerState = useSelector(
-  //   (state: RootState) => state.HeaderModel.scanner,
-  // )
   const modalTogglerState = useSelector((state: RootState) => state.ModalModel)
   const salesListViewTogglerState = useSelector(
     (state: RootState) => state.SalesListModel,
@@ -33,7 +27,6 @@ function InetProdej() {
   useEffect(() => {
     dispatch.ShopModel.loadItems()
     dispatch.HeaderModel.loadHeaderSettings()
-    console.log('headerSettingsState', headerSettingsState)
   }, [])
 
   function numberCzechFormat(price: number) {
@@ -115,7 +108,6 @@ function InetProdej() {
   return (
     <div
       className={`${
-        // touchTogglerState === 'true'
         headerSettingsState.touched === 'true'
           ? 'inet-prodej-app inet-prodej-app--touch'
           : 'inet-prodej-app'
@@ -126,7 +118,7 @@ function InetProdej() {
         touchScreenToggler={touchScreenToggler}
         headerSettingsState={headerSettingsState}
         scannerToggler={scannerToggler}
-        scannerState={headerSettingsState.scanner}
+        // scannerState={headerSettingsState.scanner}
       />
       <ShopView
         shopState={shopState}

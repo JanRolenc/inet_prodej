@@ -69,7 +69,7 @@ export interface IHeaderView {
   touchTogglerState: string
   touchScreenToggler: (touch: string) => void
   headerSettingsState: IHeaderSettings
-  scannerState: string | null
+  // scannerState: string | null
   scannerToggler: (scanner: string) => void
 }
 

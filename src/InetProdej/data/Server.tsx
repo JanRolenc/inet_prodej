@@ -1,5 +1,5 @@
 import DummyServer from './DummyServer'
-import { IItem, IPerson, IScanner, IHeaderSettings } from '../interfaces'
+import { IItem, IPerson, IScanner } from '../interfaces'
 
 export class ServerResult<T> {
   private data: T | null

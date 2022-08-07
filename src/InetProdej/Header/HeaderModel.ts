@@ -1,6 +1,5 @@
 import { createModel } from '@rematch/core'
 import type { RootModel } from '../RootModel'
-// import { IScanner } from '../interfaces'
 import { IScanner, IHeaderSettings } from '../interfaces'
 import Server from '../data/Server'
 
@@ -12,7 +11,6 @@ export const HeaderModel = createModel<RootModel>()({
   } as IHeaderSettings,
   reducers: {
     setScanners(state, scanners: IScanner[]) {
-      console.log('state v setScanners', state)
       return { ...state, scanners: scanners }
     },
     changeScanner(state, scanner: string) {
@@ -26,8 +24,6 @@ export const HeaderModel = createModel<RootModel>()({
       } else {
         localStorage.touched = 'false'
       }
-      console.log('state.touched', state.touched)
-      console.log('localStorage.touched', localStorage.touched)
       return { ...state, touched: localStorage.touched }
     },
   },
