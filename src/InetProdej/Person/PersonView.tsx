@@ -1,15 +1,14 @@
 import personalImage from '../assets/icon_head.png'
 import { ReactComponent as MagnifierIcon } from '../assets/magnifier.svg'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 import { IPersonView } from '../interfaces'
 
 import { useDispatch } from 'react-redux'
 import { Dispatch } from '../store'
 
-const PersonView = ({ personState }: IPersonView) => {
-  // const [inputPerson, setInputPerson] = useState<string>('')
+const PersonView = ({ personState, modalTogglerState }: IPersonView) => {
   const dispatch = useDispatch<Dispatch>()
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -18,18 +17,22 @@ const PersonView = ({ personState }: IPersonView) => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const input = event.target.value
-    // setInputPerson(input)
     dispatch.PersonModel.setPersonInput(input)
   }
 
+  const inputElement = useRef<HTMLInputElement>(null)
+  if (modalTogglerState === false) {
+    inputElement.current?.focus()
+  } else {
+    inputElement.current?.blur()
+  }
+
   useEffect(() => {
-    // dispatch.ShopModel.loadItems();
     dispatch.PersonModel.setPerson(null)
-    // dispatch.CartModel.setCart([]);
+    inputElement.current?.focus()
   }, [])
 
   function clear() {
-    // setInputPerson('')
     dispatch.PersonModel.setPerson(null)
     dispatch.PersonModel.setPersonInput('')
   }
@@ -62,6 +65,7 @@ const PersonView = ({ personState }: IPersonView) => {
         <span style={{ marginTop: '10px' }}>Identifikace</span>
         <form onSubmit={handleSubmit}>
           <input
+            ref={inputElement}
             type="text"
             value={
               personState?.personInput !== null ? personState?.personInput : ''

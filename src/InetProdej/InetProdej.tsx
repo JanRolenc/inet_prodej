@@ -16,7 +16,6 @@ function InetProdej() {
   const shopState = useSelector((state: RootState) => state.ShopModel)
   const cartState = useSelector((state: RootState) => state.CartModel)
   const personState = useSelector((state: RootState) => state.PersonModel)
-  // const personInputState = useSelector((state: RootState) => state.PersonModel.personInput)
   const headerSettingsState = useSelector(
     (state: RootState) => state.HeaderModel,
   )
@@ -24,6 +23,8 @@ function InetProdej() {
   const salesListViewTogglerState = useSelector(
     (state: RootState) => state.SalesListModel,
   )
+
+  var personInputFocus = true
 
   useEffect(() => {
     dispatch.ShopModel.loadItems()
@@ -124,7 +125,6 @@ function InetProdej() {
         touchScreenToggler={touchScreenToggler}
         headerSettingsState={headerSettingsState}
         scannerToggler={scannerToggler}
-        // scannerState={headerSettingsState.scanner}
       />
       <ShopView
         shopState={shopState}
@@ -134,11 +134,10 @@ function InetProdej() {
       <div className="person-cart-container">
         <PersonView
           personState={personState}
-          clearPersonInput={clearPersonInput}
+          modalTogglerState={modalTogglerState}
         />
         <CartView
           cartState={cartState}
-          // touchTogglerState={touchTogglerState}
           headerSettingsState={headerSettingsState}
           removeItem={removeItem}
           decreaseItem={decreaseItem}

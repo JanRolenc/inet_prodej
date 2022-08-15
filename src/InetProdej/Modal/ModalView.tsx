@@ -128,9 +128,6 @@ const ModalView = ({
                   Prodej proběhl úspěšně
                 </div>
                 <div className="modal__content__body__sale__right">
-                  <button disabled onClick={clickSellModal}>
-                    Prodat
-                  </button>
                   <button onClick={() => modalViewToggler(modalTogglerState)}>
                     <img src={stopIcon} alt="stop" />
                     Zavřít

@@ -19,11 +19,6 @@ const CartView = ({
   salesListViewToggler,
   salesListViewTogglerState,
 }: ICartView) => {
-  // if (personState && totalPrice > 0) {
-  //   const availableMoney: number | null = personState.money
-  //   const moneyAfterPayment: number | null = availableMoney - totalPrice
-  // }
-
   return (
     <div className="cart">
       <div id="touch" className="cart__name">

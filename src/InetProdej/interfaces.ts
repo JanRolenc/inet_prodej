@@ -87,7 +87,7 @@ export interface IPersonState {
 }
 export interface IPersonView {
   personState: IPersonState | null
-  clearPersonInput(): void
+  modalTogglerState: boolean
 }
 
 export interface IItemsList {
