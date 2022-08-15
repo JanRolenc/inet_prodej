@@ -9,8 +9,6 @@ const HeaderView = ({
 }: IHeaderView) => {
   function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
     scannerToggler(event.target.value)
-    console.log('even po kliku na select', event.target.value)
-    console.log('even po kliku na select', event.target)
   }
   return (
     <div className="header">

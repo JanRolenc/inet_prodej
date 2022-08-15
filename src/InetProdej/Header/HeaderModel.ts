@@ -5,8 +5,8 @@ import Server from '../data/Server'
 
 export const HeaderModel = createModel<RootModel>()({
   state: {
-    touched: localStorage.touched || null,
-    scanner: localStorage.scanner || null,
+    touched: localStorage.touched,
+    scanner: localStorage.scanner,
     scanners: [],
   } as IHeaderSettings,
   reducers: {

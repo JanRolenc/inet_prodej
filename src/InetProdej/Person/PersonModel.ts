@@ -1,13 +1,19 @@
 import { createModel } from '@rematch/core'
 import type { RootModel } from '../RootModel'
 import Server from '../data/Server'
-import { IPerson } from '../interfaces'
+import { IPersonState, IPerson } from '../interfaces'
 
 export const PersonModel = createModel<RootModel>()({
-  state: null as IPerson | null,
+  state: {
+    person: {},
+    personInput: '',
+  } as IPersonState,
   reducers: {
     setPerson(state, person: IPerson | null) {
-      return person
+      return { ...state, person: person }
+    },
+    setPersonInput(state, personInput: string | null) {
+      return { ...state, personInput: personInput }
     },
     // setPersonMoney(state, person: IPerson | null) {
     //   return person?.money

@@ -67,7 +67,7 @@ const CartView = ({
         </table>
       </div>
       <div className="cart__sale">
-        {!personState?.id && !cartState.length ? (
+        {!personState?.person?.id && !cartState.length ? (
           <div>
             <span style={{ display: 'block' }}>Košík je prázdný.</span>
             <span style={{ display: 'block' }}>
@@ -83,8 +83,8 @@ const CartView = ({
             <span style={{ display: 'block' }}>Košík je prázdný.</span>
             <span style={{ display: 'block' }}>
               SUPO: Zůstatek na klientském účtu je:
-              {personState?.money && personState.money < 200 ? (
-                <span>{numberCzechFormat(personState?.money)} Kč</span>
+              {personState.person?.money && personState.person?.money < 200 ? (
+                <span>{numberCzechFormat(personState.person?.money)} Kč</span>
               ) : (
                 <span style={{ fontStyle: 'italic' }}>
                   na účtě máte dostatek prostředků
@@ -102,18 +102,23 @@ const CartView = ({
             </span>
             <span style={{ display: 'block' }}>
               SUPO:
-              {personState?.money &&
-              personState.money < 200 &&
-              parseInt(numberCzechFormat(personState?.money - totalPrice)) >=
-                0 ? (
+              {personState.person?.money &&
+              personState.person?.money < 200 &&
+              parseInt(
+                numberCzechFormat(personState.person?.money - totalPrice),
+              ) >= 0 ? (
                 <span>
                   Zůstatek na klientském účtu je:{' '}
-                  {numberCzechFormat(personState?.money - totalPrice)} Kč
+                  {numberCzechFormat(personState.person?.money - totalPrice)} Kč
                 </span>
               ) : (
                 <span style={{ color: 'red' }}>
                   Klientův zůstatek není dostatečný, chybí:{' '}
-                  {numberCzechFormat((personState?.money - totalPrice) * -1)} Kč
+                  {personState?.person?.money &&
+                    numberCzechFormat(
+                      (personState.person.money - totalPrice) * -1,
+                    )}{' '}
+                  Kč
                 </span>
               )}
             </span>
@@ -133,7 +138,10 @@ const CartView = ({
           disabled={
             personState &&
             cartState.length > 0 &&
-            parseInt(numberCzechFormat(personState?.money - totalPrice)) >= 0
+            personState?.person?.money &&
+            parseInt(
+              numberCzechFormat(personState?.person?.money - totalPrice),
+            ) >= 0
               ? false
               : true
           }

@@ -16,6 +16,7 @@ function InetProdej() {
   const shopState = useSelector((state: RootState) => state.ShopModel)
   const cartState = useSelector((state: RootState) => state.CartModel)
   const personState = useSelector((state: RootState) => state.PersonModel)
+  // const personInputState = useSelector((state: RootState) => state.PersonModel.personInput)
   const headerSettingsState = useSelector(
     (state: RootState) => state.HeaderModel,
   )
@@ -104,7 +105,12 @@ function InetProdej() {
   const clearCart = () => {
     dispatch.CartModel.clearAll()
   }
-
+  const clearPerson = () => {
+    dispatch.PersonModel.setPerson(null)
+  }
+  const clearPersonInput = () => {
+    dispatch.PersonModel.setPersonInput('')
+  }
   return (
     <div
       className={`${
@@ -126,7 +132,10 @@ function InetProdej() {
         numberCzechFormat={numberCzechFormat}
       />
       <div className="person-cart-container">
-        <PersonView personState={personState} />
+        <PersonView
+          personState={personState}
+          clearPersonInput={clearPersonInput}
+        />
         <CartView
           cartState={cartState}
           // touchTogglerState={touchTogglerState}
@@ -152,6 +161,8 @@ function InetProdej() {
           modalViewToggler={modalViewToggler}
           modalTogglerState={modalTogglerState}
           clearCart={clearCart}
+          clearPerson={clearPerson}
+          clearPersonInput={clearPersonInput}
         />
       )}
       {salesListViewTogglerState && (

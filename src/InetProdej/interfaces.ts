@@ -26,7 +26,7 @@ export interface ICartView {
   // touchTogglerState: string
   headerSettingsState: IHeaderSettings
   numberCzechFormat(price: number): string
-  personState: IPerson | null
+  personState: IPersonState | null
   modalViewToggler: (modal: boolean) => void
   modalTogglerState: boolean
   salesListViewToggler: (modal: boolean) => void
@@ -43,12 +43,14 @@ export interface ICartItemView {
 }
 export interface IModalView {
   cartState: IItem[]
-  personState: IPerson | null
+  personState: IPersonState | null
   totalPrice: number
   numberCzechFormat(price: number): string
   modalViewToggler: (modal: boolean) => void
   modalTogglerState: boolean
   clearCart(): void
+  clearPerson(): void
+  clearPersonInput(): void
 }
 export interface IModalItemView {
   item: IItem
@@ -79,8 +81,13 @@ export interface IPerson {
   money: number
   ctecka: string | null
 }
+export interface IPersonState {
+  person: IPerson | null
+  personInput: string | null
+}
 export interface IPersonView {
-  personState: IPerson | null
+  personState: IPersonState | null
+  clearPersonInput(): void
 }
 
 export interface IItemsList {
