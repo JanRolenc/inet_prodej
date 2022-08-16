@@ -1,5 +1,5 @@
 import './InetProdej.scss'
-import { IItem } from './interfaces'
+import { IItem, ISalesListSettings } from './interfaces'
 import PersonView from './Person/PersonView'
 import CartView from './Cart/CartView'
 import ShopView from './Shop/ShopView'
@@ -20,15 +20,18 @@ function InetProdej() {
     (state: RootState) => state.HeaderModel,
   )
   const modalTogglerState = useSelector((state: RootState) => state.ModalModel)
-  const salesListViewTogglerState = useSelector(
+  const salesListSettings = useSelector(
     (state: RootState) => state.SalesListModel,
   )
-
-  var personInputFocus = true
+  // const salesListViewTogglerState = useSelector(
+  //   (state: RootState) => state.SalesListModel,
+  // )
 
   useEffect(() => {
     dispatch.ShopModel.loadItems()
     dispatch.HeaderModel.loadHeaderSettings()
+    // dispatch.SalesListModel.loadSalesListSettings()
+    console.log('salesListSettings po prvnim loadu', salesListSettings)
   }, [])
 
   function numberCzechFormat(price: number) {
@@ -93,8 +96,12 @@ function InetProdej() {
   const modalViewToggler = () => {
     dispatch.ModalModel.toggle()
   }
-  const salesListViewToggler = () => {
-    dispatch.SalesListModel.toggle()
+  // const salesListViewToggler = () => {
+  //   dispatch.SalesListModel.toggle()
+  // }
+  const clearSalesList = () => {
+    dispatch.SalesListModel.clearSalesList()
+    console.log('salesListSettings po clear', salesListSettings)
   }
   var totalPrice = 0
   for (let j = 0; j < cartState.length; j++) {
@@ -147,8 +154,9 @@ function InetProdej() {
           personState={personState}
           modalViewToggler={modalViewToggler}
           modalTogglerState={modalTogglerState}
-          salesListViewToggler={salesListViewToggler}
-          salesListViewTogglerState={salesListViewTogglerState}
+          // salesListViewToggler={salesListViewToggler}
+          // salesListViewTogglerState={salesListViewTogglerState}
+          salesListSettings={salesListSettings}
         />
       </div>
       {modalTogglerState && (
@@ -164,10 +172,13 @@ function InetProdej() {
           clearPersonInput={clearPersonInput}
         />
       )}
-      {salesListViewTogglerState && (
+      {/* {salesListViewTogglerState && ( */}
+      {salesListSettings.open && (
         <SalesListView
-          salesListViewTogglerState={salesListViewTogglerState}
-          salesListViewToggler={salesListViewToggler}
+          // salesListViewTogglerState={salesListViewTogglerState}
+          salesListSettings={salesListSettings}
+          // salesListViewToggler={salesListViewToggler}
+          clearSalesList={clearSalesList}
           numberCzechFormat={numberCzechFormat}
         />
       )}

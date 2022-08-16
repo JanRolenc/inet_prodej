@@ -1,14 +1,16 @@
 import { ISalesListView } from '../interfaces'
 
-import sales from './sales.json'
+// import sales from './sales.json'
 // import {sales} from './sales'
 
 import { ReactComponent as CartIcon } from '../assets/shopping-cart.svg'
 
 const SalesListView = ({
   numberCzechFormat,
-  salesListViewToggler,
-  salesListViewTogglerState,
+  // salesListViewToggler,
+  // salesListViewTogglerState,
+  salesListSettings,
+  clearSalesList,
 }: ISalesListView) => {
   return (
     <div className="sales-list">
@@ -19,7 +21,9 @@ const SalesListView = ({
             <span>Historie prodeje</span>
           </div>
           <div
-            onClick={() => salesListViewToggler(salesListViewTogglerState)}
+            // onClick={() => salesListViewToggler(salesListViewTogglerState)}
+            // onClick={() => salesListViewToggler(salesListSettings.open)}
+            onClick={() => clearSalesList(salesListSettings)}
             className="sales-list__content__header__close"
           >
             &#10005;
@@ -37,46 +41,54 @@ const SalesListView = ({
           </div>
           <div className="sales-list__content__body__cart">
             <div className="sales-list__content__body__cart__list">
-              {sales.length
-                ? sales.map((item) => (
+              {/* {sales.length */}
+              {salesListSettings.list.length
+                ? salesListSettings.list.map((item) => (
                     <table key={item.id}>
-                      <tr>
-                        <td style={{ fontWeight: 'bold' }}>Klient</td>
-                        <td>{item.client}</td>
-                      </tr>
-                      <tr>
-                        <td style={{ fontWeight: 'bold' }}>Prodejce</td>
-                        <td>{item.salesman}</td>
-                      </tr>
-                      <tr>
-                        <td style={{ fontWeight: 'bold' }}>Čas prodeje</td>
-                        <td>{item.dateOfSale}</td>
-                      </tr>
-
-                      <tr>
-                        <td style={{ fontWeight: 'bold' }}>Zboží</td>
-                        <td style={{ fontWeight: 'bold' }}>Množství</td>
-                        <td style={{ fontWeight: 'bold' }}>Cena za kus</td>
-                      </tr>
-                      {item.article.length
-                        ? item.article.map((article) => (
-                            <tr key={item.id}>
-                              <td>{article.article1}</td>
-                              <td style={{ textAlign: 'right' }}>
-                                {article.quantity} ks
-                              </td>
-                              <td style={{ textAlign: 'right' }}>
-                                {numberCzechFormat(article.itemPrice)} Kč
-                              </td>
-                            </tr>
-                          ))
-                        : null}
-                      <tr>
-                        <td style={{ fontWeight: 'bold' }}>Celková cena</td>
-                        <td style={{ fontWeight: 'bold' }}>
-                          {item.totalPrice} Kč
-                        </td>
-                      </tr>
+                      <thead>
+                        <tr>
+                          <td style={{ fontWeight: 'bold' }}>Klient</td>
+                          <td>{item.client}</td>
+                        </tr>
+                        <tr>
+                          <td style={{ fontWeight: 'bold' }}>Prodejce</td>
+                          <td>{item.salesman}</td>
+                        </tr>
+                        <tr>
+                          <td style={{ fontWeight: 'bold' }}>Čas prodeje</td>
+                          <td>{item.dateOfSale}</td>
+                        </tr>
+                      </thead>
+                      <thead>
+                        <tr>
+                          <td style={{ fontWeight: 'bold' }}>Zboží</td>
+                          <td style={{ fontWeight: 'bold' }}>Množství</td>
+                          <td style={{ fontWeight: 'bold' }}>Cena za kus</td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {item.article.length
+                          ? item.article.map((article) => (
+                              <tr key={item.id}>
+                                <td>{article.article1}</td>
+                                <td style={{ textAlign: 'right' }}>
+                                  {article.quantity} ks
+                                </td>
+                                <td style={{ textAlign: 'right' }}>
+                                  {numberCzechFormat(article.itemPrice)} Kč
+                                </td>
+                              </tr>
+                            ))
+                          : null}
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <td style={{ fontWeight: 'bold' }}>Celková cena</td>
+                          <td style={{ fontWeight: 'bold' }}>
+                            {item.totalPrice} Kč
+                          </td>
+                        </tr>
+                      </tfoot>
                     </table>
                   ))
                 : null}

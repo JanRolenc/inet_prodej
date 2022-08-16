@@ -1,6 +1,8 @@
 import CartItemView from './CartItemView'
 
 import { ICartView } from '../interfaces'
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState, Dispatch } from '../store'
 
 import { ReactComponent as CartIcon } from '../assets/shopping-cart.svg'
 
@@ -16,16 +18,32 @@ const CartView = ({
   personState,
   modalTogglerState,
   modalViewToggler,
-  salesListViewToggler,
-  salesListViewTogglerState,
-}: ICartView) => {
+}: // salesListViewToggler,
+// salesListViewTogglerState,
+// salesListSettings,
+ICartView) => {
+  const dispatch = useDispatch<Dispatch>()
+  const salesListSettings = useSelector(
+    (state: RootState) => state.SalesListModel,
+  )
+
+  const setSalesListSetting = () => {
+    dispatch.SalesListModel.loadSalesList()
+    console.log(
+      'salesListSettings po kliku na posledni prodeje',
+      salesListSettings,
+    )
+  }
+
   return (
     <div className="cart">
       <div id="touch" className="cart__name">
         Košík
         <button
           style={{ marginLeft: '40px' }}
-          onClick={() => salesListViewToggler(salesListViewTogglerState)}
+          // onClick={() => salesListViewToggler(salesListViewTogglerState)}
+          // onClick={() => salesListViewToggler(salesListSettings.open)}
+          onClick={() => setSalesListSetting()}
         >
           Poslední prodeje
         </button>

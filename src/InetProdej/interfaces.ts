@@ -29,8 +29,9 @@ export interface ICartView {
   personState: IPersonState | null
   modalViewToggler: (modal: boolean) => void
   modalTogglerState: boolean
-  salesListViewToggler: (modal: boolean) => void
-  salesListViewTogglerState: boolean
+  // salesListViewToggler: (modal: boolean) => void
+  // salesListViewTogglerState: boolean
+  salesListSettings: ISalesListSettings
 }
 export interface ICartItemView {
   item: IItem
@@ -98,6 +99,27 @@ export interface IItemsList {
 
 export interface ISalesListView {
   numberCzechFormat(price: number): string
-  salesListViewToggler: (modal: boolean) => void
-  salesListViewTogglerState: boolean
+  // salesListViewToggler: (modal: boolean) => void
+  // salesListViewTogglerState: boolean
+  salesListSettings: ISalesListSettings
+  clearSalesList(saleListSettings: ISalesListSettings): void
+}
+export interface ISale {
+  id: number
+  client: string
+  salesman: string
+  dateOfSale: string
+  article: IArticle[]
+  totalPrice: number
+}
+
+export interface IArticle {
+  article1: string
+  quantity: number
+  itemPrice: number
+}
+
+export interface ISalesListSettings {
+  open: boolean
+  list: ISale[]
 }
