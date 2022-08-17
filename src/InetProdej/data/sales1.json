@@ -1,6 +1,6 @@
 [{
         "id": 1,
-        "client": "Zakaznik 1",
+        "client": "Zakaznik 10",
         "salesman": "Prodejce 1",
         "dateOfSale": "datum 1",
         "article": [
