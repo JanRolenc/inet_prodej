@@ -1,58 +1,83 @@
-import { ServerAPI, ServerResult } from './Server'
+import { ServerAPI, ServerResult } from "./Server";
 
-import items from './data.json'
-import scanners from './scanners.json'
-import sales1 from './sales1.json'
-import { IItem, IPerson, IScanner, ISale } from '../interfaces'
+import items from "./items.json";
+import scanners from "./scanners.json";
+import lastSales from "./lastSales.json";
+import { IItem, IPerson, IScanner, ISale } from "../interfaces";
 
 export default class DummyServer implements ServerAPI {
+  async getUser(): Promise<ServerResult<IPerson>> {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(
+          new ServerResult(
+            {
+              id: 3890,
+              fullname: "Mgr. Zdeněk Machač",
+              money: 0,
+            },
+            null
+          )
+        );
+      }, 500);
+    });
+  }
+
   async loadScanners(): Promise<ServerResult<IScanner[]>> {
     return new Promise((resolve) => {
-      setTimeout(
-        () => resolve(new ServerResult(null, scanners, null, null)),
-        500,
-      )
-    })
+      setTimeout(() => resolve(new ServerResult(scanners, null)), 500);
+    });
   }
 
-  async loadItems(): Promise<ServerResult<IItem[]>> {
+  async getShopName(shopId: number): Promise<ServerResult<string>> {
     return new Promise((resolve) => {
-      setTimeout(() => resolve(new ServerResult(items, null, null, null)), 500)
-    })
+      setTimeout(() => resolve(new ServerResult("Prodejna CPS", null)), 100);
+    });
   }
 
-  async loadSales(): Promise<ServerResult<ISale[]>> {
+  async loadItems(shopId: number): Promise<ServerResult<IItem[]>> {
     return new Promise((resolve) => {
-      setTimeout(() => resolve(new ServerResult(null, null, sales1, null)), 500)
-    })
+      setTimeout(() => {
+        --items[0].quantity;
+        return resolve(new ServerResult(items, null));
+      }, 500);
+    });
   }
 
-  sell(): ServerResult<string> {
-    return new ServerResult('OK', null, null, null)
+  async loadLastSales(shopId: number): Promise<ServerResult<ISale[]>> {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(new ServerResult(lastSales, null)), 500);
+    });
+  }
+
+  async sell(
+    shopId: number,
+    personId: number,
+    userId: number
+  ): Promise<ServerResult<string>> {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(new ServerResult("OK", null)), 2000);
+    });
   }
 
   async findPerson(input: string): Promise<ServerResult<IPerson>> {
     return new Promise((resolve) => {
       setTimeout(() => {
-        if (input === '3890' || input === 'standard') {
+        if (input === "3890" || input === "standard") {
           resolve(
             new ServerResult(
               {
                 id: 3890,
-                fullname: 'Mgr. Zdeněk Machač',
+                fullname: "Mgr. Zdeněk Machač",
                 money: 150,
-                ctecka: 'standard',
               },
-              null,
-              null,
-              null,
-            ),
-          )
+              null
+            )
+          );
         } else {
-          resolve(new ServerResult<IPerson>(null, null, null, 'nenalezeno'))
-          alert('ID nenalezeno')
+          resolve(new ServerResult<IPerson>(null, "nenalezeno"));
         }
-      }, 500)
-    })
+      }, 500);
+    });
   }
 }

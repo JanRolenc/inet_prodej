@@ -1,19 +1,19 @@
-import { createModel } from '@rematch/core'
-import type { RootModel } from '../RootModel'
-import Server from '../data/Server'
-import { IPersonState, IPerson } from '../interfaces'
+import { createModel } from "@rematch/core";
+import type { RootModel } from "../RootModel";
+import Server from "../data/Server";
+import { IPersonState, IPerson } from "../interfaces";
 
 export const PersonModel = createModel<RootModel>()({
   state: {
     person: {},
-    personInput: '',
+    personInput: "",
   } as IPersonState,
   reducers: {
     setPerson(state, person: IPerson | null) {
-      return { ...state, person: person }
+      return { ...state, person: person };
     },
     setPersonInput(state, personInput: string | null) {
-      return { ...state, personInput: personInput }
+      return { ...state, personInput: personInput };
     },
     // setPersonMoney(state, person: IPerson | null) {
     //   return person?.money
@@ -21,8 +21,12 @@ export const PersonModel = createModel<RootModel>()({
   },
   effects: (dispatch) => ({
     async findPerson(input: string) {
-      const result = await Server.findPerson(input)
-      dispatch.PersonModel.setPerson(result.getData())
+      const result = await Server.findPerson(input);
+      if (result.isOk()) {
+        dispatch.PersonModel.setPerson(result.getData());
+      } else {
+        alert("Osoba nenalezena");
+      }
     },
   }),
-})
+});
