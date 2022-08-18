@@ -15,9 +15,6 @@ export const PersonModel = createModel<RootModel>()({
     setPersonInput(state, personInput: string | null) {
       return { ...state, personInput: personInput };
     },
-    // setPersonMoney(state, person: IPerson | null) {
-    //   return person?.money
-    // },
   },
   effects: (dispatch) => ({
     async findPerson(input: string) {

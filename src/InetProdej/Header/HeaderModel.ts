@@ -18,6 +18,7 @@ export const HeaderModel = createModel<RootModel>()({
     setScanners(state, scanners: IScanner[]) {
       return { ...state, scanners: scanners };
     },
+    setshopName(state) {},
     changeScanner(state, scanner: string) {
       localStorage.scanner = scanner;
 
@@ -36,6 +37,15 @@ export const HeaderModel = createModel<RootModel>()({
     async loadHeaderSettings() {
       const result = await Server.loadScanners();
       dispatch.HeaderModel.setScanners(result.getData() || ({} as IScanner[]));
+    },
+
+    async getShopName(shopId: number) {
+      const result = await Server.getShopName(shopId);
+      if (result.isOk()) {
+        dispatch.PersonModel.setShopName(result.getData());
+      } else {
+        alert("Osoba nenalezena");
+      }
     },
   }),
 });
