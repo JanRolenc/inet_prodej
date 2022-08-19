@@ -1,34 +1,34 @@
-import { IModalView } from "../interfaces";
-import ItemsList from "../ItemsList/ItemsList";
+import { IModalView } from '../interfaces'
+import ItemsList from '../ItemsList/ItemsList'
 
-import { ReactComponent as CartIcon } from "../assets/shopping-cart.svg";
-import stopIcon from "../assets/red_stop.png";
-import greenCircle from "../assets/green-circle.png";
-import yellowCircle from "../assets/yellow-circle.png";
-import { useState } from "react";
-import { numberCzechFormat } from "../InetProdej";
+import { ReactComponent as CartIcon } from '../assets/shopping-cart.svg'
+import stopIcon from '../assets/red_stop.png'
+import greenCircle from '../assets/green-circle.png'
+import yellowCircle from '../assets/yellow-circle.png'
+import { useState } from 'react'
+import { numberCzechFormat } from '../InetProdej'
 
 const ModalView = ({
   cartState,
   totalPrice,
   // numberCzechFormat,
-  modalTogglerState,
+  modalState,
   modalViewToggler,
   clearCart,
   clearPerson,
   clearPersonInput,
 }: IModalView) => {
-  const [sellClicked, setSellClicked] = useState<boolean>(false);
-  const [saleFinished, setSaleFinished] = useState<boolean>(false);
+  const [sellClicked, setSellClicked] = useState<boolean>(false)
+  const [saleFinished, setSaleFinished] = useState<boolean>(false)
   const clickSellModal = () => {
-    setSellClicked(true);
+    setSellClicked(true)
     setTimeout(() => {
-      setSaleFinished(true);
-      clearCart();
-      clearPerson();
-      clearPersonInput();
-    }, 5000);
-  };
+      setSaleFinished(true)
+      clearCart()
+      clearPerson()
+      clearPersonInput()
+    }, 5000)
+  }
   return (
     <div className="modal">
       <div className="modal__content">
@@ -38,7 +38,7 @@ const ModalView = ({
             <span>Prodejní transakce</span>
           </div>
           <div
-            onClick={() => modalViewToggler(modalTogglerState)}
+            onClick={() => modalViewToggler(modalState)}
             className="modal__content__header__close"
           >
             &#10005;
@@ -47,9 +47,9 @@ const ModalView = ({
         <div className="modal__content__body">
           <div
             style={{
-              padding: "3px 0px 1px 8px",
-              height: "10%",
-              fontWeight: "bold",
+              padding: '3px 0px 1px 8px',
+              height: '10%',
+              fontWeight: 'bold',
             }}
           >
             Nákupní košík obsahuje:
@@ -72,7 +72,7 @@ const ModalView = ({
                 </div>
                 <div className="modal__content__body__sale__right">
                   <button onClick={clickSellModal}>Prodat</button>
-                  <button onClick={() => modalViewToggler(modalTogglerState)}>
+                  <button onClick={() => modalViewToggler(modalState)}>
                     <img src={stopIcon} alt="stop" />
                     Zavřít
                   </button>
@@ -102,10 +102,7 @@ const ModalView = ({
                   <button disabled onClick={clickSellModal}>
                     Prodat
                   </button>
-                  <button
-                    disabled
-                    onClick={() => modalViewToggler(modalTogglerState)}
-                  >
+                  <button disabled onClick={() => modalViewToggler(modalState)}>
                     <img src={stopIcon} alt="stop" />
                     Zavřít
                   </button>
@@ -129,7 +126,7 @@ const ModalView = ({
                   Prodej proběhl úspěšně
                 </div>
                 <div className="modal__content__body__sale__right">
-                  <button onClick={() => modalViewToggler(modalTogglerState)}>
+                  <button onClick={() => modalViewToggler(modalState)}>
                     <img src={stopIcon} alt="stop" />
                     Zavřít
                   </button>
@@ -140,7 +137,7 @@ const ModalView = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ModalView;
+export default ModalView

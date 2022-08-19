@@ -1,22 +1,13 @@
-import ShopItemView from "./ShopItemView";
-import { IShopView } from "../interfaces";
-import { numberCzechFormat } from "../InetProdej";
+import ShopItemView from './ShopItemView'
+import { IShopView } from '../interfaces'
+import { numberCzechFormat } from '../InetProdej'
 
-const ShopView = ({
-  shopState,
-  shopItemClick,
-}: // numberCzechFormat,
-IShopView) => {
+const ShopView = ({ shopState, shopItemClick, headerState }: IShopView) => {
   return (
     <div className="shop">
       <div id="touch" className="shop__name">
-        Prodejna CPS
-        <button
-          style={{ marginLeft: "40px" }}
-          // onClick={() => setSalesListSetting()}
-        >
-          Obnova seznamu
-        </button>
+        {headerState.shopName}
+        <button style={{ marginLeft: '40px' }}>Obnova seznamu</button>
       </div>
       <div className="shop__list-container">
         <table>
@@ -42,7 +33,7 @@ IShopView) => {
         </table>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ShopView;
+export default ShopView

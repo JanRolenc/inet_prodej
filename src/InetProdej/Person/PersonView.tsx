@@ -8,7 +8,7 @@ import { IPersonView } from '../interfaces'
 import { useDispatch } from 'react-redux'
 import { Dispatch } from '../store'
 
-const PersonView = ({ personState, modalTogglerState }: IPersonView) => {
+const PersonView = ({ personState, modalState }: IPersonView) => {
   const dispatch = useDispatch<Dispatch>()
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -21,7 +21,7 @@ const PersonView = ({ personState, modalTogglerState }: IPersonView) => {
   }
 
   const inputElement = useRef<HTMLInputElement>(null)
-  if (modalTogglerState === false) {
+  if (modalState === false) {
     inputElement.current?.focus()
   } else {
     inputElement.current?.blur()

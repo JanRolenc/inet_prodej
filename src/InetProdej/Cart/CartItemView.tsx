@@ -1,27 +1,27 @@
-import { ICartItemView } from "../interfaces";
+import { ICartItemView } from '../interfaces'
 
-import { useSelector } from "react-redux";
-import { RootState } from "../store";
+import { useSelector } from 'react-redux'
+import { RootState } from '../store'
 
 const CartItemView = ({
   item,
   removeItem,
   decreaseItem,
   increaseItem,
-  headerSettingsState,
+  headerState,
   numberCzechFormat,
 }: ICartItemView) => {
-  const shopState = useSelector((state: RootState) => state.ShopModel);
-  const shopStateCount = shopState.find((i) => i.id === item.id)?.quantity;
+  const shopState = useSelector((state: RootState) => state.ShopModel)
+  const shopStateCount = shopState.find((i) => i.id === item.id)?.quantity
 
   return (
     <tr className="cart__list-container__item" key={item.id}>
       <td>
         <button
           className={`${
-            headerSettingsState.touched === "true"
-              ? "cart-btn cart-btn--touch"
-              : "cart-btn"
+            headerState.touched === 'true'
+              ? 'cart-btn cart-btn--touch'
+              : 'cart-btn'
           }`}
           onClick={() => removeItem(item)}
         >
@@ -30,7 +30,7 @@ const CartItemView = ({
       </td>
       <td>{item.name}</td>
       <td className="item-alignment-right">{numberCzechFormat(item.price)}</td>
-      <td className="item-alignment-right" style={{ fontWeight: "bold" }}>
+      <td className="item-alignment-right" style={{ fontWeight: 'bold' }}>
         {item.quantity}
       </td>
       <td className="item-alignment-right">
@@ -39,9 +39,9 @@ const CartItemView = ({
       <td className="item-alignment-right">
         <button
           className={`${
-            headerSettingsState.touched === "true"
-              ? "cart-btn cart-btn--touch"
-              : "cart-btn"
+            headerState.touched === 'true'
+              ? 'cart-btn cart-btn--touch'
+              : 'cart-btn'
           }`}
           onClick={() => decreaseItem(item)}
         >
@@ -49,9 +49,9 @@ const CartItemView = ({
         </button>
         <button
           className={`${
-            headerSettingsState.touched === "true"
-              ? "cart-btn cart-btn--touch"
-              : "cart-btn"
+            headerState.touched === 'true'
+              ? 'cart-btn cart-btn--touch'
+              : 'cart-btn'
           }`}
           onClick={() => increaseItem(item, 1)}
           disabled={shopStateCount === 0 ? true : false}
@@ -60,9 +60,9 @@ const CartItemView = ({
         </button>
         <button
           className={`${
-            headerSettingsState.touched === "true"
-              ? "cart-btn cart-btn--touch"
-              : "cart-btn"
+            headerState.touched === 'true'
+              ? 'cart-btn cart-btn--touch'
+              : 'cart-btn'
           }`}
           onClick={() => increaseItem(item, 5)}
           disabled={shopStateCount === 0 ? true : false}
@@ -71,7 +71,7 @@ const CartItemView = ({
         </button>
       </td>
     </tr>
-  );
-};
+  )
+}
 
-export default CartItemView;
+export default CartItemView

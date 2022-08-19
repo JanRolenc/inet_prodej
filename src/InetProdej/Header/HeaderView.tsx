@@ -4,7 +4,7 @@ import { IHeaderView } from '../interfaces'
 const HeaderView = ({
   touchTogglerState,
   touchScreenToggler,
-  headerSettingsState,
+  headerState,
   scannerToggler,
 }: IHeaderView) => {
   function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
@@ -26,15 +26,11 @@ const HeaderView = ({
           <span style={{ marginRight: '10px' }}>Čtečka</span>
           <select
             style={{ minWidth: '110px' }}
-            value={
-              headerSettingsState.scanner !== null
-                ? headerSettingsState.scanner
-                : ''
-            }
+            value={headerState.scanner !== null ? headerState.scanner : ''}
             onChange={handleChange}
           >
-            {headerSettingsState.scanners.length > 0 &&
-              headerSettingsState.scanners.map((scanner) => (
+            {headerState.scanners.length > 0 &&
+              headerState.scanners.map((scanner) => (
                 <option key={scanner.id} value={scanner.name}>
                   {scanner.name}
                 </option>
@@ -47,7 +43,7 @@ const HeaderView = ({
         >
           <div
             className={`${
-              headerSettingsState.touched === 'true'
+              headerState.touched === 'true'
                 ? 'header__touch__check-container'
                 : 'header__touch__check-container--off'
             }`}
