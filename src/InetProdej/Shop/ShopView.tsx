@@ -2,12 +2,19 @@ import ShopItemView from './ShopItemView'
 import { IShopView } from '../interfaces'
 import { numberCzechFormat } from '../InetProdej'
 
-const ShopView = ({ shopState, shopItemClick, headerState }: IShopView) => {
+const ShopView = ({
+  shopState,
+  shopItemClick,
+  headerState,
+  reloadButtonClick,
+}: IShopView) => {
   return (
     <div className="shop">
       <div id="touch" className="shop__name">
         {headerState.shopName}
-        <button style={{ marginLeft: '40px' }}>Obnova seznamu</button>
+        <button style={{ marginLeft: '40px' }} onClick={reloadButtonClick}>
+          Obnova seznamu
+        </button>
       </div>
       <div className="shop__list-container">
         <table>

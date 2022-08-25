@@ -146,7 +146,7 @@ const CartView = ({
               ? false
               : true
           }
-          onClick={() => modalViewToggler(modalState)}
+          onClick={() => modalViewToggler(modalState.open)}
         >
           <CartIcon /> Prodej
         </button>

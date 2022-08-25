@@ -12,8 +12,8 @@ export default class DummyServer implements ServerAPI {
         resolve(
           new ServerResult(
             {
-              id: 3890,
-              fullname: 'Mgr. Zdeněk Machač',
+              id: 1111,
+              fullname: 'Petr Prodavač',
               money: 0,
             },
             null,
@@ -46,7 +46,7 @@ export default class DummyServer implements ServerAPI {
       setTimeout(() => {
         --items[0].quantity
         return resolve(new ServerResult(items, null))
-      }, 500)
+      }, 1000)
     })
   }
 
@@ -56,16 +56,20 @@ export default class DummyServer implements ServerAPI {
     })
   }
 
-  async sell(
-    shopId: number,
-    personId: number,
-    userId: number,
-  ): Promise<ServerResult<string>> {
+  // async sell(
+  //   personId: number,
+  //   userId: number,
+  //   shopId: number,
+  // ): Promise<ServerResult<string>> {
+  //   return new Promise((resolve) => {
+  //     setTimeout(() => resolve(new ServerResult('OK', null)), 2000)
+  //   })
+  // }
+  async sell(): Promise<ServerResult<string>> {
     return new Promise((resolve) => {
       setTimeout(() => resolve(new ServerResult('OK', null)), 2000)
     })
   }
-
   async findPerson(input: string): Promise<ServerResult<IPerson>> {
     return new Promise((resolve) => {
       setTimeout(() => {

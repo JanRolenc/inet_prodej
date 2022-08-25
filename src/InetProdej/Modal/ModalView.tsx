@@ -11,23 +11,28 @@ import { numberCzechFormat } from '../InetProdej'
 const ModalView = ({
   cartState,
   totalPrice,
-  // numberCzechFormat,
   modalState,
   modalViewToggler,
   clearCart,
   clearPerson,
   clearPersonInput,
+  callSell,
 }: IModalView) => {
   const [sellClicked, setSellClicked] = useState<boolean>(false)
   const [saleFinished, setSaleFinished] = useState<boolean>(false)
   const clickSellModal = () => {
-    setSellClicked(true)
-    setTimeout(() => {
-      setSaleFinished(true)
-      clearCart()
-      clearPerson()
-      clearPersonInput()
-    }, 5000)
+    callSell()
+    if (modalState.confirmed === 'OK') {
+      setSellClicked(true)
+      setTimeout(() => {
+        setSaleFinished(true)
+        clearCart()
+        clearPerson()
+        clearPersonInput()
+      }, 5000)
+    } else {
+      alert('sorry, prodej neprobehl')
+    }
   }
   return (
     <div className="modal">
@@ -38,7 +43,7 @@ const ModalView = ({
             <span>Prodejní transakce</span>
           </div>
           <div
-            onClick={() => modalViewToggler(modalState)}
+            onClick={() => modalViewToggler(modalState.open)}
             className="modal__content__header__close"
           >
             &#10005;
@@ -72,7 +77,7 @@ const ModalView = ({
                 </div>
                 <div className="modal__content__body__sale__right">
                   <button onClick={clickSellModal}>Prodat</button>
-                  <button onClick={() => modalViewToggler(modalState)}>
+                  <button onClick={() => modalViewToggler(modalState.open)}>
                     <img src={stopIcon} alt="stop" />
                     Zavřít
                   </button>
@@ -102,7 +107,10 @@ const ModalView = ({
                   <button disabled onClick={clickSellModal}>
                     Prodat
                   </button>
-                  <button disabled onClick={() => modalViewToggler(modalState)}>
+                  <button
+                    disabled
+                    onClick={() => modalViewToggler(modalState.open)}
+                  >
                     <img src={stopIcon} alt="stop" />
                     Zavřít
                   </button>
@@ -126,7 +134,7 @@ const ModalView = ({
                   Prodej proběhl úspěšně
                 </div>
                 <div className="modal__content__body__sale__right">
-                  <button onClick={() => modalViewToggler(modalState)}>
+                  <button onClick={() => modalViewToggler(modalState.open)}>
                     <img src={stopIcon} alt="stop" />
                     Zavřít
                   </button>

@@ -6,7 +6,7 @@ import ShopView from './Shop/ShopView'
 import HeaderView from './Header/HeaderView'
 import ModalView from './Modal/ModalView'
 import SalesListView from './SalesList/SalesListView'
-import { useEffect } from 'react'
+import { useEffect, useState, useReducer } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState, Dispatch } from './store'
@@ -39,10 +39,85 @@ export default function InetProdej() {
   const modalState = useSelector((state: RootState) => state.ModalModel)
   const salesListState = useSelector((state: RootState) => state.SalesListModel)
 
+  const [reloadAuto, setReloadAuto] = useState(false)
+  const [reloadManual, setReloadManual] = useState(true)
+
+  // const [reloadAuto, forceUpdate] = useReducer((x) => x + 1, 0)
+
+  // setTimeout(() => {
+  //   forceUpdate()
+  //   callReloadAuto()
+  // }, 20000)
+
   useEffect(() => {
     dispatch.ShopModel.loadItems(headerState.shopId)
     dispatch.HeaderModel.loadHeaderState(headerState.shopId)
+    // setReloadAuto(!reloadAuto)
   }, [])
+  const reloadInterval = 15000
+  useEffect(() => {
+    const reload = setInterval(callReloadAuto, reloadInterval)
+    return () => clearInterval(reload)
+    // setReloadAuto(!reloadAuto)
+    // }, 100000)
+    // setTimeout(() => {
+    // }, 100000)
+
+    // }, [reloadAuto])
+  }, [])
+
+  const callReloadAuto = () => {
+    dispatch.ShopModel.loadItems(headerState.shopId)
+    // setTimeout(() => {
+    changeListsAfterReload()
+    // }, 2000)
+    // setReloadAuto(!reloadAuto)
+    setTimeout(() => {
+      setChangedLists()
+    }, 8000)
+    // setTimeout(() => {
+    // }, 3000)
+  }
+
+  useEffect(() => {
+    // setTimeout(() => {
+    dispatch.ShopModel.loadItems(headerState.shopId)
+    // }, 3000)
+  }, [reloadManual])
+
+  const reloadButtonClick = () => {
+    setReloadManual(!reloadManual)
+    setTimeout(() => {
+      changeListsAfterReload()
+      setChangedLists()
+    }, 3000)
+  }
+  const changeListsAfterReload = () => {
+    const shopItemsCopy: IItem[] = shopState
+    const cartItemsCopy: IItem[] = cartState
+    shopItemsCopy.forEach((itemShop) => {
+      var itemCart = cartItemsCopy.find(
+        (itemCart) => itemCart.id === itemShop.id,
+      )
+      if (itemCart) {
+        if (itemCart.quantity >= itemShop.quantity) {
+          itemShop = {
+            ...itemShop,
+            quantity: itemShop.quantity - itemCart.quantity,
+          }
+        } else {
+          itemCart = { ...itemCart, quantity: itemShop.quantity }
+          itemShop = { ...itemShop, quantity: 0 }
+        }
+      }
+    })
+    return [shopItemsCopy, cartItemsCopy]
+  }
+  const setChangedLists = () => {
+    var reloadedLists = changeListsAfterReload()
+    dispatch.ShopModel.setItems(reloadedLists[0])
+    dispatch.CartModel.setCart(reloadedLists[1])
+  }
 
   const shopItemClick = (item: IItem) => {
     if (item.quantity === 0 && item.type === 'standard') {
@@ -56,27 +131,28 @@ export default function InetProdej() {
     dispatch.ShopModel.addRemoved(itemToRemove)
     dispatch.CartModel.remove(itemToRemove)
   }
-  const increaseItem = (itemToIncrease: IItem, count: number) => {
-    const itemsCount: number =
+  const increaseItem = (itemToIncrease: IItem, reload: number) => {
+    const itemsreload: number =
       shopState.find((i) => i.id === itemToIncrease.id)?.quantity || 0
-    if (itemsCount > 0) {
-      const resultCount: number = Math.min(itemsCount, count)
-      if (resultCount > 0 && itemToIncrease.type === 'standard') {
-        dispatch.CartModel.increment(itemToIncrease, resultCount)
-        dispatch.ShopModel.decrement(itemToIncrease, resultCount)
-      } else if (resultCount <= 0 || itemsCount < count) {
-        dispatch.CartModel.increment(itemToIncrease, itemsCount)
-        dispatch.ShopModel.decrement(itemToIncrease, itemsCount)
+    if (itemsreload > 0) {
+      const resultreload: number = Math.min(itemsreload, reload)
+      if (resultreload > 0 && itemToIncrease.type === 'standard') {
+        dispatch.CartModel.increment(itemToIncrease, resultreload)
+        dispatch.ShopModel.decrement(itemToIncrease, resultreload)
+      } else if (resultreload <= 0 || itemsreload < reload) {
+        dispatch.CartModel.increment(itemToIncrease, itemsreload)
+        dispatch.ShopModel.decrement(itemToIncrease, itemsreload)
       }
     } else {
-      dispatch.CartModel.increment(itemToIncrease, count)
-      dispatch.ShopModel.decrement(itemToIncrease, count)
+      dispatch.CartModel.increment(itemToIncrease, reload)
+      dispatch.ShopModel.decrement(itemToIncrease, reload)
     }
   }
   const decreaseItem = (itemToDecrease: IItem) => {
     dispatch.CartModel.decrement(itemToDecrease)
     dispatch.ShopModel.increment(itemToDecrease)
   }
+
   const touchScreenToggler = () => {
     dispatch.HeaderModel.toggleTouched()
   }
@@ -85,6 +161,9 @@ export default function InetProdej() {
   }
   const modalViewToggler = () => {
     dispatch.ModalModel.toggle()
+  }
+  const callSell = () => {
+    dispatch.ModalModel.callSell()
   }
   const clearSalesList = () => {
     dispatch.SalesListModel.clearSalesList()
@@ -105,7 +184,7 @@ export default function InetProdej() {
   const clearPersonInput = () => {
     dispatch.PersonModel.setPersonInput('')
   }
-
+  console.log('render InerProdej.tsx')
   return !headerState.shopId ? (
     <div>Neni vybrán obchod</div>
   ) : (
@@ -126,6 +205,7 @@ export default function InetProdej() {
         shopState={shopState}
         shopItemClick={shopItemClick}
         headerState={headerState}
+        reloadButtonClick={reloadButtonClick}
       />
       <div className="person-cart-container">
         <PersonView personState={personState} modalState={modalState} />
@@ -141,7 +221,7 @@ export default function InetProdej() {
           salesListState={salesListState}
         />
       </div>
-      {modalState && (
+      {modalState.open && (
         <ModalView
           cartState={cartState}
           personState={personState}
@@ -151,6 +231,7 @@ export default function InetProdej() {
           clearCart={clearCart}
           clearPerson={clearPerson}
           clearPersonInput={clearPersonInput}
+          callSell={callSell}
         />
       )}
       {salesListState.open && (

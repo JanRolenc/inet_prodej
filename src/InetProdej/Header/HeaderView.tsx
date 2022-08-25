@@ -18,7 +18,7 @@ const HeaderView = ({
           Inet Prodej
         </span>
         <span>
-          <i>jmeno prodejce</i>
+          <i>prodejce: {headerState.user.fullname}</i>
         </span>
       </div>
       <div className="header__reader-touch-container">

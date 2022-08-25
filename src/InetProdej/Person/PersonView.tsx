@@ -21,7 +21,7 @@ const PersonView = ({ personState, modalState }: IPersonView) => {
   }
 
   const inputElement = useRef<HTMLInputElement>(null)
-  if (modalState === false) {
+  if (modalState.open === false) {
     inputElement.current?.focus()
   } else {
     inputElement.current?.blur()

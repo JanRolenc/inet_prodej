@@ -11,6 +11,7 @@ export interface IShopView {
   shopState: IItem[]
   shopItemClick: (oneItemToRemove: IItem) => void
   headerState: IHeaderSettings
+  reloadButtonClick(): void
 }
 export interface IShopItemView {
   item: IItem
@@ -23,10 +24,9 @@ export interface ICartView {
   decreaseItem: (item: IItem) => void
   increaseItem: (item: IItem, count: number) => void
   totalPrice: number
-  // headerState: IHeaderSettings
   personState: IPersonState | null
   modalViewToggler: (modal: boolean) => void
-  modalState: boolean
+  modalState: IModalModel
   salesListState: ISalesList
 }
 export interface ICartItemView {
@@ -41,9 +41,9 @@ export interface IModalView {
   cartState: IItem[]
   personState: IPersonState | null
   totalPrice: number
-  // numberCzechFormat(price: number): string;
   modalViewToggler: (modal: boolean) => void
-  modalState: boolean
+  modalState: IModalModel
+  callSell(): void
   clearCart(): void
   clearPerson(): void
   clearPersonInput(): void
@@ -51,6 +51,10 @@ export interface IModalView {
 export interface IModalItemView {
   item: IItem
   numberCzechFormat(price: number): string
+}
+export interface IModalModel {
+  open: boolean
+  confirmed: string
 }
 
 export interface IScanner {
@@ -61,6 +65,7 @@ export interface IScanner {
 export interface IHeaderSettings {
   shopId: number
   shopName: string
+  user: IPerson
   touched: string
   scanner: string | null
   scanners: IScanner[]
@@ -83,7 +88,7 @@ export interface IPersonState {
 }
 export interface IPersonView {
   personState: IPersonState | null
-  modalState: boolean
+  modalState: IModalModel
 }
 
 export interface IItemsList {
