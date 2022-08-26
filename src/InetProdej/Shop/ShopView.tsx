@@ -1,6 +1,6 @@
-import ShopItemView from './ShopItemView'
-import { IShopView } from '../interfaces'
-import { numberCzechFormat } from '../InetProdej'
+import ShopItemView from "./ShopItemView";
+import { IShopView } from "../interfaces";
+import { numberCzechFormat } from "../InetProdej";
 
 const ShopView = ({
   shopState,
@@ -12,7 +12,7 @@ const ShopView = ({
     <div className="shop">
       <div id="touch" className="shop__name">
         {headerState.shopName}
-        <button style={{ marginLeft: '40px' }} onClick={reloadButtonClick}>
+        <button style={{ marginLeft: "40px" }} onClick={reloadButtonClick}>
           Obnova seznamu
         </button>
       </div>
@@ -28,19 +28,20 @@ const ShopView = ({
             </tr>
           </thead>
           <tbody>
-            {shopState.map((item) => (
-              <ShopItemView
-                key={item.id}
-                item={item}
-                shopItemClick={() => shopItemClick(item)}
-                numberCzechFormat={numberCzechFormat}
-              />
-            ))}
+            {shopState &&
+              shopState.map((item) => (
+                <ShopItemView
+                  key={item.id}
+                  item={item}
+                  shopItemClick={() => shopItemClick(item)}
+                  numberCzechFormat={numberCzechFormat}
+                />
+              ))}
           </tbody>
         </table>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ShopView
+export default ShopView;

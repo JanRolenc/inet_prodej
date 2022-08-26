@@ -1,15 +1,9 @@
-import { ISalesListView } from '../interfaces'
-import { numberCzechFormat } from '../InetProdej'
+import { ILastSalesView } from "../interfaces";
+import { numberCzechFormat } from "../InetProdej";
 
-import { ReactComponent as CartIcon } from '../assets/shopping-cart.svg'
+import { ReactComponent as CartIcon } from "../assets/shopping-cart.svg";
 
-const SalesListView = ({
-  // numberCzechFormat,
-  // salesListViewToggler,
-  // salesListViewTogglerState,
-  salesListState,
-  clearSalesList,
-}: ISalesListView) => {
+const LastSalesView = ({ lastSalesState, clearSalesList }: ILastSalesView) => {
   return (
     <div className="sales-list">
       <div className="sales-list__content">
@@ -19,9 +13,7 @@ const SalesListView = ({
             <span>Historie prodeje</span>
           </div>
           <div
-            // onClick={() => salesListViewToggler(salesListViewTogglerState)}
-            // onClick={() => salesListViewToggler(salesListState.open)}
-            onClick={() => clearSalesList(salesListState)}
+            onClick={() => clearSalesList(lastSalesState)}
             className="sales-list__content__header__close"
           >
             &#10005;
@@ -30,37 +22,37 @@ const SalesListView = ({
         <div className="sales-list__content__body">
           <div
             style={{
-              padding: '6px 0px 1px 8px',
-              height: '5%',
-              fontWeight: 'bold',
+              padding: "6px 0px 1px 8px",
+              height: "5%",
+              fontWeight: "bold",
             }}
           >
             Přehled posledních pěti nákupů
           </div>
           <div className="sales-list__content__body__cart">
             <div className="sales-list__content__body__cart__list">
-              {salesListState.list.length
-                ? salesListState.list.map((item) => (
+              {lastSalesState.list.length
+                ? lastSalesState.list.map((item) => (
                     <table key={item.dateOfSale}>
                       <thead>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Klient</td>
+                          <td style={{ fontWeight: "bold" }}>Klient</td>
                           <td>{item.client}</td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Prodejce</td>
+                          <td style={{ fontWeight: "bold" }}>Prodejce</td>
                           <td>{item.salesman}</td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Čas prodeje</td>
+                          <td style={{ fontWeight: "bold" }}>Čas prodeje</td>
                           <td>{item.dateOfSale}</td>
                         </tr>
                       </thead>
                       <thead>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Zboží</td>
-                          <td style={{ fontWeight: 'bold' }}>Množství</td>
-                          <td style={{ fontWeight: 'bold' }}>Cena za kus</td>
+                          <td style={{ fontWeight: "bold" }}>Zboží</td>
+                          <td style={{ fontWeight: "bold" }}>Množství</td>
+                          <td style={{ fontWeight: "bold" }}>Cena za kus</td>
                         </tr>
                       </thead>
                       <tbody>
@@ -68,10 +60,10 @@ const SalesListView = ({
                           ? item.article.map((article) => (
                               <tr key={Math.random()}>
                                 <td>{article.article1}</td>
-                                <td style={{ textAlign: 'right' }}>
+                                <td style={{ textAlign: "right" }}>
                                   {article.quantity} ks
                                 </td>
-                                <td style={{ textAlign: 'right' }}>
+                                <td style={{ textAlign: "right" }}>
                                   {numberCzechFormat(article.itemPrice)} Kč
                                 </td>
                               </tr>
@@ -80,8 +72,8 @@ const SalesListView = ({
                       </tbody>
                       <tfoot>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Celková cena</td>
-                          <td style={{ fontWeight: 'bold' }}>
+                          <td style={{ fontWeight: "bold" }}>Celková cena</td>
+                          <td style={{ fontWeight: "bold" }}>
                             {item.totalPrice} Kč
                           </td>
                         </tr>
@@ -94,7 +86,6 @@ const SalesListView = ({
         </div>
       </div>
     </div>
-  )
-}
-
-export default SalesListView
+  );
+};
+export default LastSalesView;

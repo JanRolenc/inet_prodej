@@ -1,39 +1,40 @@
-import { IModalView } from '../interfaces'
-import ItemsList from '../ItemsList/ItemsList'
+import { ISaleListView } from "../interfaces";
+import ItemsList from "../ItemsList/ItemsList";
 
-import { ReactComponent as CartIcon } from '../assets/shopping-cart.svg'
-import stopIcon from '../assets/red_stop.png'
-import greenCircle from '../assets/green-circle.png'
-import yellowCircle from '../assets/yellow-circle.png'
-import { useState } from 'react'
-import { numberCzechFormat } from '../InetProdej'
+import { ReactComponent as CartIcon } from "../assets/shopping-cart.svg";
+import stopIcon from "../assets/red_stop.png";
+import greenCircle from "../assets/green-circle.png";
+import yellowCircle from "../assets/yellow-circle.png";
+import { useState } from "react";
+import { numberCzechFormat } from "../InetProdej";
 
 const ModalView = ({
   cartState,
   totalPrice,
-  modalState,
+  saleListState,
   modalViewToggler,
   clearCart,
   clearPerson,
   clearPersonInput,
   callSell,
-}: IModalView) => {
-  const [sellClicked, setSellClicked] = useState<boolean>(false)
-  const [saleFinished, setSaleFinished] = useState<boolean>(false)
+}: ISaleListView) => {
+  const [sellClicked, setSellClicked] = useState<boolean>(false);
+  const [saleFinished, setSaleFinished] = useState<boolean>(false);
   const clickSellModal = () => {
-    callSell()
-    if (modalState.confirmed === 'OK') {
-      setSellClicked(true)
-      setTimeout(() => {
-        setSaleFinished(true)
-        clearCart()
-        clearPerson()
-        clearPersonInput()
-      }, 5000)
-    } else {
-      alert('sorry, prodej neprobehl')
-    }
-  }
+    callSell();
+    // if (modalState.confirmed === "OK") {
+    saleListState.confirmed === "OK" && setSellClicked(true);
+    setTimeout(() => {
+      setSaleFinished(true);
+      clearCart();
+      clearPerson();
+      clearPersonInput();
+    }, 5000);
+    // }
+    // else {
+    //   alert("sorry, prodej neprobehl");
+    // }
+  };
   return (
     <div className="modal">
       <div className="modal__content">
@@ -43,7 +44,7 @@ const ModalView = ({
             <span>Prodejní transakce</span>
           </div>
           <div
-            onClick={() => modalViewToggler(modalState.open)}
+            onClick={() => modalViewToggler(saleListState.open)}
             className="modal__content__header__close"
           >
             &#10005;
@@ -52,9 +53,9 @@ const ModalView = ({
         <div className="modal__content__body">
           <div
             style={{
-              padding: '3px 0px 1px 8px',
-              height: '10%',
-              fontWeight: 'bold',
+              padding: "3px 0px 1px 8px",
+              height: "10%",
+              fontWeight: "bold",
             }}
           >
             Nákupní košík obsahuje:
@@ -77,7 +78,7 @@ const ModalView = ({
                 </div>
                 <div className="modal__content__body__sale__right">
                   <button onClick={clickSellModal}>Prodat</button>
-                  <button onClick={() => modalViewToggler(modalState.open)}>
+                  <button onClick={() => modalViewToggler(saleListState.open)}>
                     <img src={stopIcon} alt="stop" />
                     Zavřít
                   </button>
@@ -109,7 +110,7 @@ const ModalView = ({
                   </button>
                   <button
                     disabled
-                    onClick={() => modalViewToggler(modalState.open)}
+                    onClick={() => modalViewToggler(saleListState.open)}
                   >
                     <img src={stopIcon} alt="stop" />
                     Zavřít
@@ -134,7 +135,7 @@ const ModalView = ({
                   Prodej proběhl úspěšně
                 </div>
                 <div className="modal__content__body__sale__right">
-                  <button onClick={() => modalViewToggler(modalState.open)}>
+                  <button onClick={() => modalViewToggler(saleListState.open)}>
                     <img src={stopIcon} alt="stop" />
                     Zavřít
                   </button>
@@ -145,7 +146,7 @@ const ModalView = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ModalView
+export default ModalView;

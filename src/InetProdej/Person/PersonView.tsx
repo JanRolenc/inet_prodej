@@ -1,49 +1,49 @@
-import personalImage from '../assets/icon_head.png'
-import { ReactComponent as MagnifierIcon } from '../assets/magnifier.svg'
+import personalImage from "../assets/icon_head.png";
+import { ReactComponent as MagnifierIcon } from "../assets/magnifier.svg";
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef } from "react";
 
-import { IPersonView } from '../interfaces'
+import { IPersonView } from "../interfaces";
 
-import { useDispatch } from 'react-redux'
-import { Dispatch } from '../store'
+import { useDispatch } from "react-redux";
+import { Dispatch } from "../store";
 
-const PersonView = ({ personState, modalState }: IPersonView) => {
-  const dispatch = useDispatch<Dispatch>()
+const PersonView = ({ personState, saleListState }: IPersonView) => {
+  const dispatch = useDispatch<Dispatch>();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-  }
+    event.preventDefault();
+  };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const input = event.target.value
-    dispatch.PersonModel.setPersonInput(input)
-  }
+    const input = event.target.value;
+    dispatch.PersonModel.setPersonInput(input);
+  };
 
-  const inputElement = useRef<HTMLInputElement>(null)
-  if (modalState.open === false) {
-    inputElement.current?.focus()
+  const inputElement = useRef<HTMLInputElement>(null);
+  if (saleListState.open === false) {
+    inputElement.current?.focus();
   } else {
-    inputElement.current?.blur()
+    inputElement.current?.blur();
   }
 
   useEffect(() => {
-    dispatch.PersonModel.setPerson(null)
-    inputElement.current?.focus()
-  }, [])
+    dispatch.PersonModel.setPerson(null);
+    inputElement.current?.focus();
+  }, []);
 
   function clear() {
-    dispatch.PersonModel.setPerson(null)
-    dispatch.PersonModel.setPersonInput('')
+    dispatch.PersonModel.setPerson(null);
+    dispatch.PersonModel.setPersonInput("");
   }
 
   const searchPerson = (input: string) => {
-    if (personState?.personInput === '') {
-      alert('Zadej ID osoby')
+    if (personState?.personInput === "") {
+      alert("Zadej ID osoby");
     } else {
-      dispatch.PersonModel.findPerson(input)
+      dispatch.PersonModel.findPerson(input);
     }
-  }
+  };
 
   return (
     <div className="person">
@@ -57,18 +57,18 @@ const PersonView = ({ personState, modalState }: IPersonView) => {
           {personState?.person ? (
             `${personState.person.fullname} (${personState.person.id})`
           ) : (
-            <span style={{ fontStyle: 'italic', fontWeight: 'normal' }}>
+            <span style={{ fontStyle: "italic", fontWeight: "normal" }}>
               osoba nevybrána
             </span>
           )}
         </span>
-        <span style={{ marginTop: '10px' }}>Identifikace</span>
+        <span style={{ marginTop: "10px" }}>Identifikace</span>
         <form onSubmit={handleSubmit}>
           <input
             ref={inputElement}
             type="text"
             value={
-              personState?.personInput !== null ? personState?.personInput : ''
+              personState?.personInput !== null ? personState?.personInput : ""
             }
             onChange={handleChange}
           />
@@ -78,7 +78,7 @@ const PersonView = ({ personState, modalState }: IPersonView) => {
               value="Submit"
               onClick={() =>
                 searchPerson(
-                  personState?.personInput ? personState?.personInput : '',
+                  personState?.personInput ? personState?.personInput : ""
                 )
               }
             >
@@ -89,7 +89,7 @@ const PersonView = ({ personState, modalState }: IPersonView) => {
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PersonView
+export default PersonView;
