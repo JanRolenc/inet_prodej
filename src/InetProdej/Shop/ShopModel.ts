@@ -116,10 +116,6 @@ function recomputeLists(shopState: IItem[], cartState: IItem[]): IItem[][] {
       (item) => item.id === itemShop.id,
     )
     if (itemCart) {
-      console.log('itemCartIndex', itemCartIndex)
-      // var itemCartIndex: number = cartItemsCopy.findIndex(itemCart)
-      console.log('shoda itemCart id a itemShop id')
-      console.log('itemCart', itemCart.name)
       if (itemShop.quantity >= itemCart.quantity) {
         console.log('true: itemShop.quantity >= itemCart.quantity') //funguje
         console.log(
@@ -151,7 +147,7 @@ function recomputeLists(shopState: IItem[], cartState: IItem[]): IItem[][] {
       }
     }
   })
-  console.log('shopItemsCopy po cyklu', shopItemsCopy) //NEfunguje
-  console.log('cartItemsCopy po cyklu', cartItemsCopy) //NEfunguje
+  console.log('shopItemsCopy po cyklu', shopItemsCopy) //TADY TO NEFUNGUJE
+  console.log('cartItemsCopy po cyklu', cartItemsCopy) //TADY TO NEFUNGUJE
   return [shopItemsCopy, cartItemsCopy]
 }

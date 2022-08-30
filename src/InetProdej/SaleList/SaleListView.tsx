@@ -1,12 +1,12 @@
-import { ISaleListView } from "../interfaces";
-import ItemsList from "../ItemsList/ItemsList";
+import { ISaleListView } from '../interfaces'
+import ItemsList from '../ItemsList/ItemsList'
 
-import { ReactComponent as CartIcon } from "../assets/shopping-cart.svg";
-import stopIcon from "../assets/red_stop.png";
-import greenCircle from "../assets/green-circle.png";
-import yellowCircle from "../assets/yellow-circle.png";
-import { useState } from "react";
-import { numberCzechFormat } from "../InetProdej";
+import { ReactComponent as CartIcon } from '../assets/shopping-cart.svg'
+import stopIcon from '../assets/red_stop.png'
+import greenCircle from '../assets/green-circle.png'
+import yellowCircle from '../assets/yellow-circle.png'
+import { useState } from 'react'
+import { numberCzechFormat } from '../InetProdej'
 
 const ModalView = ({
   cartState,
@@ -18,23 +18,18 @@ const ModalView = ({
   clearPersonInput,
   callSell,
 }: ISaleListView) => {
-  const [sellClicked, setSellClicked] = useState<boolean>(false);
-  const [saleFinished, setSaleFinished] = useState<boolean>(false);
+  const [sellClicked, setSellClicked] = useState<boolean>(false)
+  const [saleFinished, setSaleFinished] = useState<boolean>(false)
   const clickSellModal = () => {
-    callSell();
-    // if (modalState.confirmed === "OK") {
-    saleListState.confirmed === "OK" && setSellClicked(true);
+    callSell()
+    saleListState.confirmed === 'OK' && setSellClicked(true)
     setTimeout(() => {
-      setSaleFinished(true);
-      clearCart();
-      clearPerson();
-      clearPersonInput();
-    }, 5000);
-    // }
-    // else {
-    //   alert("sorry, prodej neprobehl");
-    // }
-  };
+      setSaleFinished(true)
+      clearCart()
+      clearPerson()
+      clearPersonInput()
+    }, 5000)
+  }
   return (
     <div className="modal">
       <div className="modal__content">
@@ -53,9 +48,9 @@ const ModalView = ({
         <div className="modal__content__body">
           <div
             style={{
-              padding: "3px 0px 1px 8px",
-              height: "10%",
-              fontWeight: "bold",
+              padding: '3px 0px 1px 8px',
+              height: '10%',
+              fontWeight: 'bold',
             }}
           >
             Nákupní košík obsahuje:
@@ -146,7 +141,7 @@ const ModalView = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ModalView;
+export default ModalView
