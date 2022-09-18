@@ -134,7 +134,9 @@ export default function InetProdej() {
     dispatch.PersonModel.setPersonInput('')
   }
   return !headerState.shopId ? (
-    <div>Neni vybrán obchod</div>
+    <div>
+      Neni vybrán obchod - zadej 1 do URL / No shop selected - add 1 to URL
+    </div>
   ) : (
     <div
       className={`${
