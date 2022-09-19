@@ -133,11 +133,12 @@ export default function InetProdej() {
   const clearPersonInput = () => {
     dispatch.PersonModel.setPersonInput('')
   }
-  return !headerState.shopId ? (
-    <div>
-      Neni vybrán obchod - zadej 1 do URL / No shop selected - add 1 to URL
-    </div>
-  ) : (
+  return (
+    // !headerState.shopId ? (
+    //   <div>
+    //     Neni vybrán obchod - zadej 1 do URL / No shop selected - add 1 to URL
+    //   </div>
+    // ) :
     <div
       className={`${
         headerState.touched === 'true'
