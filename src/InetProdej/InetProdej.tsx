@@ -102,8 +102,9 @@ export default function InetProdej() {
   const scannerToggler = (scanner: string) => {
     dispatch.HeaderModel.changeScanner(scanner)
   }
-  const modalViewToggler = () => {
-    dispatch.ModalModel.toggle()
+  const saleListViewToggler = () => {
+    dispatch.SaleListModel.toggle()
+    console.log(saleListState.open)
   }
   const callSell = () => {
     const sellRequest = {
@@ -113,10 +114,10 @@ export default function InetProdej() {
       articles: [],
     }
 
-    dispatch.ModalModel.callSell(sellRequest)
+    dispatch.SaleListModel.callSell(sellRequest)
   }
   const clearSalesList = () => {
-    dispatch.SalesListModel.clearSalesList()
+    dispatch.LastSalesModel.clearSalesList()
   }
   var totalPrice = 0
   for (let j = 0; j < cartState.length; j++) {
@@ -133,12 +134,11 @@ export default function InetProdej() {
   const clearPersonInput = () => {
     dispatch.PersonModel.setPersonInput('')
   }
-  return (
-    // !headerState.shopId ? (
-    //   <div>
-    //     Neni vybrán obchod - zadej 1 do URL / No shop selected - add 1 to URL
-    //   </div>
-    // ) :
+  return !headerState.shopId ? (
+    <div>
+      Neni vybrán obchod - zadej 1 do URL / No shop selected - add 1 to URL
+    </div>
+  ) : (
     <div
       className={`${
         headerState.touched === 'true'
@@ -167,7 +167,7 @@ export default function InetProdej() {
           increaseItem={increaseItem}
           totalPrice={totalPrice}
           personState={personState}
-          modalViewToggler={modalViewToggler}
+          saleListViewToggler={saleListViewToggler}
           saleListState={saleListState}
           lastSalesListState={lastSalesListState}
         />
@@ -177,7 +177,7 @@ export default function InetProdej() {
           cartState={cartState}
           personState={personState}
           totalPrice={totalPrice}
-          modalViewToggler={modalViewToggler}
+          saleListViewToggler={saleListViewToggler}
           saleListState={saleListState}
           clearCart={clearCart}
           clearPerson={clearPerson}

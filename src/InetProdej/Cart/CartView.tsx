@@ -1,12 +1,12 @@
-import CartItemView from "./CartItemView";
+import CartItemView from './CartItemView'
 
-import { ICartView } from "../interfaces";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState, Dispatch } from "../store";
+import { ICartView } from '../interfaces'
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState, Dispatch } from '../store'
 
-import { ReactComponent as CartIcon } from "../assets/shopping-cart.svg";
+import { ReactComponent as CartIcon } from '../assets/shopping-cart.svg'
 
-import { numberCzechFormat } from "../InetProdej";
+import { numberCzechFormat } from '../InetProdej'
 
 const CartView = ({
   cartState,
@@ -17,23 +17,23 @@ const CartView = ({
   // headerState,
   personState,
   saleListState,
-  modalViewToggler,
+  saleListViewToggler,
 }: ICartView) => {
-  const dispatch = useDispatch<Dispatch>();
+  const dispatch = useDispatch<Dispatch>()
 
-  const headerState = useSelector((state: RootState) => state.HeaderModel);
+  const headerState = useSelector((state: RootState) => state.HeaderModel)
 
   // const salesListState = useSelector((state: RootState) => state.SalesListModel)
 
   const loadSalesList = () => {
-    dispatch.SalesListModel.loadSalesList(headerState.shopId);
-  };
+    dispatch.LastSalesModel.loadSalesList(headerState.shopId)
+  }
 
   return (
     <div className="cart">
       <div id="touch" className="cart__name">
         Košík
-        <button style={{ marginLeft: "40px" }} onClick={loadSalesList}>
+        <button style={{ marginLeft: '40px' }} onClick={loadSalesList}>
           Poslední prodeje
         </button>
       </div>
@@ -70,24 +70,24 @@ const CartView = ({
       <div className="cart__sale">
         {!personState?.person?.id && !cartState.length ? (
           <div>
-            <span style={{ display: "block" }}>Košík je prázdný.</span>
-            <span style={{ display: "block" }}>
+            <span style={{ display: 'block' }}>Košík je prázdný.</span>
+            <span style={{ display: 'block' }}>
               SUPO:
-              <span style={{ color: "red", paddingLeft: "0px" }}>
-                {" "}
+              <span style={{ color: 'red', paddingLeft: '0px' }}>
+                {' '}
                 Klient není vybrán.
               </span>
             </span>
           </div>
         ) : personState && !cartState.length ? (
           <div>
-            <span style={{ display: "block" }}>Košík je prázdný.</span>
-            <span style={{ display: "block" }}>
+            <span style={{ display: 'block' }}>Košík je prázdný.</span>
+            <span style={{ display: 'block' }}>
               SUPO: Zůstatek na klientském účtu je:
               {personState.person?.money && personState.person?.money < 200 ? (
                 <span>{numberCzechFormat(personState.person?.money)} Kč</span>
               ) : (
-                <span style={{ fontStyle: "italic" }}>
+                <span style={{ fontStyle: 'italic' }}>
                   na účtě máte dostatek prostředků
                 </span>
               )}
@@ -95,30 +95,30 @@ const CartView = ({
           </div>
         ) : personState && cartState.length ? (
           <div>
-            <span style={{ display: "block" }}>
-              Celková cena:{" "}
-              <span style={{ fontWeight: "bold" }}>
+            <span style={{ display: 'block' }}>
+              Celková cena:{' '}
+              <span style={{ fontWeight: 'bold' }}>
                 {numberCzechFormat(totalPrice)} Kč
               </span>
             </span>
-            <span style={{ display: "block" }}>
+            <span style={{ display: 'block' }}>
               SUPO:
               {personState.person?.money &&
               personState.person?.money < 200 &&
               parseInt(
-                numberCzechFormat(personState.person?.money - totalPrice)
+                numberCzechFormat(personState.person?.money - totalPrice),
               ) >= 0 ? (
                 <span>
-                  Zůstatek na klientském účtu je:{" "}
+                  Zůstatek na klientském účtu je:{' '}
                   {numberCzechFormat(personState.person?.money - totalPrice)} Kč
                 </span>
               ) : (
-                <span style={{ color: "red" }}>
-                  Klientův zůstatek není dostatečný, chybí:{" "}
+                <span style={{ color: 'red' }}>
+                  Klientův zůstatek není dostatečný, chybí:{' '}
                   {personState?.person?.money &&
                     numberCzechFormat(
-                      (personState.person.money - totalPrice) * -1
-                    )}{" "}
+                      (personState.person.money - totalPrice) * -1,
+                    )}{' '}
                   Kč
                 </span>
               )}
@@ -126,9 +126,9 @@ const CartView = ({
           </div>
         ) : !personState && cartState.length ? (
           <div>
-            <span style={{ display: "block" }}>
-              Celková cena:{" "}
-              <span style={{ fontWeight: "bold" }}>
+            <span style={{ display: 'block' }}>
+              Celková cena:{' '}
+              <span style={{ fontWeight: 'bold' }}>
                 {numberCzechFormat(totalPrice)} Kč
               </span>
             </span>
@@ -141,18 +141,18 @@ const CartView = ({
             cartState.length > 0 &&
             personState?.person?.money &&
             parseInt(
-              numberCzechFormat(personState?.person?.money - totalPrice)
+              numberCzechFormat(personState?.person?.money - totalPrice),
             ) >= 0
               ? false
               : true
           }
-          onClick={() => modalViewToggler(saleListState.open)}
+          onClick={() => saleListViewToggler(saleListState.open)}
         >
           <CartIcon /> Prodej
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CartView;
+export default CartView

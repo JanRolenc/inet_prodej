@@ -10,6 +10,7 @@ function getShopIdFromURL(): number | null {
 export const HeaderModel = createModel<RootModel>()({
   state: {
     shopId: getShopIdFromURL(),
+    // shopId: 1,
     shopName: '',
     user: {} as IPerson,
     touched: localStorage.touched,

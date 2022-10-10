@@ -8,11 +8,11 @@ import yellowCircle from '../assets/yellow-circle.png'
 import { useState } from 'react'
 import { numberCzechFormat } from '../InetProdej'
 
-const ModalView = ({
+const SaleListView = ({
   cartState,
   totalPrice,
   saleListState,
-  modalViewToggler,
+  saleListViewToggler,
   clearCart,
   clearPerson,
   clearPersonInput,
@@ -39,7 +39,7 @@ const ModalView = ({
             <span>Prodejní transakce</span>
           </div>
           <div
-            onClick={() => modalViewToggler(saleListState.open)}
+            onClick={() => saleListViewToggler(saleListState.open)}
             className="modal__content__header__close"
           >
             &#10005;
@@ -73,7 +73,9 @@ const ModalView = ({
                 </div>
                 <div className="modal__content__body__sale__right">
                   <button onClick={clickSellModal}>Prodat</button>
-                  <button onClick={() => modalViewToggler(saleListState.open)}>
+                  <button
+                    onClick={() => saleListViewToggler(saleListState.open)}
+                  >
                     <img src={stopIcon} alt="stop" />
                     Zavřít
                   </button>
@@ -105,7 +107,7 @@ const ModalView = ({
                   </button>
                   <button
                     disabled
-                    onClick={() => modalViewToggler(saleListState.open)}
+                    onClick={() => saleListViewToggler(saleListState.open)}
                   >
                     <img src={stopIcon} alt="stop" />
                     Zavřít
@@ -130,7 +132,9 @@ const ModalView = ({
                   Prodej proběhl úspěšně
                 </div>
                 <div className="modal__content__body__sale__right">
-                  <button onClick={() => modalViewToggler(saleListState.open)}>
+                  <button
+                    onClick={() => saleListViewToggler(saleListState.open)}
+                  >
                     <img src={stopIcon} alt="stop" />
                     Zavřít
                   </button>
@@ -144,4 +148,4 @@ const ModalView = ({
   )
 }
 
-export default ModalView
+export default SaleListView

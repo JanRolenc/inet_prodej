@@ -25,7 +25,7 @@ export interface ICartView {
   increaseItem: (item: IItem, count: number) => void
   totalPrice: number
   personState: IPersonState | null
-  modalViewToggler: (modal: boolean) => void
+  saleListViewToggler: (modal: boolean) => void
   saleListState: ISaleListModel
   lastSalesListState: ILastSales
 }
@@ -41,7 +41,7 @@ export interface ISaleListView {
   cartState: IItem[]
   personState: IPersonState | null
   totalPrice: number
-  modalViewToggler: (modal: boolean) => void
+  saleListViewToggler: (modal: boolean) => void
   saleListState: ISaleListModel
   callSell(): void
   clearCart(): void
